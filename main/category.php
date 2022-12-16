@@ -38,7 +38,7 @@ if(isset($_POST["search"])) {
         <header class="header">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container">
-                    <div class="logo"><a href="./index.php">Fil<span>ms</span></a></div>
+                    <div class="logo"><a href="./category.php">Fil<span>ms</span></a></div>
                     <div class="nav-menu">
                         <ul class="navbar-nav">
                             <li class="nav-item"><a class="nav-link" href="/web-project-akhir/index.php">Home <span class="dot"></span></a></li>
@@ -84,7 +84,7 @@ if(isset($_POST["search"])) {
                 <div class="sign__content">
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
-                        <a class="sign__logo" href="/web-project-akhir">Fil<span>ms</span></a>
+                        <a class="sign__logo" href="./category.php">Fil<span>ms</span></a>
                         <div class="sign__group">
                             <input type="text" name="email" placeholder="Email" class="sign__input">
                         </div>
@@ -114,7 +114,7 @@ if(isset($_POST["search"])) {
                 <div class="sign__content">
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
-                        <a class="sign__logo" href="/web-project-akhir">Fil<span>ms</span></a>
+                        <a class="sign__logo" href="./category.php">Fil<span>ms</span></a>
                         <div class="sign__group">
                             <input type="text" name="name" placeholder="Name" class="sign__input">
                         </div>
@@ -147,7 +147,7 @@ if(isset($_POST["search"])) {
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
                         <span class="sign__back" onclick="back()"><i class="fa-solid fa-angle-left"></i></span>
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
-                        <a class="sign__logo" href="/web-project-akhir">Fil<span>ms</span></a>
+                        <a class="sign__logo" href="./category.php">Fil<span>ms</span></a>
                         <div class="sign__group">
                             <input type="text" name="email" placeholder="Email" class="sign__input">
                         </div>
@@ -189,7 +189,7 @@ if(isset($_POST["search"])) {
                                     <span class="genres">All genres <span class="angle-down"><i class="fa-solid fa-angle-down"></i></span></span>
                                     <span class="years">All the years <span class="angle-down"><i class="fa-solid fa-angle-down"></i></span></span>
                                 </div>
-                                <div class="catalog__tabs" method="post">
+                                <div class="catalog__tabs">
                                     <button id="featured" name="featured" onclick="feat()">Featured</button>
                                     <button id="popular" name="popular" onclick="pop()">Popular</button>
                                     <button id="newest" name="newest" onclick="news()">Newest</button>

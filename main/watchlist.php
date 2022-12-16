@@ -22,7 +22,6 @@ if(isset($_POST["search"])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Films</title>
-        <style> @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap'); </style>
         <link rel="icon" href="../assets/images/icon/icon.png">
         <!-- Personal assets -->
         <link rel="stylesheet" href="../assets/styles/style.css">
@@ -30,8 +29,9 @@ if(isset($_POST["search"])) {
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-        <!-- Icon Link -->
+        <!-- Font -->
         <script src="https://kit.fontawesome.com/f6faa850c8.js" crossorigin="anonymous"></script>
+        <style> @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap'); </style>
     </head>
 
     <body>
@@ -84,7 +84,7 @@ if(isset($_POST["search"])) {
                 <div class="sign__content">
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
-                        <a class="sign__logo" href="https://alfankevin.github.io/web-project-akhir/">Fil<span>ms</span></a>
+                        <a class="sign__logo" href="./watchlist.php">Fil<span>ms</span></a>
                         <div class="sign__group">
                             <input type="text" name="email" placeholder="Email" class="sign__input">
                         </div>
@@ -114,7 +114,7 @@ if(isset($_POST["search"])) {
                 <div class="sign__content">
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
-                        <a class="sign__logo" href="https://alfankevin.github.io/web-project-akhir/">Fil<span>ms</span></a>
+                        <a class="sign__logo" href="./watchlist.php">Fil<span>ms</span></a>
                         <div class="sign__group">
                             <input type="text" name="name" placeholder="Name" class="sign__input">
                         </div>
@@ -147,7 +147,7 @@ if(isset($_POST["search"])) {
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
                         <span class="sign__back" onclick="back()"><i class="fa-solid fa-angle-left"></i></span>
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
-                        <a class="sign__logo" href="https://alfankevin.github.io/web-project-akhir/">Fil<span>ms</span></a>
+                        <a class="sign__logo" href="./watchlist.php">Fil<span>ms</span></a>
                         <div class="sign__group">
                             <input type="text" name="email" placeholder="Email" class="sign__input">
                         </div>
