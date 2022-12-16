@@ -6,7 +6,7 @@ create table user (
     username varchar(20),
     email varchar(20),
     password varchar(20),
-    created_date date    
+    created_date datetime 
 );
 
 create table subs (
