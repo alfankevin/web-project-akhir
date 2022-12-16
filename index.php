@@ -78,89 +78,6 @@ if(isset($_POST["search"])) {
                 </div>
             </nav>
         </header>
-
-        <section class="signin" id="signin">
-            <div class="container">
-                <div class="sign__content">
-                    <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
-                        <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
-                        <a class="sign__logo" href="/index.php">Fil<span>ms</span></a>
-                        <div class="sign__group">
-                            <input type="text" name="email" placeholder="Email" class="sign__input">
-                        </div>
-                        <div class="sign__group">
-                            <input type="password" name="password" placeholder="Password" class="sign__input">
-                        </div>
-                        <div class="sign__group">
-                            <input type="checkbox" name="remember" checked="checked" class="remember">
-                            <label for="remember">Remember me</label>
-                        </div>
-                        <button class="sign__button">Sign in</button>
-                        <span class="sign__delimiter">or</span>
-                        <div class="sign__social">
-                            <a href="#" class="fb"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="#" class="tw"><i class="fa-brands fa-twitter"></i></a>
-                            <a href="#" class="gl"><i class="fa-brands fa-google"></i></a>
-                        </div>
-                        <span class="sign__text">Don't have an account? <span onclick="regist()">Sign up!</span></span>
-                        <span class="sign__text"><span onclick="forget()">Forgot password?</span></span>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <section class="signup" id="signup">
-            <div class="container">
-                <div class="sign__content">
-                    <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
-                        <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
-                        <a class="sign__logo" href="/index.php">Fil<span>ms</span></a>
-                        <div class="sign__group">
-                            <input type="text" name="name" placeholder="Name" class="sign__input">
-                        </div>
-                        <div class="sign__group">
-                            <input type="text" name="email" placeholder="Email" class="sign__input">
-                        </div>
-                        <div class="sign__group">
-                            <input type="password" name="password" placeholder="Password" class="sign__input">
-                        </div>
-                        <div class="sign__group">
-                            <input type="checkbox" name="remember" checked="checked" class="remember">
-                            <label for="agree">I agree to the <a href="#" class="sign__privacy">Privacy Policy</a></label>
-                        </div>
-                        <button class="sign__button">Sign up</button>
-                        <span class="sign__delimiter">or</span>
-                        <div class="sign__social">
-                            <a href="#" class="fb"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="#" class="tw"><i class="fa-brands fa-twitter"></i></a>
-                            <a href="#" class="gl"><i class="fa-brands fa-google"></i></a>
-                        </div>
-                        <span class="sign__text">Already have an account? <span onclick="login()">Sign in!</span></span>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <section class="forgot" id="forgot">
-            <div class="container">
-                <div class="sign__content">
-                    <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
-                        <span class="sign__back" onclick="back()"><i class="fa-solid fa-angle-left"></i></span>
-                        <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
-                        <a class="sign__logo" href="/index.php">Fil<span>ms</span></a>
-                        <div class="sign__group">
-                            <input type="text" name="email" placeholder="Email" class="sign__input">
-                        </div>
-                        <div class="sign__group">
-                            <input type="checkbox" name="agree" checked="checked" id="agree">
-                            <label for="agree">I agree to the <a href="#" class="sign__privacy">Privacy Policy</a></label>
-                        </div>
-                        <button class="sign__button">Send</button>
-                        <span class="sign__text sign__text-forgot">We will send a password to your Email</span>
-                    </form>
-                </div>
-            </div>
-        </section>
         
         <section class="hero">
             <div class="container">
@@ -327,7 +244,7 @@ if(isset($_POST["search"])) {
                     </div>
                 </div>
                 <div class="row row--grid">
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="./assets/images/card/11.png" alt="" class="card__image">
@@ -344,7 +261,7 @@ if(isset($_POST["search"])) {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="./assets/images/card/15.png" alt="" class="card__image">
@@ -361,7 +278,7 @@ if(isset($_POST["search"])) {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="./assets/images/card/2.png" alt="" class="card__image">
@@ -378,7 +295,7 @@ if(isset($_POST["search"])) {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="./assets/images/card/1.png" alt="" class="card__image">
@@ -395,7 +312,7 @@ if(isset($_POST["search"])) {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="./assets/images/card/18.png" alt="" class="card__image">
@@ -412,7 +329,7 @@ if(isset($_POST["search"])) {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="./assets/images/card/3.png" alt="" class="card__image">
