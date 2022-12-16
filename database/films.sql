@@ -27,6 +27,8 @@ create table film (
     rating float,
     genre varchar(20),
     year int,
+    age int,
+    desc varchar(500),
     image varchar(50),
     video varchar(50),
     id_category int foreign key references category (id_category)

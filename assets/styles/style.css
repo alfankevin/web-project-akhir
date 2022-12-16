@@ -862,6 +862,8 @@ body {
     margin-bottom: 10px;
     font-size: 37px;
     color: #fff;
+    text-decoration: none;
+    transition: all, 0.5s;
 }
 
 .subs__text {
@@ -1084,24 +1086,22 @@ body {
     }
 }
 
-/* class section */
+/* title section */
 .section {
     padding: 60px 0 0;
     border-top: 1px solid #151f30;
+}
+
+.section__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .section__title {
     margin: 0;
     color: #fff;
     font-size: 38px;
-}
-
-.section__content {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .section__nav {
@@ -1125,4 +1125,214 @@ body {
 .section__nav span {
     color: #e0e0e0;
     margin-right: 0;
+}
+
+/* details section */
+.details {
+    padding: 60px 0 0;
+    border-top: 1px solid #151f30;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0),  rgba(0,0,0,0));
+}
+
+.details__header {
+    display: flex;
+    flex-direction: column;
+}
+
+.details__title {
+    margin-bottom: 15px;
+    font-size: 36px;
+    color: #e0e0e0;
+}
+
+.details__label {
+    margin: 0 0 30px;
+    padding: 0;
+}
+
+.details__label li {
+    margin: 0 7.5px;
+    font-size: 16px;
+    display: inline;
+    color: #e0e0e0;
+}
+
+.details__label li i {
+    color: #2f80ed;
+}
+
+.details__label li:first-child {
+    margin-left: 0;
+}
+
+#label {
+    margin-bottom: 4px;
+    background-color: #2f80ed;
+}
+
+.details__desc {
+    margin: 0;
+    font-size: 16px;
+    color: #e0e0e0;
+    line-height: 1.7;
+}
+
+.details__video {
+    padding: 35px 0 60px;
+    border-bottom: 1px solid rgba(47,128,237,0.1);
+}
+
+.video__cover {
+    height: 460px;
+    width: 100%;
+}
+
+.video__cover iframe {
+    border-radius: 16px;
+}
+
+.video__action {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.video__download,
+.video__save {
+    font-size: 15px;
+    color: #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+
+.video__download a {
+    padding-right: 10px;
+    margin-left: 10px;
+    color: #fff;
+    border-right: 1px solid rgba(47,128,237,0.1);
+    text-decoration: none;
+    transition: all, 0.5s;
+}
+
+.video__download a:hover {
+    color: #2f80ed;
+}
+
+.video__download i {
+    margin-right: 10px;
+    font-size: 19px;
+    color: #2f80ed;
+    margin-bottom: 4px;
+}
+
+.video__save button {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: #e0e0e0;
+    border: none;
+    background: none;
+}
+
+.video__save button i {
+    margin-right: 10px;
+    font-size: 17px;
+    color: #2f80ed;
+    transition: all, 0.5s;
+}
+
+.video__save button:hover i {
+    color: #ffc312;
+}
+
+/* comment section */
+.comment {
+    padding: 60px 0 0;
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0), rgba(21,31,48,0.35));
+}
+
+.comment__title {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.comment__title h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-right: 50px;
+}
+
+.comment__item {
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 100%;
+    border-radius: 16px;
+    background-color: #151f30;
+}
+
+.comment__author {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 0 0 20px 55px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(47,128,237,0.1);
+}
+
+.comment__avatar {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+}
+
+.comment__name {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.comment__time {
+    color: #fff;
+    font-size: 12px;
+}
+
+.comment__text p {
+    margin: 0;
+    color: #e0e0e0;
+    font-size: 16px;
+}
+
+.comment__form {
+    margin: 40px 0 60px;
+    padding: 20px;
+    width: 100%;
+    border-radius: 16px;
+    background-color: #131720;
+    border: 1px solid rgba(47,128,237,0.1);
+}
+
+.sign__textarea {
+    padding: 15px 20px;
+    height: 144px;
+    width: 100%;
+    color: #e0e0e0;
+    outline: none;
+    resize: none;
+    border: none;
+    border-radius: 16px;
+    border: 1px solid transparent;
+    background-color: #151f30;
+    transition: all, 0.5s;
+}
+
+.sign__textarea:focus {
+    border: 1px solid #2f80ed;
+}
+
+.comment__form .sign__button {
+    margin: 0;
+    width: 180px;
 }

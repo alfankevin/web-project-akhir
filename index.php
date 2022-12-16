@@ -286,7 +286,7 @@ if(isset($_POST["search"])) {
                             <?php foreach($film as $row): ?>
                             <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                 <div class="card">
-                                    <a class="card__cover" href="#">
+                                    <a class="card__cover" href="./main/details.php">
                                         <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                         <img src="./assets/images/icon/play.png" class="card__button">
                                     </a>
@@ -297,7 +297,7 @@ if(isset($_POST["search"])) {
                                         <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                     </span>
                                     <h3 class="card__title">
-                                        <a href="#"><?php echo $row["title"]; ?></a>
+                                        <a href="./main/details.php"><?php echo $row["title"]; ?></a>
                                     </h3>
                                     <ul class="card__label">
                                         <li><?php echo $row["label"]; ?></li>
