@@ -49,13 +49,13 @@ body {
 
 /* nav items */
 .nav-item {
-    padding: 30.5px;
+    padding: 31.5px;
 }
 
 .nav-item .nav-link {
     padding: 0 !important;
     font-size: 14px;
-    color: #e0e0e0;
+    color: #fff;
     transition: all, 0.5s;
 }
 
@@ -79,7 +79,7 @@ body {
     margin-bottom: 2px;
     border-radius: 50%;
     display: inline-block;
-    background-color: #e0e0e0;
+    background-color: #fff;
     transition: all, 0.5s;
 }
 
@@ -101,7 +101,7 @@ body {
 
 .nav__form {
     display: flex;
-    margin-right: 62.5px;
+    margin-right: 65px;
     position: relative;
     align-items: center;
 }
@@ -112,7 +112,7 @@ body {
     width: 250px;
     outline: none;
     font-size: 14px;
-    color: #e0e0e0;
+    color: #fff;
     border-style: none;
     border-radius: 16px;
     background-color: #151f30;
@@ -140,12 +140,12 @@ body {
 }
 
 .nav__form .nav__action-btn:hover i {
-    color: #e0e0e0;
+    color: #fff;
 }
 
 .nav__login .nav-link {
     font-size: 14px;
-    color: #e0e0e0;
+    color: #fff;
     transition: all, 0.5s;
     cursor: pointer;
 }
@@ -539,11 +539,11 @@ body {
     transform: scale(1.2);
 }
 
-.hero__detail {
+.hero__details {
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 25px 30px;
+    padding: 27.5px 30px;
     pointer-events: none;
     z-index: 2;
 }

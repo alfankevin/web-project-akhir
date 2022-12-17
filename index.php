@@ -174,7 +174,7 @@ if(isset($_POST["search"])) {
                             <span class="hero__rate">
                                 <i class="fa-regular fa-star"></i>7.6
                             </span>
-                            <div class="hero__detail">
+                            <div class="hero__details">
                                 <h2 class="hero__title">Tenet</h2>
                                 <ul class="hero__label">
                                     <li>Free</li>
@@ -193,7 +193,7 @@ if(isset($_POST["search"])) {
                             <span class="hero__rate">
                                 <i class="fa-regular fa-star"></i>9.1
                             </span>
-                            <div class="hero__detail">
+                            <div class="hero__details">
                                 <h2 class="hero__title">Money Plane</h2>
                                 <ul class="hero__label">
                                     <li>Free</li>
@@ -212,7 +212,7 @@ if(isset($_POST["search"])) {
                             <span class="hero__rate">
                                 <i class="fa-regular fa-star"></i>8.3
                             </span>
-                            <div class="hero__detail">
+                            <div class="hero__details">
                                 <h2 class="hero__title">The Art of Political</h2>
                                 <ul class="hero__label">
                                     <li>Free</li>
@@ -231,7 +231,7 @@ if(isset($_POST["search"])) {
                             <span class="hero__rate">
                                 <i class="fa-regular fa-star"></i>7.9
                             </span>
-                            <div class="hero__detail">
+                            <div class="hero__details">
                                 <h2 class="hero__title">Antebellum</h2>
                                 <ul class="hero__label">
                                     <li>Free</li>
@@ -250,7 +250,7 @@ if(isset($_POST["search"])) {
                             <span class="hero__rate">
                                 <i class="fa-regular fa-star"></i>8.4
                             </span>
-                            <div class="hero__detail">
+                            <div class="hero__details">
                                 <h2 class="hero__title">Kids Next Door</h2>
                                 <ul class="hero__label">
                                     <li>Free</li>
