@@ -1,6 +1,7 @@
 <?php
 require "functions.php";
-$film = query("SELECT * FROM film LIMIT 18");
+$film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category WHERE id_film = '2'");
+$view = query("SELECT * FROM user INNER JOIN user_film ON user.id_user = user_film.id_user INNER JOIN film ON film.id_film = user_film.id_film");
 
 if(isset($_POST["search"])) {
     $film = search($_POST["keyword"]);
@@ -21,7 +22,7 @@ if(isset($_POST["search"])) {
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-        <!-- Font -->
+        <!-- Icon/Font -->
         <script src="https://kit.fontawesome.com/f6faa850c8.js" crossorigin="anonymous"></script>
         <style> @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap'); </style>
     </head>
@@ -157,27 +158,29 @@ if(isset($_POST["search"])) {
         <section class="details">
             <div class="container">
                 <div class="row">
+                    <?php $i = 1 ?>
+                    <?php foreach($film as $row): ?>
                     <div class="col-12 col-lg-8">
                         <div class="details__header">
-                            <h1 class="details__title">Peaky Blinders</h1>
+                            <h1 class="details__title"><?php echo $row["title"]; ?></h1>
                             <ul class="details__label">
-                                <li><i class="fa-regular fa-star"></i> 9.0</li>
+                                <li><i class="fa-regular fa-star"></i> <?php echo $row["rating"]; ?></li>
                                 <li><span class="dot" id="label"></span></li>
-                                <li>Action</li>
+                                <li><?php echo $row["genre"]; ?></li>
                                 <li><span class="dot" id="label"></span></li>
-                                <li>Action</li>
+                                <li><?php echo $row["category"]; ?></li>
                                 <li><span class="dot" id="label"></span></li>
-                                <li>Action</li>
+                                <li><?php echo $row["year"]; ?></li>
                                 <li><span class="dot" id="label"></span></li>
-                                <li>Action</li>
+                                <li><?php echo $row["age"]; ?>+</li>
                             </ul>
-                            <p class="details__desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat numquam quam eaque, dolor incidunt nisi soluta eius optio minus, aliquid saepe molestiae nemo, rem fugit neque. Numquam culpa et odio quaerat, mollitia saepe doloribus dignissimos molestiae cupiditate error ex ipsam?</p>
+                            <p class="details__desc"><?php echo $row["film_desc"]; ?></p>
                         </div>
                     </div>
                     <div class="col-12 col-lg-8">
                         <form class="details__video" method="post">
                             <div class="video__cover">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/2nsT9uQPIrk" allowfullscreen></iframe>
+                                <iframe width="100%" height="100%" src="<?php echo $row["video"]; ?>" allowfullscreen></iframe>
                             </div>
                             <div class="video__action">
                                 <div class="video__download">
@@ -193,6 +196,8 @@ if(isset($_POST["search"])) {
                             </div>
                         </form>
                     </div>
+                    <?php $i++ ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -211,12 +216,10 @@ if(isset($_POST["search"])) {
                                     <div class="comment__item">
                                         <div class="comment__author">
                                             <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
-                                            <span class="comment__name">Alfan Farchi</span>
-                                            <span class="comment__date">17-12-2022 12:37:11</span>
+                                            <span class="comment__name"><?php echo $row["username"]; ?>Alfan Farchi</span>
+                                            <span class="comment__date"><?php echo $row["text_date"]; ?>17-12-2022 12:37:11</span>
                                         </div>
-                                        <div class="comment__text">
-                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
-                                        </div>
+                                        <p class="comment__text"><?php echo $row["comment"]; ?>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
                                     </div>
                                     <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
                                         <div class="sign__group">
@@ -231,21 +234,21 @@ if(isset($_POST["search"])) {
                                     <div class="comment__item">
                                         <div class="comment__author">
                                             <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
-                                            <span class="comment__name">Alfan Farchi</span>
-                                            <span class="comment__date">17-12-2022 12:37:11</span>
+                                            <span class="comment__name"><?php echo $row["review_title"]; ?>The best</span>
+                                            <span class="comment__date"><?php echo $row["text_date"]; ?>17-12-2022 12:37:11 by Alfan Farchi <?php echo $row["username"]; ?></span>
                                         </div>
                                         <div class="comment__text">
-                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
+                                            <p><?php echo $row["review"]; ?>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
                                         </div>
                                     </div>
                                     <div class="comment__item">
                                         <div class="comment__author">
                                             <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
-                                            <span class="comment__name">Alfan Farchi</span>
-                                            <span class="comment__date">17-12-2022 12:37:11</span>
+                                            <span class="comment__name"><?php echo $row["film_desc"]; ?>kinda</span>
+                                            <span class="comment__date"><?php echo $row["text_date"]; ?>17-12-2022 12:37:11 by Alfan Farchi<?php echo $row["username"]; ?></span>
                                         </div>
                                         <div class="comment__text">
-                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
+                                            <p><?php echo $row["review"]; ?>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
                                         </div>
                                     </div>
                                     <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
@@ -286,7 +289,7 @@ if(isset($_POST["search"])) {
                 <div class="row row--grid">
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="#">
+                            <a class="card__cover" href="./details.php">
                                 <img src="../assets/images/card/1.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -297,7 +300,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.3
                             </span>
                             <h3 class="card__title">
-                                <a href="#">The Good Lord Bird</a>
+                                <a href="./details.php">The Good Lord Bird</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -308,7 +311,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="#">
+                            <a class="card__cover" href="./details.php">
                                 <img src="../assets/images/card/2.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -319,7 +322,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>9.6
                             </span>
                             <h3 class="card__title">
-                                <a href="#">Peaky Blinders</a>
+                                <a href="./details.php">Peaky Blinders</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -330,7 +333,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="#">
+                            <a class="card__cover" href="./details.php">
                                 <img src="../assets/images/card/3.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -341,7 +344,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.1
                             </span>
                             <h3 class="card__title">
-                                <a href="#">The Dictator</a>
+                                <a href="./details.php">The Dictator</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -352,7 +355,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="#">
+                            <a class="card__cover" href="./details.php">
                                 <img src="../assets/images/card/4.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -363,7 +366,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.8
                             </span>
                             <h3 class="card__title">
-                                <a href="#">Get On Up</a>
+                                <a href="./details.php">Get On Up</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -374,7 +377,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="#">
+                            <a class="card__cover" href="./details.php">
                                 <img src="../assets/images/card/5.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -385,7 +388,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>7.9
                             </span>
                             <h3 class="card__title">
-                                <a href="#">Interview With the Vampire</a>
+                                <a href="./details.php">Interview With the Vampire</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -396,7 +399,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="#">
+                            <a class="card__cover" href="./details.php">
                                 <img src="../assets/images/card/6.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -407,7 +410,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.6
                             </span>
                             <h3 class="card__title">
-                                <a href="#">Pawn Sacrifice</a>
+                                <a href="./details.php">Pawn Sacrifice</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -424,7 +427,7 @@ if(isset($_POST["search"])) {
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-8 col-lg-4 order-md-1 order-4">
-                        <div class="logo"><a href="#">Fil<span>ms</span></a></div>
+                        <div class="logo footer__logo"><a href="#">Fil<span>ms</span></a></div>
                         <p class="footer__tagline">Movies & TV Shows, Online cinema,<br>Movie database HTML Website.</p>
                         <div class="footer__social">
                             <a href="#"><img src="../assets/images/social/facebook.png" alt=""></a>

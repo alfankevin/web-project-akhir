@@ -4,6 +4,9 @@ const forgot = document.getElementById("forgot");
 const newest = document.getElementById("newest");
 const popular = document.getElementById("popular");
 const featured = document.getElementById("featured");
+const newbtn = document.getElementById("newbtn");
+const popbtn = document.getElementById("popbtn");
+const featbtn = document.getElementById("featbtn");
 const comment = document.getElementById("comment");
 const review = document.getElementById("review");
 const combtn = document.getElementById("combtn");
@@ -36,21 +39,30 @@ function back() {
 }
 
 function feat() {
-    featured.classList.add("checked__tabs");
-    popular.classList.remove("checked__tabs");
-    newest.classList.remove("checked__tabs");
+    featbtn.classList.add("checked__tabs");
+    popbtn.classList.remove("checked__tabs");
+    newbtn.classList.remove("checked__tabs");
+    featured.style.display = "unset";
+    popular.style.display = "none";
+    newest.style.display = "none";
 }
 
 function pop() {
-    popular.classList.add("checked__tabs");
-    featured.classList.remove("checked__tabs");
-    newest.classList.remove("checked__tabs");
+    popbtn.classList.add("checked__tabs");
+    featbtn.classList.remove("checked__tabs");
+    newbtn.classList.remove("checked__tabs");
+    popular.style.display = "unset";
+    featured.style.display = "none";
+    newest.style.display = "none";
 }
 
 function news() {
-    newest.classList.add("checked__tabs");
-    featured.classList.remove("checked__tabs");
-    popular.classList.remove("checked__tabs");
+    newbtn.classList.add("checked__tabs");
+    featbtn.classList.remove("checked__tabs");
+    popbtn.classList.remove("checked__tabs");
+    newest.style.display = "unset";
+    featured.style.display = "none";
+    popular.style.display = "none";
 }
 
 function com() {

@@ -24,21 +24,6 @@ function search($keyword) {
     return query($sql);
 }
 
-function featured() {
-    $sql = "SELECT * FROM film LIMIT 18";
-    return query($sql);
-}
-
-function popular() {
-    $sql = "SELECT * FROM film ORDER BY rating DESC LIMIT 18";
-    return query($sql);
-}
-
-function newest() {
-    $sql = "SELECT * FROM film ORDER BY year DESC LIMIT 18";
-    return query($sql);
-}
-
 function more() {
     $sql = "SELECT * FROM film LIMIT 36";
     return query($sql);

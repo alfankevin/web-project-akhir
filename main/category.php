@@ -1,6 +1,8 @@
 <?php
 require "functions.php";
 $film = query("SELECT * FROM film LIMIT 18");
+$newest = query("SELECT * FROM film ORDER BY year DESC LIMIT 18");
+$popular = query("SELECT * FROM film ORDER BY rating DESC LIMIT 18");
 
 if(isset($_POST["search"])) {
     $film = search($_POST["keyword"]);
@@ -29,7 +31,7 @@ if(isset($_POST["search"])) {
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-        <!-- Font -->
+        <!-- Icon/Font -->
         <script src="https://kit.fontawesome.com/f6faa850c8.js" crossorigin="anonymous"></script>
         <style> @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap'); </style>
     </head>
@@ -179,60 +181,142 @@ if(isset($_POST["search"])) {
             </div>
         </section>
 
-        <form class="catalog" method="post">
+        <div class="catalog">
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <div class="catalog__header">
                             <div class="catalog__navbar">
                                 <div class="catalog__select">
-                                    <span class="genres">All genres <span class="angle-down"><i class="fa-solid fa-angle-down"></i></span></span>
-                                    <span class="years">All the years <span class="angle-down"><i class="fa-solid fa-angle-down"></i></span></span>
+                                    <div class="dropdown">
+                                        <button class="genre" type="button" data-bs-toggle="dropdown" aria-expanded="false">All genres <span class="angle-down"><i class="fa-solid fa-angle-down"></i></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item dropdown-active" href="#">All genres</a></li>
+                                            <li><a class="dropdown-item" href="#">Biography</a></li>
+                                            <li><a class="dropdown-item" href="#">Documentary</a></li>
+                                            <li><a class="dropdown-item" href="#">Drama</a></li>
+                                            <li><a class="dropdown-item" href="#">History</a></li>
+                                            <li><a class="dropdown-item" href="#">Science Fiction</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="year" type="button" data-bs-toggle="dropdown" aria-expanded="false">All the years <span class="angle-down"><i class="fa-solid fa-angle-down"></i></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item dropdown-active" href="#">All the years</a></li>
+                                            <li><a class="dropdown-item" href="#">'80s</a></li>
+                                            <li><a class="dropdown-item" href="#">'90s</a></li>
+                                            <li><a class="dropdown-item" href="#">2000-10</a></li>
+                                            <li><a class="dropdown-item" href="#">2010-20</a></li>
+                                            <li><a class="dropdown-item" href="#">2021</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="catalog__tabs">
-                                    <button id="featured" name="featured" onclick="feat()">Featured</button>
-                                    <button id="popular" name="popular" onclick="pop()">Popular</button>
-                                    <button id="newest" name="newest" onclick="news()">Newest</button>
+                                    <button class="checked__tabs" id="featbtn" onclick="feat()">Featured</button>
+                                    <button id="popbtn" onclick="pop()">Popular</button>
+                                    <button id="newbtn" onclick="news()">Newest</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="row row--grid">
-                            <?php $i = 1 ?>
-                            <?php foreach($film as $row): ?>
-                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
-                                <div class="card">
-                                    <a class="card__cover" href="./details.php">
-                                        <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
-                                        <img src="../assets/images/icon/play.png" class="card__button">
-                                    </a>
-                                    <button class="card__save">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                    </button>
-                                    <span class="card__rate">
-                                        <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
-                                    </span>
-                                    <h3 class="card__title">
-                                        <a href="./details.php"><?php echo $row["title"]; ?></a>
-                                    </h3>
-                                    <ul class="card__label">
-                                        <li><?php echo $row["label"]; ?></li>
-                                        <li><?php echo $row["genre"]; ?></li>
-                                        <li><?php echo $row["year"]; ?></li>
-                                    </ul>
+                        <div class="catalog__content show__content" id="featured">
+                            <div class="row row--grid">
+                                <?php $i = 1 ?>
+                                <?php foreach($film as $row): ?>
+                                <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
+                                    <div class="card">
+                                        <a class="card__cover" href="../main/details.php">
+                                            <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
+                                            <img src="../assets/images/icon/play.png" class="card__button">
+                                        </a>
+                                        <button class="card__save">
+                                            <i class="fa-regular fa-bookmark"></i>
+                                        </button>
+                                        <span class="card__rate">
+                                            <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
+                                        </span>
+                                        <h3 class="card__title">
+                                            <a href="../main/details.php"><?php echo $row["title"]; ?></a>
+                                        </h3>
+                                        <ul class="card__label">
+                                            <li><?php echo $row["label"]; ?></li>
+                                            <li><?php echo $row["genre"]; ?></li>
+                                            <li><?php echo $row["year"]; ?></li>
+                                        </ul>
+                                    </div>
                                 </div>
+                                <?php $i++ ?>
+                                <?php endforeach; ?>
                             </div>
-                            <?php $i++ ?>
-                            <?php endforeach; ?>
+                        </div>
+                        <div class="catalog__content" id="popular">
+                            <div class="row row--grid">
+                                <?php $i = 1 ?>
+                                <?php foreach($popular as $row): ?>
+                                <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
+                                    <div class="card">
+                                        <a class="card__cover" href="../main/details.php">
+                                            <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
+                                            <img src="../assets/images/icon/play.png" class="card__button">
+                                        </a>
+                                        <button class="card__save">
+                                            <i class="fa-regular fa-bookmark"></i>
+                                        </button>
+                                        <span class="card__rate">
+                                            <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
+                                        </span>
+                                        <h3 class="card__title">
+                                            <a href="../main/details.php"><?php echo $row["title"]; ?></a>
+                                        </h3>
+                                        <ul class="card__label">
+                                            <li><?php echo $row["label"]; ?></li>
+                                            <li><?php echo $row["genre"]; ?></li>
+                                            <li><?php echo $row["year"]; ?></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <?php $i++ ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <div class="catalog__content" id="newest">
+                            <div class="row row--grid">
+                                <?php $i = 1 ?>
+                                <?php foreach($newest as $row): ?>
+                                <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
+                                    <div class="card">
+                                        <a class="card__cover" href="../main/details.php">
+                                            <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
+                                            <img src="../assets/images/icon/play.png" class="card__button">
+                                        </a>
+                                        <button class="card__save">
+                                            <i class="fa-regular fa-bookmark"></i>
+                                        </button>
+                                        <span class="card__rate">
+                                            <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
+                                        </span>
+                                        <h3 class="card__title">
+                                            <a href="../main/details.php"><?php echo $row["title"]; ?></a>
+                                        </h3>
+                                        <ul class="card__label">
+                                            <li><?php echo $row["label"]; ?></li>
+                                            <li><?php echo $row["genre"]; ?></li>
+                                            <li><?php echo $row["year"]; ?></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <?php $i++ ?>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <form class="row" method="post">
                     <div class="col">
                         <button class="catalog__more" name="more">Load more</button>
                     </div>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
 
         <section class="subscription">
             <div class="container">
@@ -242,7 +326,7 @@ if(isset($_POST["search"])) {
                     </div>
                 </div>
                 <div class="row row--grid">
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="../assets/images/card/11.png" alt="" class="card__image">
@@ -259,7 +343,7 @@ if(isset($_POST["search"])) {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="../assets/images/card/15.png" alt="" class="card__image">
@@ -276,7 +360,7 @@ if(isset($_POST["search"])) {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="../assets/images/card/2.png" alt="" class="card__image">
@@ -293,7 +377,7 @@ if(isset($_POST["search"])) {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="../assets/images/card/1.png" alt="" class="card__image">
@@ -310,7 +394,7 @@ if(isset($_POST["search"])) {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="../assets/images/card/18.png" alt="" class="card__image">
@@ -327,7 +411,7 @@ if(isset($_POST["search"])) {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 col--grid">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">
                                 <img src="../assets/images/card/3.png" alt="" class="card__image">
@@ -352,7 +436,7 @@ if(isset($_POST["search"])) {
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-8 col-lg-4 order-md-1 order-4">
-                        <div class="logo"><a href="#">Fil<span>ms</span></a></div>
+                        <div class="logo footer__logo"><a href="#">Fil<span>ms</span></a></div>
                         <p class="footer__tagline">Movies & TV Shows, Online cinema,<br>Movie database HTML Website.</p>
                         <div class="footer__social">
                             <a href="#"><img src="../assets/images/social/facebook.png" alt=""></a>
