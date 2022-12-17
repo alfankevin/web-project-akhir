@@ -1120,6 +1120,7 @@ body {
 
 /* title section */
 .section {
+    margin-top: 100px;
     padding: 60px 0 0;
     border-top: 1px solid #151f30;
 }
