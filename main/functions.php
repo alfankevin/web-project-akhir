@@ -2,15 +2,14 @@
 $conn = mysqli_connect("localhost", "root", "", "films");
 
 if(!$conn) {
-    die('Connection Error : ' .mysqli_connect_errno()
-    . ' - ' .mysqli_connect_error());
+    die("Connection Error: " . mysqli_connect_error());
 }
 
 $result = mysqli_query($conn, "SELECT * FROM film");
 
-function query($second_query) {
+function query($query) {
     global $conn;
-    $result = mysqli_query($conn, $second_query);
+    $result = mysqli_query($conn, $query);
 
     $rows = [];
     while($row = mysqli_fetch_assoc($result)) {
