@@ -1,3 +1,4 @@
+var navbar = document.getElementById("navbar__main");
 const signin = document.getElementById("signin");
 const signup = document.getElementById("signup");
 const forgot = document.getElementById("forgot");
@@ -11,6 +12,17 @@ const comment = document.getElementById("comment");
 const review = document.getElementById("review");
 const combtn = document.getElementById("combtn");
 const revbtn = document.getElementById("revbtn");
+
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        navbar.style.top = "0";
+    } else {
+        navbar.style.top = "-100px";
+    }
+    prevScrollpos = currentScrollPos;
+}
 
 function login() {
     signin.style.display = "unset";

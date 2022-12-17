@@ -36,7 +36,7 @@ if(isset($_POST["search"])) {
 
     <body>
         <header class="header">
-            <nav class="navbar navbar-expand-lg navbar-dark">
+            <nav class="navbar navbar-expand-lg navbar-dark" id="navbar__main">
                 <div class="container">
                     <div class="logo"><a href="../index.php">Fil<span>ms</span></a></div>
                     <div class="nav-menu">

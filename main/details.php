@@ -27,7 +27,7 @@ if(isset($_POST["search"])) {
 
     <body>
         <header class="header">
-            <nav class="navbar navbar-expand-lg navbar-dark">
+            <nav class="navbar navbar-expand-lg navbar-dark" id="navbar__main">
                 <div class="container">
                     <div class="logo"><a href="../index.php">Fil<span>ms</span></a></div>
                     <div class="nav-menu">
@@ -242,7 +242,7 @@ if(isset($_POST["search"])) {
                                     <div class="comment__item">
                                         <div class="comment__author">
                                             <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
-                                            <span class="comment__name"><?php echo $row["film_desc"]; ?>kinda</span>
+                                            <span class="comment__name"><?php echo $row["review__title"]; ?>kinda</span>
                                             <span class="comment__date"><?php echo $row["text_date"]; ?>17-12-2022 12:37:11 by Alfan Farchi<?php echo $row["username"]; ?></span>
                                         </div>
                                         <div class="comment__text">
