@@ -38,6 +38,7 @@ create table user_film (
     id_view int primary key auto_increment,
     id_user int foreign key references user (id_user),
     id_film int foreign key references film (id_film),
+    review_title varchar(20),
     comment varchar(500),
     review varchar(500),
     rate float,
