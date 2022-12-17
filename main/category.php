@@ -24,7 +24,7 @@ if(isset($_POST["search"])) {
         <title>Films</title>
         <link rel="icon" href="../assets/images/icon/icon.png">
         <!-- Personal assets -->
-        <link rel="stylesheet" href="../assets/styles/style.css">
+        <link rel="stylesheet" href="../assets/styles/main.css">
         <script type="text/javascript" src="../assets/js/script.js" defer></script>
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -201,7 +201,7 @@ if(isset($_POST["search"])) {
                             <?php foreach($film as $row): ?>
                             <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                 <div class="card">
-                                    <a class="card__cover" href="#">
+                                    <a class="card__cover" href="./details.php">
                                         <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                         <img src="../assets/images/icon/play.png" class="card__button">
                                     </a>
@@ -212,7 +212,7 @@ if(isset($_POST["search"])) {
                                         <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                     </span>
                                     <h3 class="card__title">
-                                        <a href="#"><?php echo $row["title"]; ?></a>
+                                        <a href="./details.php"><?php echo $row["title"]; ?></a>
                                     </h3>
                                     <ul class="card__label">
                                         <li><?php echo $row["label"]; ?></li>

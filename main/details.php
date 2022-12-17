@@ -16,7 +16,7 @@ if(isset($_POST["search"])) {
         <title>Films</title>
         <link rel="icon" href="../assets/images/icon/icon.png">
         <!-- Personal assets -->
-        <link rel="stylesheet" href="../assets/styles/style.css">
+        <link rel="stylesheet" href="../assets/styles/main.css">
         <script type="text/javascript" src="../assets/js/script.js" defer></script>
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -157,7 +157,7 @@ if(isset($_POST["search"])) {
         <section class="details">
             <div class="container">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12 col-lg-8">
                         <div class="details__header">
                             <h1 class="details__title">Peaky Blinders</h1>
                             <ul class="details__label">
@@ -174,7 +174,7 @@ if(isset($_POST["search"])) {
                             <p class="details__desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat numquam quam eaque, dolor incidunt nisi soluta eius optio minus, aliquid saepe molestiae nemo, rem fugit neque. Numquam culpa et odio quaerat, mollitia saepe doloribus dignissimos molestiae cupiditate error ex ipsam?</p>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-12 col-lg-8">
                         <form class="details__video" method="post">
                             <div class="video__cover">
                                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/2nsT9uQPIrk" allowfullscreen></iframe>
@@ -200,43 +200,77 @@ if(isset($_POST["search"])) {
         <section class="comment">
             <div class="container">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12 col-lg-8">
                         <div class="comment__title">
-                            <h2>Comments</h2>
-                            <h2>Reviews</h2>
+                            <button class="active" id="combtn" onclick="com()">Comments <span>10</span></button>
+                            <button id="revbtn" onclick="rev()">Reviews <span>10</span></button>
                         </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="comment__item">
-                            <div class="comment__author">
-                                <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
-                                <span class="comment__name">Alfan Farchi</span>
-                                <span class="comment__time">17-12-2022 12:37:11</span>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="comment__content" id="comment">
+                                    <div class="comment__item">
+                                        <div class="comment__author">
+                                            <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
+                                            <span class="comment__name">Alfan Farchi</span>
+                                            <span class="comment__date">17-12-2022 12:37:11</span>
+                                        </div>
+                                        <div class="comment__text">
+                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
+                                        </div>
+                                    </div>
+                                    <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
+                                        <div class="sign__group">
+                                            <textarea type="text" name="text" class="sign__textarea" placeholder="Add comment"></textarea>
+                                        </div>
+                                        <button class="sign__button">Send</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="comment__text">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
+                            <div class="col-12">
+                                <div class="review__content" id="review">
+                                    <div class="comment__item">
+                                        <div class="comment__author">
+                                            <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
+                                            <span class="comment__name">Alfan Farchi</span>
+                                            <span class="comment__date">17-12-2022 12:37:11</span>
+                                        </div>
+                                        <div class="comment__text">
+                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
+                                        </div>
+                                    </div>
+                                    <div class="comment__item">
+                                        <div class="comment__author">
+                                            <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
+                                            <span class="comment__name">Alfan Farchi</span>
+                                            <span class="comment__date">17-12-2022 12:37:11</span>
+                                        </div>
+                                        <div class="comment__text">
+                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
+                                        </div>
+                                    </div>
+                                    <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <div class="sign__group">
+                                                    <input type="text" name="title" placeholder="Title" class="sign__input">
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="sign__group">
+                                                    <input type="text" name="rating" placeholder="Rating" class="sign__input">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="sign__group">
+                                                    <textarea type="text" name="text" class="sign__textarea" placeholder="Add review"></textarea>
+                                                </div>
+                                                <button class="sign__button">Send</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="comment__item">
-                            <div class="comment__author">
-                                <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
-                                <span class="comment__name">Alfan Farchi</span>
-                                <span class="comment__time">17-12-2022 12:37:11</span>
-                            </div>
-                            <div class="comment__text">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <form action="" class="comment__form" method="post">
-                            <div class="sign__group">
-                                <textarea id="text" name="text" class="sign__textarea" placeholder="Add comment"></textarea>
-                            </div>
-                            <button class="sign__button">Send</button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -393,11 +427,11 @@ if(isset($_POST["search"])) {
                         <div class="logo"><a href="#">Fil<span>ms</span></a></div>
                         <p class="footer__tagline">Movies & TV Shows, Online cinema,<br>Movie database HTML Website.</p>
                         <div class="footer__social">
-                            <a href="#"><img src="./assets/images/social/facebook.png" alt=""></a>
-                            <a href="#"><img src="./assets/images/social/twitter.png" alt=""></a>
-                            <a href="#"><img src="./assets/images/social/instagram.png" alt=""></a>
-                            <a href="#"><img src="./assets/images/social/vk.png" alt=""></a>
-                            <a href="#"><img src="./assets/images/social/tiktok.png" alt=""></a>
+                            <a href="#"><img src="../assets/images/social/facebook.png" alt=""></a>
+                            <a href="#"><img src="../assets/images/social/twitter.png" alt=""></a>
+                            <a href="#"><img src="../assets/images/social/instagram.png" alt=""></a>
+                            <a href="#"><img src="../assets/images/social/vk.png" alt=""></a>
+                            <a href="#"><img src="../assets/images/social/tiktok.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 order-md-2 order-1">

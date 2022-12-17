@@ -6,7 +6,7 @@ create table user (
     username varchar(20),
     email varchar(20),
     password varchar(20),
-    created_date datetime 
+    create_date datetime 
 );
 
 create table subs (
@@ -38,9 +38,11 @@ create table user_film (
     id_view int primary key auto_increment,
     id_user int foreign key references user (id_user),
     id_film int foreign key references film (id_film),
-    comment varchar(100),
-    review varchar(100),
-    rate float
+    comment varchar(500),
+    review varchar(500),
+    rate float,
+    save char(1),
+    text_date datetime
 );
 
 create table user_subs (
