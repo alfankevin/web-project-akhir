@@ -31,6 +31,7 @@ create table film (
     image varchar(50),
     video varchar(50),
     film_desc varchar(500),
+    film_date date,
     id_category int foreign key references category (id_category)
 );
 

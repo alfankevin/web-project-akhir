@@ -1,4 +1,3 @@
-var navbar = document.getElementById("navbar__main");
 const signin = document.getElementById("signin");
 const signup = document.getElementById("signup");
 const forgot = document.getElementById("forgot");
@@ -12,11 +11,12 @@ const comment = document.getElementById("comment");
 const review = document.getElementById("review");
 const combtn = document.getElementById("combtn");
 const revbtn = document.getElementById("revbtn");
+var navbar = document.getElementById("navbar__details");
 
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
 var currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
+    if(prevScrollpos > currentScrollPos) {
         navbar.style.top = "0";
     } else {
         navbar.style.top = "-100px";
@@ -78,15 +78,15 @@ function news() {
 }
 
 function com() {
-    combtn.classList.add("active");
-    revbtn.classList.remove("active");
+    combtn.classList.add("comment__active");
+    revbtn.classList.remove("comment__active");
     comment.style.display = "unset";
     review.style.display = "none";
 }
 
 function rev() {
-    revbtn.classList.add("active");
-    combtn.classList.remove("active");
+    revbtn.classList.add("comment__active");
+    combtn.classList.remove("comment__active");
     review.style.display = "unset";
     comment.style.display = "none";
 }

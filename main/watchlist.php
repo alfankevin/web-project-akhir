@@ -27,7 +27,7 @@ if(isset($_POST["search"])) {
         <link rel="icon" href="../assets/images/icon/icon.png">
         <script src="https://kit.fontawesome.com/f6faa850c8.js" crossorigin="anonymous"></script>
         <!-- Personal assets -->
-        <link rel="stylesheet" href="../assets/styles/main.css">
+        <link rel="stylesheet" href="../assets/styles/style.css">
         <script type="text/javascript" src="../assets/js/script.js" defer></script>
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -86,16 +86,16 @@ if(isset($_POST["search"])) {
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
                         <a class="sign__logo" href="./watchlist.php">Fil<span>ms</span></a>
                         <div class="sign__group">
-                            <input type="text" name="email" placeholder="Email" class="sign__input">
+                            <input type="email" name="email" placeholder="Email" class="sign__input">
                         </div>
                         <div class="sign__group">
                             <input type="password" name="password" placeholder="Password" class="sign__input">
                         </div>
                         <div class="sign__group">
-                            <input type="checkbox" name="remember" checked="checked" class="remember">
+                            <input type="checkbox" name="remember" checked="checked" id="remember">
                             <label for="remember">Remember me</label>
                         </div>
-                        <button class="sign__button">Sign in</button>
+                        <button type="submit" class="sign__button">Sign in</button>
                         <span class="sign__delimiter">or</span>
                         <div class="sign__social">
                             <a href="#" class="fb"><i class="fa-brands fa-facebook-f"></i></a>
@@ -119,16 +119,16 @@ if(isset($_POST["search"])) {
                             <input type="text" name="name" placeholder="Name" class="sign__input">
                         </div>
                         <div class="sign__group">
-                            <input type="text" name="email" placeholder="Email" class="sign__input">
+                            <input type="email" name="email" placeholder="Email" class="sign__input">
                         </div>
                         <div class="sign__group">
                             <input type="password" name="password" placeholder="Password" class="sign__input">
                         </div>
                         <div class="sign__group">
-                            <input type="checkbox" name="remember" checked="checked" class="remember">
+                            <input type="checkbox" name="remember" checked="checked" id="remember">
                             <label for="agree">I agree to the <a href="#" class="sign__privacy">Privacy Policy</a></label>
                         </div>
-                        <button class="sign__button">Sign up</button>
+                        <button type="submit" class="sign__button">Sign up</button>
                         <span class="sign__delimiter">or</span>
                         <div class="sign__social">
                             <a href="#" class="fb"><i class="fa-brands fa-facebook-f"></i></a>
@@ -149,13 +149,13 @@ if(isset($_POST["search"])) {
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
                         <a class="sign__logo" href="./watchlist.php">Fil<span>ms</span></a>
                         <div class="sign__group">
-                            <input type="text" name="email" placeholder="Email" class="sign__input">
+                            <input type="email" name="email" placeholder="Email" class="sign__input">
                         </div>
                         <div class="sign__group">
                             <input type="checkbox" name="agree" checked="checked" id="agree">
                             <label for="agree">I agree to the <a href="#" class="sign__privacy">Privacy Policy</a></label>
                         </div>
-                        <button class="sign__button">Send</button>
+                        <button type="submit" class="sign__button">Send</button>
                         <span class="sign__text sign__text-forgot">We will send a password to your Email</span>
                     </form>
                 </div>
@@ -222,7 +222,7 @@ if(isset($_POST["search"])) {
                                 <?php foreach($film as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <div class="card">
-                                        <a class="card__cover" href="../main/details.php">
+                                        <a class="card__cover" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>">
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
@@ -233,7 +233,7 @@ if(isset($_POST["search"])) {
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="../main/details.php"><?php echo $row["title"]; ?></a>
+                                            <a href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>
@@ -252,7 +252,7 @@ if(isset($_POST["search"])) {
                                 <?php foreach($popular as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <div class="card">
-                                        <a class="card__cover" href="../main/details.php">
+                                        <a class="card__cover" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>">
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
@@ -263,7 +263,7 @@ if(isset($_POST["search"])) {
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="../main/details.php"><?php echo $row["title"]; ?></a>
+                                            <a href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>
@@ -282,7 +282,7 @@ if(isset($_POST["search"])) {
                                 <?php foreach($newest as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <div class="card">
-                                        <a class="card__cover" href="../main/details.php">
+                                        <a class="card__cover" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>">
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
@@ -293,7 +293,7 @@ if(isset($_POST["search"])) {
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="../main/details.php"><?php echo $row["title"]; ?></a>
+                                            <a href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>

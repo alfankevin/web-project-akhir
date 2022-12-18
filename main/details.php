@@ -1,6 +1,8 @@
 <?php
 require "functions.php";
-$film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category WHERE id_film = '2'");
+
+$id_film = $_GET["id_film"];
+$film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category WHERE id_film = $id_film");
 $view = query("SELECT * FROM user INNER JOIN user_film ON user.id_user = user_film.id_user INNER JOIN film ON film.id_film = user_film.id_film");
 
 if(isset($_POST["search"])) {
@@ -18,7 +20,7 @@ if(isset($_POST["search"])) {
         <link rel="icon" href="../assets/images/icon/icon.png">
         <script src="https://kit.fontawesome.com/f6faa850c8.js" crossorigin="anonymous"></script>
         <!-- Personal assets -->
-        <link rel="stylesheet" href="../assets/styles/main.css">
+        <link rel="stylesheet" href="../assets/styles/style.css">
         <script type="text/javascript" src="../assets/js/script.js" defer></script>
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -27,7 +29,7 @@ if(isset($_POST["search"])) {
 
     <body>
         <header class="header">
-            <nav class="navbar navbar-expand-lg navbar-dark" id="navbar__main">
+            <nav class="navbar navbar-expand-lg navbar-dark" id="navbar__details">
                 <div class="container">
                     <div class="logo"><a href="../index.php">Fil<span>ms</span></a></div>
                     <div class="nav-menu">
@@ -77,16 +79,16 @@ if(isset($_POST["search"])) {
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
                         <a class="sign__logo" href="./category.php">Fil<span>ms</span></a>
                         <div class="sign__group">
-                            <input type="text" name="email" placeholder="Email" class="sign__input">
+                            <input type="email" name="email" placeholder="Email" class="sign__input">
                         </div>
                         <div class="sign__group">
                             <input type="password" name="password" placeholder="Password" class="sign__input">
                         </div>
                         <div class="sign__group">
-                            <input type="checkbox" name="remember" checked="checked" class="remember">
+                            <input type="checkbox" name="remember" checked="checked" id="remember">
                             <label for="remember">Remember me</label>
                         </div>
-                        <button class="sign__button">Sign in</button>
+                        <button type="submit" class="sign__button">Sign in</button>
                         <span class="sign__delimiter">or</span>
                         <div class="sign__social">
                             <a href="#" class="fb"><i class="fa-brands fa-facebook-f"></i></a>
@@ -110,16 +112,16 @@ if(isset($_POST["search"])) {
                             <input type="text" name="name" placeholder="Name" class="sign__input">
                         </div>
                         <div class="sign__group">
-                            <input type="text" name="email" placeholder="Email" class="sign__input">
+                            <input type="email" name="email" placeholder="Email" class="sign__input">
                         </div>
                         <div class="sign__group">
                             <input type="password" name="password" placeholder="Password" class="sign__input">
                         </div>
                         <div class="sign__group">
-                            <input type="checkbox" name="remember" checked="checked" class="remember">
+                            <input type="checkbox" name="remember" checked="checked" id="remember">
                             <label for="agree">I agree to the <a href="#" class="sign__privacy">Privacy Policy</a></label>
                         </div>
-                        <button class="sign__button">Sign up</button>
+                        <button type="submit" class="sign__button">Sign up</button>
                         <span class="sign__delimiter">or</span>
                         <div class="sign__social">
                             <a href="#" class="fb"><i class="fa-brands fa-facebook-f"></i></a>
@@ -140,13 +142,13 @@ if(isset($_POST["search"])) {
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
                         <a class="sign__logo" href="./category.php">Fil<span>ms</span></a>
                         <div class="sign__group">
-                            <input type="text" name="email" placeholder="Email" class="sign__input">
+                            <input type="email" name="email" placeholder="Email" class="sign__input">
                         </div>
                         <div class="sign__group">
                             <input type="checkbox" name="agree" checked="checked" id="agree">
                             <label for="agree">I agree to the <a href="#" class="sign__privacy">Privacy Policy</a></label>
                         </div>
-                        <button class="sign__button">Send</button>
+                        <button type="submit" class="sign__button">Send</button>
                         <span class="sign__text sign__text-forgot">We will send a password to your Email</span>
                     </form>
                 </div>
@@ -182,7 +184,7 @@ if(isset($_POST["search"])) {
                             </div>
                             <div class="video__action">
                                 <div class="video__download">
-                                    <i class="fa-regular fa-circle-down"></i>Download:
+                                    <i class="fa-solid fa-download"></i>Download:
                                     <a href="#">480p</a>
                                     <a href="#">720p</a>
                                     <a href="#">1080p</a>
@@ -205,7 +207,7 @@ if(isset($_POST["search"])) {
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="comment__title">
-                            <button class="active" id="combtn" onclick="com()">Comments <span>10</span></button>
+                            <button class="comment__active" id="combtn" onclick="com()">Comments <span>10</span></button>
                             <button id="revbtn" onclick="rev()">Reviews <span>10</span></button>
                         </div>
                         <div class="row">
@@ -223,7 +225,7 @@ if(isset($_POST["search"])) {
                                         <div class="sign__group">
                                             <textarea type="text" name="text" class="sign__textarea" placeholder="Add comment"></textarea>
                                         </div>
-                                        <button class="sign__button">Send</button>
+                                        <button type="submit" class="sign__button">Send</button>
                                     </form>
                                 </div>
                             </div>
@@ -265,7 +267,7 @@ if(isset($_POST["search"])) {
                                                 <div class="sign__group">
                                                     <textarea type="text" name="text" class="sign__textarea" placeholder="Add review"></textarea>
                                                 </div>
-                                                <button class="sign__button">Send</button>
+                                                <button type="submit" class="sign__button">Send</button>
                                             </div>
                                         </div>
                                     </form>
@@ -287,7 +289,7 @@ if(isset($_POST["search"])) {
                 <div class="row row--grid">
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php">
+                            <a class="card__cover" href="./details.php?id_film=<?php echo $row["id_film"]; ?>">
                                 <img src="../assets/images/card/1.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -298,7 +300,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.3
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php">The Good Lord Bird</a>
+                                <a href="./details.php?id_film=<?php echo $row["id_film"]; ?>">The Good Lord Bird</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -309,7 +311,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php">
+                            <a class="card__cover" href="./details.php?id_film=<?php echo $row["id_film"]; ?>">
                                 <img src="../assets/images/card/2.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -320,7 +322,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>9.6
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php">Peaky Blinders</a>
+                                <a href="./details.php?id_film=<?php echo $row["id_film"]; ?>">Peaky Blinders</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -331,7 +333,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php">
+                            <a class="card__cover" href="./details.php?id_film=<?php echo $row["id_film"]; ?>">
                                 <img src="../assets/images/card/3.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -342,7 +344,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.1
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php">The Dictator</a>
+                                <a href="./details.php?id_film=<?php echo $row["id_film"]; ?>">The Dictator</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -353,7 +355,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php">
+                            <a class="card__cover" href="./details.php?id_film=<?php echo $row["id_film"]; ?>">
                                 <img src="../assets/images/card/4.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -364,7 +366,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.8
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php">Get On Up</a>
+                                <a href="./details.php?id_film=<?php echo $row["id_film"]; ?>">Get On Up</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -375,7 +377,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php">
+                            <a class="card__cover" href="./details.php?id_film=<?php echo $row["id_film"]; ?>">
                                 <img src="../assets/images/card/5.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -386,7 +388,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>7.9
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php">Interview With the Vampire</a>
+                                <a href="./details.php?id_film=<?php echo $row["id_film"]; ?>">Interview With the Vampire</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -397,7 +399,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php">
+                            <a class="card__cover" href="./details.php?id_film=<?php echo $row["id_film"]; ?>">
                                 <img src="../assets/images/card/6.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -408,7 +410,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.6
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php">Pawn Sacrifice</a>
+                                <a href="./details.php?id_film=<?php echo $row["id_film"]; ?>">Pawn Sacrifice</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
