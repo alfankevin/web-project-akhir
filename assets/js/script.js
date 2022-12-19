@@ -11,6 +11,7 @@ const comment = document.getElementById("comment");
 const review = document.getElementById("review");
 const combtn = document.getElementById("combtn");
 const revbtn = document.getElementById("revbtn");
+const imgup = document.getElementById("form__img-label")
 var navbar = document.getElementById("navbar__details");
 
 var prevScrollpos = window.pageYOffset;
@@ -22,6 +23,10 @@ var currentScrollPos = window.pageYOffset;
         navbar.style.top = "-100px";
     }
     prevScrollpos = currentScrollPos;
+}
+
+function preview() {
+    imgup.style.opacity = "0";
 }
 
 function login() {

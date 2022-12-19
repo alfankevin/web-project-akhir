@@ -58,7 +58,7 @@ body {
 
 /* nav items */
 .nav-item {
-    padding: 31.6px;
+    padding: 31.725px;
 }
 
 .nav-item .nav-link {
@@ -1437,6 +1437,7 @@ body {
     position: fixed;
     background-color: #131720;
     border-right: 1px solid rgba(47,128,237,0.1);
+    z-index: 999;
 }
 
 .sidebar__logo {
@@ -1615,43 +1616,47 @@ body {
     border-bottom: 1px solid rgba(47,128,237,0.1);
 }
 
-.main__admin {
-    margin-bottom: 30px;
-}
-
 .main__button {
     margin: 0;
     height: 40px;
     width: 140px;
 }
 
-.nav__catalog {
-    margin-right: 20px;
-}
+.main__admin {margin-bottom: 30px;}
 
-.nav__admin {
-    margin: 0;
-}
+.nav__catalog {margin-right: 20px;}
 
-.form__admin {
-    margin: 0;
-}
+.nav__admin {margin: 0;}
 
-.form__img {
-    height: 337.5px;
+.form__admin {margin: 0;}
+
+.search__admin {width: 300px;}
+
+#form__img-label {
+    height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #151f30;
+    position: relative;
     border-radius: 16px;
     color: #e0e0e0;
     transition: all, 0.5s;
     cursor: pointer;
+    z-index: 2;
 }
 
-.form__img:hover {
+#form__img-label:hover {
     color: #fff;
+}
+
+#form__img {
+    position: absolute;
+    top: 0;
+    left: 12.5px;
+    border-radius: 20px;
+    z-index: 1;
 }
 
 .main__header-title {
@@ -1685,20 +1690,16 @@ body {
     justify-content: center;
     text-decoration: none;
     border-radius: 10px;
-    background-color: #131720;
+    background-color: rgba(47,128,237,0.1);;
 }
 
-.fa-pen {
-    color: #2f80ed;
-}
+.fa-pen {color: #2f80ed;}
 
-.fa-trash {
-    color: #eb5757;
-}
+.fa-trash {color: #eb5757;}
 
-.a {
-    text-decoration: none;
-}
+.fa-eye {color: #ffc312;}
+
+.a {text-decoration: none;}
 
 .main__table {
     width: 100%;
@@ -1744,26 +1745,26 @@ tr td i {
 .film__view {width: 100px;}
 .film__date {width: 210px;}
 
-.users__id {width: 65px;}
-.users__info {width: 242.5px;}
-.users__username {width: 122.5px;}
-.users__plan {width: 142.5px;}
-.users__comments {width: 127.5px;}
-.users__reviews {width: 107.5px;}
-.users__watch {width: 150px;}
-.users__date {width: 145px;}
+.user__id {width: 65px;}
+.user__info {width: 242.5px; position: relative;}
+.user__username {width: 122.5px;}
+.user__plan {width: 142.5px;}
+.user__comments {width: 127.5px;}
+.user__reviews {width: 107.5px;}
+.user__watch {width: 150px;}
+.user__date {width: 145px;}
 
-.reviews__id {width: 65px;}
-.reviews__item {width: 257.5px;}
-.reviews__author {width: 115px;}
-.reviews__text {width: 312.5px;}
-.reviews__rating {width: 92.5px}
-.reviews__like {width: 135px;}
-.reviews__date {width: 142.5px;}
+.review__id {width: 65px;}
+.review__item {width: 257.5px;}
+.review__author {width: 115px;}
+.review__text {width: 312.5px;}
+.review__rating {width: 92.5px}
+.review__like {width: 135px;}
+.review__date {width: 142.5px;}
 
-.comments__id {width: 67.5px;}
-.comments__item {width: 267.5px;}
-.comments__author {width: 170px;}
-.comments__text {width: 325px;}
-.comments__like {width: 140px;}
-.comments__date {width: 147.5px;}
+.comment__id {width: 67.5px;}
+.comment__item {width: 267.5px;}
+.comment__author {width: 170px;}
+.comment__text {width: 325px;}
+.comment__like {width: 140px;}
+.comment__date {width: 147.5px;}

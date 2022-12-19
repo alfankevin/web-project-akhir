@@ -1,9 +1,11 @@
 <?php
 require "../main/functions.php";
-$film = query("SELECT * FROM film");
+
+$user = query("SELECT * FROM user INNER JOIN user_subs ON user_subs.id_user = user.id_user INNER JOIN subs ON subs.id_subs = user_subs.id_subs ORDER BY user.id_user ASC");
+$count = query("SELECT COUNT(id_user) AS count FROM user");
 
 if(isset($_POST["search"])) {
-    $film = search($_POST["keyword"]);
+    $user = search($_POST["keyword"]);
 }
 ?>
 
@@ -52,9 +54,11 @@ if(isset($_POST["search"])) {
                 <div class="row">
                     <div class="col-12">
                         <div class="main__header">
-                            <h2 class="main__header-title">Users&ensp;<span>1000 total</span></h2>
+                            <?php $i = 1 ?> <?php foreach($count as $row): ?>
+                            <h2 class="main__header-title">Users&ensp;<span><?php echo $row["count"]; ?> total</span></h2>
+                            <?php $i++ ?> <?php endforeach; ?>
                             <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__admin">
-                                <input type="input" name="keyword" placeholder="Find user..." class="nav__search">
+                                <input type="input" name="keyword" placeholder="Find user.." class="nav__search search__admin">
                                 <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </form>
                         </div>
@@ -63,31 +67,37 @@ if(isset($_POST["search"])) {
                         <table class="main__table">
                             <thead>
                                 <tr>
-                                    <td class="users__id">ID</td>
-                                    <td class="users__info">BASIC INFO</td>
-                                    <td class="users__username">USERNAME</td>
-                                    <td class="users__plan">PRICING PLAN</td>
-                                    <td class="users__comments">COMMENTS</td>
-                                    <td class="users__reviews">REVIEWS</td>
-                                    <td class="users__watch">WATCHLIST</td>
-                                    <td class="users__date">CREATED DATE</td>
-                                    <td class="users__actions">ACTIONS</td>
+                                    <td class="user__id">ID</td>
+                                    <td class="user__info">BASIC INFO</td>
+                                    <td class="user__username">USERNAME</td>
+                                    <td class="user__plan">PRICING PLAN</td>
+                                    <td class="user__comments">COMMENTS</td>
+                                    <td class="user__reviews">REVIEWS</td>
+                                    <td class="user__watch">WATCHLIST</td>
+                                    <td class="user__date">CREATED DATE</td>
+                                    <td class="user__actions">ACTIONS</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                <?php $i = 1 ?>
+                                <?php foreach($user as $row): ?>
                                 <tr>
-                                    <td class="users__id"><?php echo $row["id_user"]; ?>1</td>
-                                    <td class="users__info"><?php echo $row["username"]; ?></td>
-                                    <td class="users__username"><i class="fa-regular fa-star"></i>&ensp;<?php echo $row["rating"]; ?></td>
-                                    <td class="users__plan"><?php echo $row["email"]; ?></td>
-                                    <td class="users__comments"><?php echo $row[""]; ?>0</td>
-                                    <td class="users__reviews">Visible</td>
-                                    <td class="users__save"><?php echo $row[""]; ?>24 Oct 2021</td>
-                                    <td class="users__date"><?php echo $row[""]; ?>24 Oct 2021</td>
-                                    <td class="action__button"><a href=""><i class="fa-solid fa-pen"></i></a><a href=""><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="user__id"><?php echo $row["id_user"]; ?></td>
+                                    <td class="user__info">
+                                        <img class="user__avatar" src="../assets/images/icon/user.jpeg" alt="" height="40px" width="40px">
+                                        <p><?php echo $row["username"]; ?></p>
+                                        <span><?php echo $row["email"]; ?></span>
+                                    </td>
+                                    <td class="user__username"><?php echo $row[""]; ?>Username</td>
+                                    <td class="user__plan"><?php echo $row["plan"]; ?></td>
+                                    <td class="user__comments"><?php echo $row[""]; ?></td>
+                                    <td class="user__reviews"></td>
+                                    <td class="user__save"><?php echo $row[""]; ?></td>
+                                    <td class="user__date"><?php echo $row["create_date"]; ?></td>
+                                    <td class="action__button"><a href=""><i class="fa-solid fa-pen"></i></a><a href="" onclick="return confirm('Delete user?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
-                                
+                                <?php $i++ ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

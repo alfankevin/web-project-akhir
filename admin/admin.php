@@ -59,9 +59,10 @@ if(isset($_POST["search"])) {
                     <div class="col-12">
                         <form action="" class="comment__form form__admin" method="post" spellcheck="false" autocomplete="off">
                             <div class="row">
-                                <div class="col-3">
-                                    <label for="form__img" class="form__img">Upload image</label>
-                                    <input id="form__img" name="img" type="file" accept=".png, .jpg, .jpeg" style="display:none;">
+                                <div class="col-3" style="position: relative;">
+                                    <label for="form__img-input" id="form__img-label" onclick="preview()">Upload image</label>
+                                    <input id="form__img-input" name="img" type="file" accept=".png, .jpg, .jpeg" onchange="document.getElementById('form__img').src = window.URL.createObjectURL(this.files[0])" style="display: none">
+                                    <img id="form__img" src="" alt="" height="409px" width="285px">
                                 </div>
                                 <div class="col-9">
                                     <div class="row">
@@ -77,7 +78,7 @@ if(isset($_POST["search"])) {
                                         </div>
                                         <div class="col-12">
                                             <div class="sign__group">
-                                                <textarea type="text" name="text" class="sign__textarea" placeholder="Description"></textarea>
+                                                <textarea type="text" name="text" class="sign__textarea" placeholder="Description" style="font-size: 14px"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-3">
@@ -85,7 +86,8 @@ if(isset($_POST["search"])) {
                                                 <input type="text" name="year" placeholder="Release year" class="sign__input">
                                             </div>
                                         </div>
-                                            <div class="col-3"><div class="sign__group">
+                                        <div class="col-3">
+                                            <div class="sign__group">
                                                 <input type="text" name="category" placeholder="Category" class="sign__input">
                                             </div>
                                         </div>
@@ -104,10 +106,10 @@ if(isset($_POST["search"])) {
                                                 <input type="text" name="video" placeholder="Add a link" class="sign__input">
                                             </div>
                                         </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="sign__button">Publish</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="sign__button">Publish</button>
                                 </div>
                             </div>
                         </form>

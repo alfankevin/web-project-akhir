@@ -47,7 +47,7 @@
                         <div class="main__header">
                             <h2 class="main__header-title">Reviews&ensp;<span>1000 total</span></h2>
                             <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__admin">
-                                <input type="input" name="keyword" placeholder="Key word..." class="nav__search">
+                                <input type="input" name="keyword" placeholder="Key word.." class="nav__search search__admin">
                                 <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </form>
                         </div>
@@ -56,36 +56,36 @@
                         <table class="main__table">
                             <thead>
                                 <tr>
-                                    <td class="reviews__id">ID</td>
-                                    <td class="reviews__item">ITEM</td>
-                                    <td class="reviews__author">AUTHOR</td>
-                                    <td class="reviews__text">TEXT</td>
-                                    <td class="reviews__rating">RATING</td>
-                                    <td class="reviews__like">LIKE / DISLIKE</td>
-                                    <td class="reviews__date">CREATED DATE</td>
-                                    <td class="reviews__actions">ACTIONS</td>
+                                    <td class="review__id">ID</td>
+                                    <td class="review__item">ITEM</td>
+                                    <td class="review__author">AUTHOR</td>
+                                    <td class="review__text">TEXT</td>
+                                    <td class="review__rating">RATING</td>
+                                    <td class="review__like">LIKE / DISLIKE</td>
+                                    <td class="review__date">CREATED DATE</td>
+                                    <td class="review__actions">ACTIONS</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="reviews__id">1</td>
-                                    <td class="reviews__item"> in Another Language</td>
-                                    <td class="reviews__author">Rating</td>
-                                    <td class="reviews__text">Movie</td>
-                                    <td class="reviews__rating">Movie</td>
-                                    <td class="reviews__like">1392</td>
-                                    <td class="reviews__date">24 Oct 2021</td>
-                                    <td class="action__button"><a href=""><i class="fa-solid fa-pen"></i></a><a href=""><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="review__id">1</td>
+                                    <td class="review__item"> in Another Language</td>
+                                    <td class="review__author">Rating</td>
+                                    <td class="review__text">Movie</td>
+                                    <td class="review__rating">Movie</td>
+                                    <td class="review__like">1392</td>
+                                    <td class="review__date">24 Oct 2021</td>
+                                    <td class="action__button"><a href="" onclick="return confirm('Hide review?')"><i class="fa-solid fa-eye"></i></a><a href="" onclick="return confirm('Delete review?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <tr>
-                                    <td class="reviews__id">1</td>
-                                    <td class="reviews__item"> in Another Language</td>
-                                    <td class="reviews__author">Rating</td>
-                                    <td class="reviews__text">Movie</td>
-                                    <td class="reviews__rating">Movie</td>
-                                    <td class="reviews__like">1392</td>
-                                    <td class="reviews__date">24 Oct 2021</td>
-                                    <td class="action__button"><a href=""><i class="fa-solid fa-pen"></i></a><a href=""><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="review__id">1</td>
+                                    <td class="review__item"> in Another Language</td>
+                                    <td class="review__author">Rating</td>
+                                    <td class="review__text">Movie</td>
+                                    <td class="review__rating">Movie</td>
+                                    <td class="review__like">1392</td>
+                                    <td class="review__date">24 Oct 2021</td>
+                                    <td class="action__button"><a href=""><i class="fa-solid fa-eye"></i></a><a href=""><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                             </tbody>
                         </table>

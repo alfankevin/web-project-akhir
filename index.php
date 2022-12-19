@@ -536,7 +536,7 @@ if(isset($_POST["search"])) {
                                 <li><i class="fa-solid fa-xmark"></i>TV channels</li>
                             </ul>
                             <span class="plan__price">$11.99<span>/month</span></span>
-                            <button class="plan__button">Select plan</button>
+                            <button class="plan__button" onclick="return confirm('Buy Regular plan?')">Select plan</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-xl-4 order-md-1 order-xl-2 col--grid">
@@ -549,7 +549,7 @@ if(isset($_POST["search"])) {
                                 <li><i class="fa-solid fa-xmark"></i>TV channels</li>
                             </ul>
                             <span class="plan__price">$34.99<span>/month</span></span>
-                            <button class="plan__button">Select plan</button>
+                            <button class="plan__button" onclick="return confirm('Buy Premium plan?')">Select plan</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xl-4 order-md-3 order-xl-3 col--grid">
@@ -562,7 +562,7 @@ if(isset($_POST["search"])) {
                                 <li><i class="fa-solid fa-check"></i>TV channels</li>
                             </ul>
                             <span class="plan__price">$49.99<span>/month</span></span>
-                            <button class="plan__button">Select plan</button>
+                            <button class="plan__button" onclick="return confirm('Buy Cinematic plan?')">Select plan</button>
                         </div>
                     </div>
                 </div>

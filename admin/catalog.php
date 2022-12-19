@@ -56,7 +56,7 @@ if(isset($_POST["search"])) {
                             <h2 class="main__header-title">Catalog&ensp;<span>100 total</span></h2>
                             <div class="main__action">
                                 <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__catalog">
-                                    <input type="input" name="keyword" placeholder="Find movie / tv series..." class="nav__search">
+                                    <input type="input" name="keyword" placeholder="Find movie / tv series.." class="nav__search search__admin">
                                     <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </form>
                                 <a href="./admin.php" class="a"><button class="sign__button main__button">Add item</button></a>
@@ -90,7 +90,7 @@ if(isset($_POST["search"])) {
                                     <td class="film__label"><?php echo $row["label"]; ?></td>
                                     <td class="film__view"><?php echo $row[""]; ?>0</td>
                                     <td class="film__date"><?php echo $row[""]; ?>24 Oct 2021 12:05:09</td>
-                                    <td class="action__button"><a href=""><i class="fa-solid fa-pen"></i></a><a href=""><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="action__button"><a href=""><i class="fa-solid fa-pen"></i></a><a href="" onclick="return confirm('Delete film?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>
