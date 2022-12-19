@@ -409,6 +409,8 @@ if(isset($_POST["search"])) {
                     </div>
                 </div>
                 <div class="row row--grid">
+                    <button class="subs__button subs__button-left"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="subs__button subs__button-right"><i class="fa-solid fa-arrow-right"></i></button>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
                             <a href="#" class="card__cover">

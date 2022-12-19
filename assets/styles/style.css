@@ -683,6 +683,7 @@ body {
 /* catalog grid */
 .row--grid {
     margin: 0 -15px !important;
+    position: relative;
 }
 
 .col--grid {
@@ -897,6 +898,34 @@ body {
     margin-bottom: 10px;
     font-size: 18px;
     color: #e0e0e0;
+}
+
+.subs__button {
+    height: 50px;
+    width: 50px !important;
+    position: absolute;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 50%;
+    transform: translateY(-90%);
+    background-color: #151f30;
+    transition: all, 0.5s;
+}
+
+.subs__button:hover {
+    background-color: #2f80ed;
+}
+
+.subs__button-left {
+    left: -65px;
+}
+
+.subs__button-right {
+    right: -65px !important;
 }
 
 .card__button-subs {
