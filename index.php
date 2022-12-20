@@ -61,7 +61,7 @@ if(isset($_POST["search"])) {
                                     <li><a class="dropdown-item" href="#" onclick="forget()">Forgot password</a></li>
                                     <li><a class="dropdown-item" href="#">Privacy policy</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="./admin/admin.php">Admin pages</a></li>
+                                    <li><a class="dropdown-item" href="./admin/catalog.php">Admin pages</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -306,12 +306,12 @@ if(isset($_POST["search"])) {
                                 <?php $i = 1 ?>
                                 <?php foreach($film as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
-                                    <div class="card">
+                                    <form class="card" method="post">
                                         <a class="card__cover" href="./main/details.php?id_film=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save">
+                                        <button class="card__save" onclick="return confirm('Add to watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">
@@ -325,7 +325,7 @@ if(isset($_POST["search"])) {
                                             <li><?php echo $row["genre"]; ?></li>
                                             <li><?php echo $row["year"]; ?></li>
                                         </ul>
-                                    </div>
+                                    </form>
                                 </div>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>
@@ -336,12 +336,12 @@ if(isset($_POST["search"])) {
                                 <?php $i = 1 ?>
                                 <?php foreach($popular as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
-                                    <div class="card">
+                                    <form class="card" method="post">
                                         <a class="card__cover" href="./main/details.php?id_film=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save">
+                                        <button class="card__save" onclick="return confirm('Add to watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">
@@ -355,7 +355,7 @@ if(isset($_POST["search"])) {
                                             <li><?php echo $row["genre"]; ?></li>
                                             <li><?php echo $row["year"]; ?></li>
                                         </ul>
-                                    </div>
+                                    </form>
                                 </div>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>
@@ -366,12 +366,12 @@ if(isset($_POST["search"])) {
                                 <?php $i = 1 ?>
                                 <?php foreach($newest as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
-                                    <div class="card">
+                                    <form class="card" method="post">
                                         <a class="card__cover" href="./main/details.php?id_film=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save">
+                                        <button class="card__save" onclick="return confirm('Add to watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">
@@ -385,7 +385,7 @@ if(isset($_POST["search"])) {
                                             <li><?php echo $row["genre"]; ?></li>
                                             <li><?php echo $row["year"]; ?></li>
                                         </ul>
-                                    </div>
+                                    </form>
                                 </div>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>

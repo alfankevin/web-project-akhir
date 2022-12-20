@@ -1,7 +1,9 @@
 <?php
 require "../main/functions.php";
+
+$id_film = $_GET["id_film"];
 $film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category ORDER BY id_film ASC");
-$count = query("SELECT COUNT(id_film) FROM film");
+$count = query("SELECT COUNT(id_film) AS count FROM film");
 
 if(isset($_POST["search"])) {
     $film = search($_POST["keyword"]);
@@ -36,7 +38,7 @@ if(isset($_POST["search"])) {
             </div>
             <div class="sidebar__nav">
                 <ul class="sidebar__nav-content">
-                    <li class="sidebar__nav-item"><a href="./admin.php"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
+                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
                     <li class="sidebar__nav-item"><a href="./catalog.php" class="active"><i class="fa-solid fa-film default"></i>Catalog</li></a>
                     <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down down default"></i></li></a>
                     <li class="sidebar__nav-item"><a href="./users.php"><i class="fa-solid fa-user-group user"></i>Users</li></a>
@@ -53,13 +55,15 @@ if(isset($_POST["search"])) {
                 <div class="row">
                     <div class="col-12">
                         <div class="main__header">
-                            <h2 class="main__header-title">Catalog&ensp;<span>100 total</span></h2>
+                            <?php $i = 1 ?> <?php foreach($count as $row): ?>
+                            <h2 class="main__header-title">Catalog&ensp;<span><?php echo $row["count"]; ?> total</span></h2>
+                            <?php $i++ ?> <?php endforeach; ?>
                             <div class="main__action">
                                 <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__catalog">
                                     <input type="input" name="keyword" placeholder="Find movie / tv series.." class="nav__search search__admin">
                                     <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </form>
-                                <a href="./admin.php" class="a"><button class="sign__button main__button">Add item</button></a>
+                                <a href="./upload.php" class="a"><button class="sign__button main__button">Add item</button></a>
                             </div>
                         </div>
                     </div>
@@ -73,7 +77,7 @@ if(isset($_POST["search"])) {
                                     <td class="film__genre">GENRE</td>
                                     <td class="film__category">CATEGORY</td>
                                     <td class="film__label">LABEL</td>
-                                    <td class="film__view">VIEWS</td>
+                                    <td class="film__age">AGE</td>
                                     <td class="film__date">CREATED DATE</td>
                                     <td class="film__actions">ACTIONS</td>
                                 </tr>
@@ -83,14 +87,14 @@ if(isset($_POST["search"])) {
                                 <?php foreach($film as $row): ?>
                                 <tr>
                                     <td class="film__id"><?php echo $row["id_film"]; ?></td>
-                                    <td class="film__title"><?php echo $row["title"]; ?></td>
+                                    <td class="film__title"><a href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
                                     <td class="film__rating"><i class="fa-regular fa-star"></i>&ensp;<?php echo $row["rating"]; ?></td>
                                     <td class="film__genre"><?php echo $row["genre"]; ?></td>
                                     <td class="film__category"><?php echo $row["category"]; ?></td>
                                     <td class="film__label"><?php echo $row["label"]; ?></td>
-                                    <td class="film__view"><?php echo $row[""]; ?>0</td>
-                                    <td class="film__date"><?php echo $row[""]; ?>24 Oct 2021 12:05:09</td>
-                                    <td class="action__button"><a href=""><i class="fa-solid fa-pen"></i></a><a href="" onclick="return confirm('Delete film?')"><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="film__age"><?php echo $row["age"]; ?>+</td>
+                                    <td class="film__date"><?php echo $row["film_date"]; ?></td>
+                                    <td class="actions__button"><a href="./update.php?id_film=<?php echo $row["id_film"]; ?>"><i class="fa-solid fa-pen"></i></a><a href="" onclick="return confirm('Delete film?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>

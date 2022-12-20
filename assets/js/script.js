@@ -26,7 +26,7 @@ var currentScrollPos = window.pageYOffset;
 }
 
 function preview() {
-    imgup.style.opacity = "0";
+    imgup.style.background = "none";
 }
 
 function login() {
@@ -83,15 +83,15 @@ function news() {
 }
 
 function com() {
-    combtn.classList.add("comment__active");
-    revbtn.classList.remove("comment__active");
+    combtn.classList.add("views__active");
+    revbtn.classList.remove("views__active");
     comment.style.display = "unset";
     review.style.display = "none";
 }
 
 function rev() {
-    revbtn.classList.add("comment__active");
-    combtn.classList.remove("comment__active");
+    revbtn.classList.add("views__active");
+    combtn.classList.remove("views__active");
     review.style.display = "unset";
     comment.style.display = "none";
 }

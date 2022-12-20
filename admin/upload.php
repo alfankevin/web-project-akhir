@@ -1,7 +1,7 @@
 <?php
 require "../main/functions.php";
+
 $film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category");
-$count = query("SELECT COUNT(id_film) FROM film");
 
 if(isset($_POST["search"])) {
     $film = search($_POST["keyword"]);
@@ -36,9 +36,9 @@ if(isset($_POST["search"])) {
             </div>
             <div class="sidebar__nav">
                 <ul class="sidebar__nav-content">
-                    <li class="sidebar__nav-item"><a href="#" class="active actives"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
+                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
                     <li class="sidebar__nav-item"><a href="./catalog.php"><i class="fa-solid fa-film default"></i>Catalog</li></a>
-                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down down default"></i></li></a>
+                    <li class="sidebar__nav-item"><a href="#" class="active actives"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down down default"></i></li></a>
                     <li class="sidebar__nav-item"><a href="./users.php"><i class="fa-solid fa-user-group user"></i>Users</li></a>
                     <li class="sidebar__nav-item"><a href="./comments.php"><i class="fa-regular fa-comment default"></i>Comments</li></a>
                     <li class="sidebar__nav-item"><a href="./reviews.php"><i class="fa-regular fa-star default margin"></i>Reviews</li></a>
@@ -59,10 +59,12 @@ if(isset($_POST["search"])) {
                     <div class="col-12">
                         <form action="" class="comment__form form__admin" method="post" spellcheck="false" autocomplete="off">
                             <div class="row">
-                                <div class="col-3" style="position: relative;">
-                                    <label for="form__img-input" id="form__img-label" onclick="preview()">Upload image</label>
-                                    <input id="form__img-input" name="img" type="file" accept=".png, .jpg, .jpeg" onchange="document.getElementById('form__img').src = window.URL.createObjectURL(this.files[0])" style="display: none">
-                                    <img id="form__img" src="" alt="" height="409px" width="285px">
+                                <div class="col-3">
+                                    <div class="img__input">
+                                        <label for="form__img-input" id="form__img-label" onclick="preview()">Upload image</label>
+                                        <input id="form__img-input" name="img" type="file" accept=".png, .jpg, .jpeg" onchange="document.getElementById('form__img').src = window.URL.createObjectURL(this.files[0])" style="display: none">
+                                        <img id="form__img" src="../assets/images/icon/clear.png" alt="" height="100%" width="100%">
+                                    </div>
                                 </div>
                                 <div class="col-9">
                                     <div class="row">

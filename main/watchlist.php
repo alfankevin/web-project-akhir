@@ -226,7 +226,7 @@ if(isset($_POST["search"])) {
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save">
+                                        <button class="card__save card__watchlist" onclick="return confirm('Remove from watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">
@@ -256,7 +256,7 @@ if(isset($_POST["search"])) {
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save">
+                                        <button class="card__save card__watchlist" onclick="return confirm('Remove from watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">
@@ -286,7 +286,7 @@ if(isset($_POST["search"])) {
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save">
+                                        <button class="card__save card__watchlist" onclick="return confirm('Remove from watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">

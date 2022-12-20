@@ -191,7 +191,7 @@ if(isset($_POST["search"])) {
                                     <a href="#">4k</a>
                                 </div>
                                 <div class="video__save">
-                                    <button><i class="fa-regular fa-bookmark"></i>Add to favorites</button>
+                                    <button onclick="return confirm('Add to watchlist?')"><i class="fa-regular fa-bookmark"></i>Add to watchlists</button>
                                 </div>
                             </div>
                         </form>

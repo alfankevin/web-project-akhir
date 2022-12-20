@@ -786,6 +786,10 @@ body {
     color: #ffc312;
 }
 
+.card__watchlist i {
+    color: #ffc312;
+}
+
 .card:hover .card__save {
     opacity: unset;
     transform: scale(1.2);
@@ -926,6 +930,12 @@ body {
 
 .subs__button-right {
     right: -65px !important;
+}
+
+@media only screen and (max-width: 1475px) {
+    .subs__button {
+        display: none;
+    }
 }
 
 .card__button-subs {
@@ -1565,23 +1575,23 @@ body {
     -webkit-text-fill-color: unset !important;
 }
 
-.active, .active i {
-    color: #2f80ed !important;
-    cursor: default;
-}
-
-.actives i {
-    -webkit-text-stroke: 1.5px #2f80ed !important;
-}
-
 .margin {
     margin-left: -1px !important;
     margin-right: 17px !important;
 }
 
+.active, .active i {
+    color: #2f80ed !important;
+    cursor: default;
+}
+
+.actives i {-webkit-text-stroke: 1.5px #2f80ed !important;}
+
+.actives .down {-webkit-text-stroke: unset !important;}
+
 .text--green {color: #29b474;}
 
-.user {font-size: 14px !important;}
+.user {font-size: 14px !important; margin-left: 0.5px;}
 
 .down {font-size: 10px !important;}
 
@@ -1599,7 +1609,7 @@ body {
 
 /* main */
 .main {
-    padding: 0 35px 30px 297.5px;
+    padding: 0 20px 30px 297.5px;
     background-color: #131720;
 }
 
@@ -1632,6 +1642,12 @@ body {
 
 .search__admin {width: 300px;}
 
+.img__input {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
 #form__img-label {
     height: 100%;
     width: 100%;
@@ -1654,7 +1670,6 @@ body {
 #form__img {
     position: absolute;
     top: 0;
-    left: 12.5px;
     border-radius: 20px;
     z-index: 1;
 }
@@ -1676,12 +1691,12 @@ body {
     align-items: center;
 }
 
-.action__button {
+.actions__button {
     display: flex;
     align-items: center;
 }
 
-.action__button a {
+.actions__button a {
     width: 30px;
     height: 30px;
     margin-right: 10px;
@@ -1690,12 +1705,19 @@ body {
     justify-content: center;
     text-decoration: none;
     border-radius: 10px;
-    background-color: rgba(47,128,237,0.1);;
+    background-color: rgba(47,128,237,0.1);
+    transition: all, 0.5s;
+}
+
+.actions__button a:hover {
+    background-color: rgba(47,128,237,0.2);
 }
 
 .fa-pen {color: #2f80ed;}
 
 .fa-trash {color: #eb5757;}
+
+.fa-lock {color: #29b474}
 
 .fa-eye {color: #ffc312;}
 
@@ -1708,16 +1730,17 @@ body {
 }
 
 thead tr td {
-    color: #e0e0e0;
     padding: 0px 20px;
+    color: #e0e0e0;
     font-size: 12px;
     line-height: 32px;
     background-color: none;
 }
 
 tbody tr td {
-    color: #fff;
+    height: 70px;
     padding: 20px;
+    color: #fff;
     font-size: 14px;
     line-height: 30px;
     overflow: hidden;
@@ -1736,6 +1759,56 @@ tr td i {
     font-size: 13px;
 }
 
+.film__title a {
+    color: #fff;
+    text-decoration: none;
+    transition: all, 0.5s;
+}
+
+.film__title a:hover {
+    color: #2f80ed;
+}
+
+.user__info {
+    padding: 0 20px;
+    position: relative;
+}
+
+.main__info {
+    display: flex;
+    align-items: center;
+}
+
+.user__avatar {
+    border-radius: 12px;
+}
+
+.main__info div {
+    margin-left: 15px;
+    line-height: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main__info div h5 {
+    margin: 0;
+    width: 100%;
+    font-size: 16px;
+}
+
+.main__info div span {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+}
+
+.views__text p {
+    margin: 0;
+    width: 275px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .film__id {width: 65px;}
 .film__title {width: 242.5px;}
 .film__rating {width: 100px;}
@@ -1743,28 +1816,28 @@ tr td i {
 .film__category {width: 120px;}
 .film__label {width: 100px;}
 .film__view {width: 100px;}
-.film__date {width: 210px;}
+.film__date {width: 215px;}
 
 .user__id {width: 65px;}
-.user__info {width: 242.5px; position: relative;}
+.user__info {width: 242.5px;}
 .user__username {width: 122.5px;}
 .user__plan {width: 142.5px;}
 .user__comments {width: 127.5px;}
-.user__reviews {width: 107.5px;}
-.user__watch {width: 150px;}
-.user__date {width: 145px;}
+.user__reviews {width: 105px;}
+.user__status {width: 120px;}
+.user__date {width: 150px;}
 
-.review__id {width: 65px;}
-.review__item {width: 257.5px;}
-.review__author {width: 115px;}
-.review__text {width: 312.5px;}
-.review__rating {width: 92.5px}
-.review__like {width: 135px;}
-.review__date {width: 142.5px;}
+.reviews__id {width: 65px;}
+.reviews__item {width: 250px;}
+.reviews__author {width: 150px;}
+.reviews__text {width: 300px;}
+.reviews__rating {width: 92.5px}
+.reviews__like {width: 135px;}
+.reviews__date {width: 142.5px;}
 
-.comment__id {width: 67.5px;}
-.comment__item {width: 267.5px;}
-.comment__author {width: 170px;}
-.comment__text {width: 325px;}
-.comment__like {width: 140px;}
-.comment__date {width: 147.5px;}
+.comments__id {width: 67.5px;}
+.comments__item {width: 267.5px;}
+.comments__author {width: 170px;}
+.comments__text {width: 325px;}
+.comments__like {width: 140px;}
+.comments__date {width: 147.5px;}

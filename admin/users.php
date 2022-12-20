@@ -5,7 +5,7 @@ $user = query("SELECT * FROM user INNER JOIN user_subs ON user_subs.id_user = us
 $count = query("SELECT COUNT(id_user) AS count FROM user");
 
 if(isset($_POST["search"])) {
-    $user = search($_POST["keyword"]);
+    $user = search_user($_POST["keyword"]);
 }
 ?>
 
@@ -37,7 +37,7 @@ if(isset($_POST["search"])) {
             </div>
             <div class="sidebar__nav">
                 <ul class="sidebar__nav-content">
-                    <li class="sidebar__nav-item"><a href="./admin.php"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
+                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
                     <li class="sidebar__nav-item"><a href="./catalog.php"><i class="fa-solid fa-film default"></i>Catalog</li></a>
                     <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down down default"></i></li></a>
                     <li class="sidebar__nav-item"><a href="./users.php" class="active actives"><i class="fa-solid fa-user-group user"></i>Users</li></a>
@@ -73,7 +73,7 @@ if(isset($_POST["search"])) {
                                     <td class="user__plan">PRICING PLAN</td>
                                     <td class="user__comments">COMMENTS</td>
                                     <td class="user__reviews">REVIEWS</td>
-                                    <td class="user__watch">WATCHLIST</td>
+                                    <td class="user__status">STATUS</td>
                                     <td class="user__date">CREATED DATE</td>
                                     <td class="user__actions">ACTIONS</td>
                                 </tr>
@@ -84,17 +84,21 @@ if(isset($_POST["search"])) {
                                 <tr>
                                     <td class="user__id"><?php echo $row["id_user"]; ?></td>
                                     <td class="user__info">
-                                        <img class="user__avatar" src="../assets/images/icon/user.jpeg" alt="" height="40px" width="40px">
-                                        <p><?php echo $row["username"]; ?></p>
-                                        <span><?php echo $row["email"]; ?></span>
+                                        <div class="main__info">
+                                            <img class="user__avatar" src="../assets/images/icon/user.jpeg" alt="" height="40px" width="40px">
+                                            <div>
+                                                <h5><?php echo $row["username"]; ?></h5>
+                                                <span><?php echo $row["email"]; ?></span>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td class="user__username"><?php echo $row[""]; ?>Username</td>
                                     <td class="user__plan"><?php echo $row["plan"]; ?></td>
-                                    <td class="user__comments"><?php echo $row[""]; ?></td>
-                                    <td class="user__reviews"></td>
-                                    <td class="user__save"><?php echo $row[""]; ?></td>
+                                    <td class="user__comments"><?php echo $row[""]; ?>0</td>
+                                    <td class="user__reviews"><?php echo $row[""]; ?>0</td>
+                                    <td class="user__status" style="color: #29b474">Approved</td>
                                     <td class="user__date"><?php echo $row["create_date"]; ?></td>
-                                    <td class="action__button"><a href=""><i class="fa-solid fa-pen"></i></a><a href="" onclick="return confirm('Delete user?')"><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="actions__button"><a href="#" onclick="return confirm('Ban user?')"><i class="fa-solid fa-lock"></i></a><a href="" onclick="return confirm('Delete user?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>

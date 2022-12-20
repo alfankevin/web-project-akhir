@@ -28,7 +28,7 @@
             </div>
             <div class="sidebar__nav">
                 <ul class="sidebar__nav-content">
-                    <li class="sidebar__nav-item"><a href="./admin.php"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
+                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
                     <li class="sidebar__nav-item"><a href="./catalog.php"><i class="fa-solid fa-film default"></i>Catalog</li></a>
                     <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down down default"></i></li></a>
                     <li class="sidebar__nav-item"><a href="./users.php"><i class="fa-solid fa-user-group user"></i>Users</li></a>
@@ -56,33 +56,35 @@
                         <table class="main__table">
                             <thead>
                                 <tr>
-                                    <td class="comment__id">ID</td>
-                                    <td class="comment__item">ITEM</td>
-                                    <td class="comment__author">AUTHOR</td>
-                                    <td class="comment__text">TEXT</td>
-                                    <td class="comment__like">LIKE / DISLIKE</td>
-                                    <td class="comment__date">CREATED DATE</td>
-                                    <td class="comment__actions">ACTIONS</td>
+                                    <td class="comments__id">ID</td>
+                                    <td class="comments__item">ITEM</td>
+                                    <td class="comments__author">AUTHOR</td>
+                                    <td class="comments__text">TEXT</td>
+                                    <td class="comments__like">LIKE / DISLIKE</td>
+                                    <td class="comments__date">CREATED DATE</td>
+                                    <td class="comments__actions">ACTIONS</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="comment__id">1</td>
-                                    <td class="comment__title"> in Another Language</td>
-                                    <td class="comment__rating">Rating</td>
-                                    <td class="comment__category">Movie</td>
-                                    <td class="comment__views">0 / 0</td>
-                                    <td class="comment__status">Visible</td>
-                                    <td class="action__button"><a href="" onclick="return confirm('Hide comment?')"><i class="fa-solid fa-eye"></i></a><a href="" onclick="return confirm('Delete comment?')"><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="comments__id">1</td>
+                                    <td class="comments__item"> in Another Language</td>
+                                    <td class="comments__author">Rating</td>
+                                    <td class="comments__text">
+                                        <div class="views__text"><p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p></div>
+                                    </td>
+                                    <td class="comments__like">0 / 0</td>
+                                    <td class="comments__date">Visible</td>
+                                    <td class="actions__button"><a href="" onclick="return confirm('Hide comment?')"><i class="fa-solid fa-eye"></i></a><a href="" onclick="return confirm('Delete comment?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <tr>
-                                    <td class="comment__id">1</td>
-                                    <td class="comment__title"> in Another Language</td>
-                                    <td class="comment__rating">Rating</td>
-                                    <td class="comment__category">Movie</td>
-                                    <td class="comment__views">1392</td>
-                                    <td class="comment__status">Visible</td>
-                                    <td class="action__button"><a href=""><i class="fa-solid fa-eye"></i></a><a href=""><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="comments__id">1</td>
+                                    <td class="comments__title"> in Another Language</td>
+                                    <td class="comments__rating">Rating</td>
+                                    <td class="comments__category">Movie</td>
+                                    <td class="comments__views">1392</td>
+                                    <td class="comments__status">Visible</td>
+                                    <td class="actions__button"><a href=""><i class="fa-solid fa-eye"></i></a><a href=""><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                             </tbody>
                         </table>
