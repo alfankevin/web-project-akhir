@@ -89,7 +89,7 @@ if(isset($_POST['submit'])) {
                                         </div>
                                         <div class="col-12">
                                             <div class="sign__group">
-                                                <input type="text" name="film_desc" class="sign__textarea" placeholder="Description" style="font-size: 14px" required value="<?php echo $film["film_desc"]; ?>"></input>
+                                                <input type="text" name="film_desc" class="sign__textarea" placeholder="Description" required value="<?php echo $film["film_desc"]; ?>"></input>
                                             </div>
                                         </div>
                                         <div class="col-3">
