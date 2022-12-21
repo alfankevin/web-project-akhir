@@ -29,16 +29,7 @@ body {
 
 /* navbar */
 .navbar .container {
-    width: 1265px;
-}
-
-#navbar__details {
-    position: fixed !important;
-    top: 0;
-    width: 100%;
-    background-color: #131720;
-    transition: top 0.5s;
-    z-index: 999;
+    padding: 0 40px;
 }
 
 .logo a {
@@ -58,7 +49,7 @@ body {
 
 /* nav items */
 .nav-item {
-    padding: 31.725px;
+    padding: 31.5px;
 }
 
 .nav-item .nav-link {
@@ -1197,6 +1188,15 @@ body {
 }
 
 /* details section */
+#navbar__details {
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    background-color: #131720;
+    transition: top 0.5s;
+    z-index: 999;
+}
+
 .details {
     margin-top: 100px;
     padding: 60px 0 0;
@@ -1593,11 +1593,11 @@ body {
 
 .fa-user-group {font-size: 14px !important; margin-left: 0.5px !important;}
 
-.fa-star {font-size: 19px !important; margin: 0 16px 0 -1px !important;}
-
 .fa-angle-down {font-size: 10px !important;}
 
 .fa-arrow-left {margin-left: 2.5px !important;}
+
+.sidebar__nav-item a .fa-star {font-size: 19px !important; margin: 0 16px 0 -1px !important;}
 
 .sidebar__footer {
     margin: 0;
@@ -1611,7 +1611,7 @@ body {
 
 /* main */
 .main {
-    padding: 0 20px 30px 297.5px;
+    padding: 0 20px 20px 297.5px;
     background-color: #131720;
 }
 
