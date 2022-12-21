@@ -88,7 +88,7 @@ if(isset($_POST["search"])) {
                                 <tr>
                                     <td class="film__id"><?php echo $row["id_film"]; ?></td>
                                     <td class="film__title"><a class="catalog__title" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
-                                    <td class="film__rating"><i class="fa-regular fa-star"></i>&ensp;<?php echo $row["rating"]; ?></td>
+                                    <td class="film__rating"><i class="fa-regular fa-star" style="margin: 0 !important"></i>&ensp;<?php echo $row["rating"]; ?></td>
                                     <td class="film__genre"><?php echo $row["genre"]; ?></td>
                                     <td class="film__category"><?php echo $row["category"]; ?></td>
                                     <td class="film__label"><?php echo $row["label"]; ?></td>
