@@ -17,6 +17,7 @@ if(isset($_POST["search"])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Films</title>
+        <!-- Icon -->
         <link rel="icon" href="../assets/images/icon/icon.png">
         <script src="https://kit.fontawesome.com/f6faa850c8.js" crossorigin="anonymous"></script>
         <!-- Personal assets -->

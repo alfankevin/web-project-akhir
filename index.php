@@ -1,5 +1,6 @@
 <?php
 require "./main/functions.php";
+
 $film = query("SELECT * FROM film LIMIT 18");
 $newest = query("SELECT * FROM film ORDER BY year DESC LIMIT 18");
 $popular = query("SELECT * FROM film ORDER BY rating DESC LIMIT 18");
@@ -24,6 +25,7 @@ if(isset($_POST["search"])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Films</title>
+        <!-- Icon -->
         <link rel="icon" href="./assets/images/icon/icon.png">
         <script src="https://kit.fontawesome.com/f6faa850c8.js" crossorigin="anonymous"></script>
         <!-- Personal assets -->
