@@ -61,7 +61,7 @@ if(isset($_POST["search"])) {
                                     <li><a class="dropdown-item" href="#" onclick="forget()">Forgot password</a></li>
                                     <li><a class="dropdown-item" href="#">Privacy policy</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="../admin/admin.php">Admin pages</a></li>
+                                    <li><a class="dropdown-item" href="../admin/catalog.php">Admin pages</a></li>
                                 </ul>
                             </li>
                         </ul>

@@ -1357,7 +1357,7 @@ body {
     background-color: #2f80ed;
 }
 
-.comment__active {
+.title__active {
     opacity: 1 !important;
 }
 
@@ -1421,6 +1421,7 @@ body {
     padding: 15px 20px;
     height: 144px;
     width: 100%;
+    font-size: 14px;
     color: #e0e0e0;
     outline: none;
     resize: none;
@@ -1575,11 +1576,6 @@ body {
     -webkit-text-fill-color: unset !important;
 }
 
-.margin {
-    margin-left: -1px !important;
-    margin-right: 17px !important;
-}
-
 .active, .active i {
     color: #2f80ed !important;
     cursor: default;
@@ -1587,15 +1583,21 @@ body {
 
 .actives i {-webkit-text-stroke: 1.5px #2f80ed !important;}
 
-.actives .down {-webkit-text-stroke: unset !important;}
+.actives .fa-angle-down {-webkit-text-stroke: unset !important;}
 
 .text--green {color: #29b474;}
 
-.user {font-size: 14px !important; margin-left: 0.5px;}
+.fa-house {font-size: 17px !important; margin-right: 16px !important;}
 
-.down {font-size: 10px !important;}
+.fa-folder {font-size: 17px !important; margin-left: 1px !important}
 
-.arrow {margin-left: 2.5px !important;}
+.fa-user-group {font-size: 14px !important; margin-left: 0.5px !important;}
+
+.fa-star {font-size: 19px !important; margin: 0 16px 0 -1px !important;}
+
+.fa-angle-down {font-size: 10px !important;}
+
+.fa-arrow-left {margin-left: 2.5px !important;}
 
 .sidebar__footer {
     margin: 0;
@@ -1644,7 +1646,7 @@ body {
 
 .img__input {
     position: relative;
-    height: 100%;
+    height: calc(100% - 20px);
     width: 100%;
 }
 
@@ -1759,13 +1761,13 @@ tr td i {
     font-size: 13px;
 }
 
-.film__title a {
+.catalog__title {
     color: #fff;
     text-decoration: none;
     transition: all, 0.5s;
 }
 
-.film__title a:hover {
+.catalog__title:hover {
     color: #2f80ed;
 }
 
@@ -1811,12 +1813,12 @@ tr td i {
 
 .film__id {width: 65px;}
 .film__title {width: 242.5px;}
-.film__rating {width: 100px;}
-.film__genre {width: 100px;}
-.film__category {width: 120px;}
-.film__label {width: 100px;}
-.film__view {width: 100px;}
-.film__date {width: 215px;}
+.film__rating {width: 110px;}
+.film__genre {width: 90px;}
+.film__category {width: 140px;}
+.film__label {width: 110px;}
+.film__age {width: 90px;}
+.film__date {width: 195px;}
 
 .user__id {width: 65px;}
 .user__info {width: 242.5px;}
@@ -1825,7 +1827,7 @@ tr td i {
 .user__comments {width: 127.5px;}
 .user__reviews {width: 105px;}
 .user__status {width: 120px;}
-.user__date {width: 150px;}
+.user__date {width: 185px;}
 
 .reviews__id {width: 65px;}
 .reviews__item {width: 250px;}

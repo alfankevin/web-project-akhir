@@ -38,13 +38,13 @@ if(isset($_POST["search"])) {
             </div>
             <div class="sidebar__nav">
                 <ul class="sidebar__nav-content">
-                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
+                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-house"></i>Dashboard</li></a>
                     <li class="sidebar__nav-item"><a href="./catalog.php" class="active"><i class="fa-solid fa-film default"></i>Catalog</li></a>
-                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down down default"></i></li></a>
-                    <li class="sidebar__nav-item"><a href="./users.php"><i class="fa-solid fa-user-group user"></i>Users</li></a>
+                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down default"></i></li></a>
+                    <li class="sidebar__nav-item"><a href="./users.php"><i class="fa-solid fa-user-group"></i>Users</li></a>
                     <li class="sidebar__nav-item"><a href="./comments.php"><i class="fa-regular fa-comment default"></i>Comments</li></a>
-                    <li class="sidebar__nav-item"><a href="./reviews.php"><i class="fa-regular fa-star default margin"></i>Reviews</li></a>
-                    <li class="sidebar__nav-item"><a href="../index.php"><i class="fa-solid fa-arrow-left default arrow"></i>Back to Films</li></a>
+                    <li class="sidebar__nav-item"><a href="./reviews.php"><i class="fa-regular fa-star default"></i>Reviews</li></a>
+                    <li class="sidebar__nav-item"><a href="../index.php"><i class="fa-solid fa-arrow-left default"></i>Back to Films</li></a>
                 </ul>
             </div>
             <p class="sidebar__footer">© Films, 2022,<br>Created by Alfarchi.</p>
@@ -87,14 +87,14 @@ if(isset($_POST["search"])) {
                                 <?php foreach($film as $row): ?>
                                 <tr>
                                     <td class="film__id"><?php echo $row["id_film"]; ?></td>
-                                    <td class="film__title"><a href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
+                                    <td class="film__title"><a class="catalog__title" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
                                     <td class="film__rating"><i class="fa-regular fa-star"></i>&ensp;<?php echo $row["rating"]; ?></td>
                                     <td class="film__genre"><?php echo $row["genre"]; ?></td>
                                     <td class="film__category"><?php echo $row["category"]; ?></td>
                                     <td class="film__label"><?php echo $row["label"]; ?></td>
                                     <td class="film__age"><?php echo $row["age"]; ?>+</td>
                                     <td class="film__date"><?php echo $row["film_date"]; ?></td>
-                                    <td class="actions__button"><a href="./update.php?id_film=<?php echo $row["id_film"]; ?>"><i class="fa-solid fa-pen"></i></a><a href="" onclick="return confirm('Delete film?')"><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="actions__button"><a href="./update.php?id_film=<?php echo $row["id_film"]; ?>"><i class="fa-solid fa-pen"></i></a><a href="./delete.php?id_film=<?php echo $row["id_film"]; ?>" onclick="return confirm('Delete film?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>

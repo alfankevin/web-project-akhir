@@ -1,11 +1,11 @@
 <?php
 require "../main/functions.php";
 
-$user = query("SELECT * FROM user INNER JOIN user_subs ON user_subs.id_user = user.id_user INNER JOIN subs ON subs.id_subs = user_subs.id_subs ORDER BY user.id_user ASC");
+$user = query("SELECT * FROM user LEFT OUTER JOIN user_subs ON user_subs.id_user = user.id_user LEFT OUTER JOIN subs ON subs.id_subs = user_subs.id_subs ORDER BY user.id_user ASC");
 $count = query("SELECT COUNT(id_user) AS count FROM user");
 
 if(isset($_POST["search"])) {
-    $user = search_user($_POST["keyword"]);
+    $user = searchUser($_POST["keyword"]);
 }
 ?>
 
@@ -37,13 +37,13 @@ if(isset($_POST["search"])) {
             </div>
             <div class="sidebar__nav">
                 <ul class="sidebar__nav-content">
-                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
+                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-house"></i>Dashboard</li></a>
                     <li class="sidebar__nav-item"><a href="./catalog.php"><i class="fa-solid fa-film default"></i>Catalog</li></a>
-                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down down default"></i></li></a>
-                    <li class="sidebar__nav-item"><a href="./users.php" class="active actives"><i class="fa-solid fa-user-group user"></i>Users</li></a>
+                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down default"></i></li></a>
+                    <li class="sidebar__nav-item"><a href="./users.php" class="active actives"><i class="fa-solid fa-user-group"></i>Users</li></a>
                     <li class="sidebar__nav-item"><a href="./comments.php"><i class="fa-regular fa-comment default"></i>Comments</li></a>
-                    <li class="sidebar__nav-item"><a href="./reviews.php"><i class="fa-regular fa-star default margin"></i>Reviews</li></a>
-                    <li class="sidebar__nav-item"><a href="../index.php"><i class="fa-solid fa-arrow-left default arrow"></i>Back to Films</li></a>
+                    <li class="sidebar__nav-item"><a href="./reviews.php"><i class="fa-regular fa-star default"></i>Reviews</li></a>
+                    <li class="sidebar__nav-item"><a href="../index.php"><i class="fa-solid fa-arrow-left default"></i>Back to Films</li></a>
                 </ul>
             </div>
             <p class="sidebar__footer">© Films, 2022,<br>Created by Alfarchi.</p>
@@ -98,7 +98,7 @@ if(isset($_POST["search"])) {
                                     <td class="user__reviews"><?php echo $row[""]; ?>0</td>
                                     <td class="user__status" style="color: #29b474">Approved</td>
                                     <td class="user__date"><?php echo $row["create_date"]; ?></td>
-                                    <td class="actions__button"><a href="#" onclick="return confirm('Ban user?')"><i class="fa-solid fa-lock"></i></a><a href="" onclick="return confirm('Delete user?')"><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="actions__button"><a href="#" onclick="return confirm('Ban user?')"><i class="fa-solid fa-lock"></i></a><a href="./deleteUser.php?id_user=<?php echo $row["id_user"]; ?>" onclick="return confirm('Delete user?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>

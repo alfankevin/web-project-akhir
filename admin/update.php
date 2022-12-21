@@ -2,10 +2,22 @@
 require "../main/functions.php";
 
 $id_film = $_GET["id_film"];
-$film = query("SELECT * FROM film INNER JOIN category ON category.id_category = film.id_category WHERE id_film = $id_film")[0];
+$film = query("SELECT * FROM film WHERE id_film = $id_film")[0];
 
-if(isset($_POST["search"])) {
-    $film = search($_POST["keyword"]);
+if(isset($_POST['submit'])) {
+    if(update($_POST) > 0) {
+        echo "
+        <script>
+            alert('Film updated');
+            document.location.href = 'catalog.php'
+        </script>";
+    } else {
+        echo "
+        <script>
+            alert('Update failed');
+            document.location.href = 'catalog.php'
+        </script>";
+    }
 }
 ?>
 
@@ -37,13 +49,13 @@ if(isset($_POST["search"])) {
             </div>
             <div class="sidebar__nav">
                 <ul class="sidebar__nav-content">
-                    <li class="sidebar__nav-item"><a href="./admin.php"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
+                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-house"></i>Dashboard</li></a>
                     <li class="sidebar__nav-item"><a href="./catalog.php"><i class="fa-solid fa-film default"></i>Catalog</li></a>
-                    <li class="sidebar__nav-item"><a href="#" class="active actives"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down down default"></i></li></a>
-                    <li class="sidebar__nav-item"><a href="./users.php"><i class="fa-solid fa-user-group user"></i>Users</li></a>
+                    <li class="sidebar__nav-item"><a href="#" class="active actives"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down default"></i></li></a>
+                    <li class="sidebar__nav-item"><a href="./users.php"><i class="fa-solid fa-user-group"></i>Users</li></a>
                     <li class="sidebar__nav-item"><a href="./comments.php"><i class="fa-regular fa-comment default"></i>Comments</li></a>
-                    <li class="sidebar__nav-item"><a href="./reviews.php"><i class="fa-regular fa-star default margin"></i>Reviews</li></a>
-                    <li class="sidebar__nav-item"><a href="../index.php"><i class="fa-solid fa-arrow-left default arrow"></i>Back to Films</li></a>
+                    <li class="sidebar__nav-item"><a href="./reviews.php"><i class="fa-regular fa-star default"></i>Reviews</li></a>
+                    <li class="sidebar__nav-item"><a href="../index.php"><i class="fa-solid fa-arrow-left default"></i>Back to Films</li></a>
                 </ul>
             </div>
             <p class="sidebar__footer">© Films, 2022,<br>Created by Alfarchi.</p>
@@ -59,49 +71,55 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-12">
                         <form action="" class="comment__form form__admin" method="post" spellcheck="false" autocomplete="off">
+                            <input type="hidden" name="id_film" value="<?php echo $film["id_film"]; ?>">
                             <div class="row">
                                 <div class="col-3">
                                     <div class="img__input">
-                                        <label for="form__img-input" id="form__img-label" onclick="preview()" style="background: none">Upload image</label>
-                                        <input id="form__img-input" name="img" type="file" accept=".png, .jpg, .jpeg" onchange="document.getElementById('form__img').src = window.URL.createObjectURL(this.files[0])" style="display: none">
+                                        <label for="form__img-input" id="form__img-label" onclick="preview()" style="background: none">Update image (required)</label>
+                                        <input id="form__img-input" name="image" type="file" accept=".png, .jpg, .jpeg" onchange="document.getElementById('form__img').src = window.URL.createObjectURL(this.files[0])" value="<?php echo $film["image"]; ?>" style="display: none">
                                         <img id="form__img" src="../assets/images/card/<?php echo $film["image"]; ?>" alt="" height="100%" width="100%">
                                     </div>
                                 </div>
                                 <div class="col-9">
                                     <div class="row">
-                                        <div class="col-10">
+                                        <div class="col-12">
                                             <div class="sign__group">
                                                 <input type="text" name="title" placeholder="Title" class="sign__input" required value="<?php echo $film["title"]; ?>">
                                             </div>
                                         </div>
-                                        <div class="col-2">
-                                            <div class="sign__group">
-                                                <input type="text" name="age" placeholder="Age" class="sign__input" required value="<?php echo $film["age"]; ?>">
-                                            </div>
-                                        </div>
                                         <div class="col-12">
                                             <div class="sign__group">
-                                                <input type="text" name="text" class="sign__textarea" placeholder="Description" style="font-size: 14px" required value="<?php echo $film["film_desc"]; ?>"></input>
+                                                <input type="text" name="film_desc" class="sign__textarea" placeholder="Description" style="font-size: 14px" required value="<?php echo $film["film_desc"]; ?>"></input>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="sign__group">
-                                                <input type="text" name="year" placeholder="Release year" class="sign__input" required value="<?php echo $film["year"]; ?>">
+                                                <input type="number" name="year" placeholder="Release year" class="sign__input" required value="<?php echo $film["year"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="sign__group">
-                                                <input type="text" name="category" placeholder="Category" class="sign__input" required value="<?php echo $film["category"]; ?>">
+                                                <input type="number" name="id_category" placeholder="Category" class="sign__input" required value="<?php echo $film["id_category"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="sign__group">
-                                                <input type="text" name="Genre" placeholder="Genre" class="sign__input" required value="<?php echo $film["genre"]; ?>">
+                                                <input type="text" name="genre" placeholder="Genre" class="sign__input" required value="<?php echo $film["genre"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="sign__group">
-                                                <input type="text" name="rating" placeholder="Rating" class="sign__input" required value="<?php echo $film["rating"]; ?>">
+                                                <input type="float" name="rating" placeholder="Rating" class="sign__input" required value="<?php echo $film["rating"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="sign__group">
+                                                <input type="text" name="label" placeholder="Label" class="sign__input" required value="<?php echo $film["label"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="sign__group">
+                                                <input type="number" name="age" placeholder="Age" class="sign__input" required value="<?php echo $film["age"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -109,10 +127,10 @@ if(isset($_POST["search"])) {
                                                 <input type="text" name="video" placeholder="Add a link" class="sign__input" required value="<?php echo $film["video"]; ?>">
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <button type="submit" class="sign__button">Publish</button>
-                                        </div>
                                     </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" name="submit" class="sign__button">Publish</button>
                                 </div>
                             </div>
                         </form>

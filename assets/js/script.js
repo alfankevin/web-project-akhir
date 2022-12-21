@@ -83,15 +83,15 @@ function news() {
 }
 
 function com() {
-    combtn.classList.add("views__active");
-    revbtn.classList.remove("views__active");
+    combtn.classList.add("title__active");
+    revbtn.classList.remove("title__active");
     comment.style.display = "unset";
     review.style.display = "none";
 }
 
 function rev() {
-    revbtn.classList.add("views__active");
-    combtn.classList.remove("views__active");
+    revbtn.classList.add("title__active");
+    combtn.classList.remove("title__active");
     review.style.display = "unset";
     comment.style.display = "none";
 }

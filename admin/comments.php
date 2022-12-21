@@ -28,13 +28,13 @@
             </div>
             <div class="sidebar__nav">
                 <ul class="sidebar__nav-content">
-                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-house margin"></i>Dashboard</li></a>
+                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-house"></i>Dashboard</li></a>
                     <li class="sidebar__nav-item"><a href="./catalog.php"><i class="fa-solid fa-film default"></i>Catalog</li></a>
-                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down down default"></i></li></a>
-                    <li class="sidebar__nav-item"><a href="./users.php"><i class="fa-solid fa-user-group user"></i>Users</li></a>
+                    <li class="sidebar__nav-item"><a href="#"><i class="fa-solid fa-folder"></i>Pages <i class="fa-solid fa-angle-down default"></i></li></a>
+                    <li class="sidebar__nav-item"><a href="./users.php"><i class="fa-solid fa-user-group"></i>Users</li></a>
                     <li class="sidebar__nav-item"><a href="./comments.php" class="active"><i class="fa-regular fa-comment default"></i>Comments</li></a>
-                    <li class="sidebar__nav-item"><a href="./reviews.php"><i class="fa-regular fa-star default margin"></i>Reviews</li></a>
-                    <li class="sidebar__nav-item"><a href="../index.php"><i class="fa-solid fa-arrow-left default arrow"></i>Back to Films</li></a>
+                    <li class="sidebar__nav-item"><a href="./reviews.php"><i class="fa-regular fa-star default"></i>Reviews</li></a>
+                    <li class="sidebar__nav-item"><a href="../index.php"><i class="fa-solid fa-arrow-left default"></i>Back to Films</li></a>
                 </ul>
             </div>
             <p class="sidebar__footer">© Films, 2022,<br>Created by Alfarchi.</p>
@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="main__header">
-                            <h2 class="main__header-title">Comments&ensp;<span>1000 total</span></h2>
+                            <h2 class="main__header-title">Comments&ensp;<span><?php echo $row["count"]; ?> total</span></h2>
                             <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__admin">
                                 <input type="input" name="keyword" placeholder="Key word.." class="nav__search search__admin">
                                 <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -67,24 +67,15 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="comments__id">1</td>
-                                    <td class="comments__item"> in Another Language</td>
-                                    <td class="comments__author">Rating</td>
+                                    <td class="comments__id"><?php echo $row["id_view"]; ?>1</td>
+                                    <td class="comments__item"><a class="catalog__title" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?>Peaky Blinders</a></td>
+                                    <td class="comments__author"><?php echo $row["username"]; ?>Leon Hamilton</td>
                                     <td class="comments__text">
-                                        <div class="views__text"><p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p></div>
+                                        <div class="views__text"><p><?php echo $row["comment"]; ?>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p></div>
                                     </td>
                                     <td class="comments__like">0 / 0</td>
-                                    <td class="comments__date">Visible</td>
+                                    <td class="comments__date"><?php echo $row["text_date"]; ?>20 Dec 2022</td>
                                     <td class="actions__button"><a href="" onclick="return confirm('Hide comment?')"><i class="fa-solid fa-eye"></i></a><a href="" onclick="return confirm('Delete comment?')"><i class="fa-solid fa-trash"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="comments__id">1</td>
-                                    <td class="comments__title"> in Another Language</td>
-                                    <td class="comments__rating">Rating</td>
-                                    <td class="comments__category">Movie</td>
-                                    <td class="comments__views">1392</td>
-                                    <td class="comments__status">Visible</td>
-                                    <td class="actions__button"><a href=""><i class="fa-solid fa-eye"></i></a><a href=""><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                             </tbody>
                         </table>

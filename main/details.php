@@ -54,7 +54,7 @@ if(isset($_POST["search"])) {
                                     <li><a class="dropdown-item" href="#" onclick="forget()">Forgot password</a></li>
                                     <li><a class="dropdown-item" href="#">Privacy policy</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="../admin/admin.php">Admin pages</a></li>
+                                    <li><a class="dropdown-item" href="../admin/catalog.php">Admin pages</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -191,7 +191,7 @@ if(isset($_POST["search"])) {
                                     <a href="#">4k</a>
                                 </div>
                                 <div class="video__save">
-                                    <button onclick="return confirm('Add to watchlist?')"><i class="fa-regular fa-bookmark"></i>Add to watchlists</button>
+                                    <button onclick="return confirm('Add to watchlist?')"><i class="fa-regular fa-bookmark"></i>Add to watchlist</button>
                                 </div>
                             </div>
                         </form>
@@ -207,7 +207,7 @@ if(isset($_POST["search"])) {
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="comment__title">
-                            <button class="comment__active" id="combtn" onclick="com()">Comments <span>10</span></button>
+                            <button class="title__active" id="combtn" onclick="com()">Comments <span>10</span></button>
                             <button id="revbtn" onclick="rev()">Reviews <span>10</span></button>
                         </div>
                         <div class="row">
