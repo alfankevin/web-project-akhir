@@ -19,7 +19,7 @@ function query($query) {
 }
 
 function more() {
-    $sql = "SELECT * FROM film LIMIT 36";
+    $sql = "SELECT * FROM film ORDER BY id_film DESC LIMIT 36";
     return query($sql);
 }
 
@@ -30,7 +30,7 @@ function search($keyword) {
             genre LIKE '%$keyword%' OR
             category LIKE '%$keyword%' OR
             label LIKE '%$keyword%' OR
-            age LIKE '%$keyword%' ORDER BY film.id_film ASC";
+            age LIKE '%$keyword%' ORDER BY film.id_film DESC";
     return query($sql);
 }
 

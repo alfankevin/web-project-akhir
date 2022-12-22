@@ -72,8 +72,8 @@ if(isset($_POST['submit'])) {
                             <div class="row">
                                 <div class="col-3">
                                     <div class="img__input">
-                                        <label for="form__img-input" id="form__img-label" onclick="preview()">Upload image</label>
-                                        <input id="form__img-input" name="image" type="file" accept=".png, .jpg, .jpeg" onchange="document.getElementById('form__img').src = window.URL.createObjectURL(this.files[0])" style="display: none">
+                                        <label for="form__img-input" id="form__img-label">Upload image</label>
+                                        <input id="form__img-input" name="image" type="file" accept=".png, .jpg, .jpeg" onchange="document.getElementById('form__img').src = window.URL.createObjectURL(this.files[0])" style="display: none" required>
                                         <img id="form__img" src="../assets/images/icon/clear.png" alt="" height="100%" width="100%">
                                     </div>
                                 </div>
@@ -81,47 +81,47 @@ if(isset($_POST['submit'])) {
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="sign__group">
-                                                <input type="text" name="title" placeholder="Title" class="sign__input">
+                                                <input type="text" name="title" placeholder="Title" class="sign__input" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="sign__group">
-                                                <textarea type="text" name="film_desc" class="sign__textarea" placeholder="Description"></textarea>
+                                                <textarea type="text" name="film_desc" class="sign__textarea" placeholder="Description" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="sign__group">
-                                                <input type="number" name="year" placeholder="Release year" class="sign__input">
+                                                <input type="number" name="year" placeholder="Release year" class="sign__input" required>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="sign__group">
-                                                <input type="number" name="id_category" placeholder="Category" class="sign__input">
+                                                <input type="number" name="id_category" placeholder="Category" class="sign__input" required>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="sign__group">
-                                                <input type="text" name="genre" placeholder="Genre" class="sign__input">
+                                                <input type="text" name="genre" placeholder="Genre" class="sign__input" required>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="sign__group">
-                                                <input type="float" name="rating" placeholder="Rating" class="sign__input">
+                                                <input type="float" name="rating" placeholder="Rating" class="sign__input" required>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="sign__group">
-                                                <input type="text" name="label" placeholder="Label" class="sign__input">
+                                                <input type="text" name="label" placeholder="Label" class="sign__input" required>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="sign__group">
-                                                <input type="number" name="age" placeholder="Age" class="sign__input">
+                                                <input type="number" name="age" placeholder="Age" class="sign__input" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="sign__group">
-                                                <input type="text" name="video" placeholder="Add a link" class="sign__input">
+                                                <input type="text" name="video" placeholder="Add a link" class="sign__input" required>
                                             </div>
                                         </div>
                                     </div>

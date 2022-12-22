@@ -5,9 +5,6 @@ $id_film = $_GET["id_film"];
 $film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category WHERE id_film = $id_film");
 $view = query("SELECT * FROM user INNER JOIN user_film ON user.id_user = user_film.id_user INNER JOIN film ON film.id_film = user_film.id_film");
 
-if(isset($_POST["search"])) {
-    $film = search($_POST["keyword"]);
-}
 ?>
 
 <!DOCTYPE html>

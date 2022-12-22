@@ -1662,7 +1662,6 @@ body {
     color: #e0e0e0;
     transition: all, 0.5s;
     cursor: pointer;
-    z-index: 2;
 }
 
 #form__img-label:hover {
@@ -1673,6 +1672,7 @@ body {
     position: absolute;
     top: 0;
     border-radius: 20px;
+    pointer-events: none;
     z-index: 1;
 }
 
