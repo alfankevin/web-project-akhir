@@ -2,7 +2,7 @@
 require "../main/functions.php";
 
 $id_film = $_GET["id_film"];
-$film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category ORDER BY id_film ASC");
+$film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category ORDER BY id_film DESC");
 $count = query("SELECT COUNT(id_film) AS count FROM film");
 
 if(isset($_POST["search"])) {
@@ -72,7 +72,7 @@ if(isset($_POST["search"])) {
                         <table class="main__table">
                             <thead>
                                 <tr>
-                                    <td class="film__id">ID</td>
+                                    <td class="film__id">NO</td>
                                     <td class="film__title">TITLE</td>
                                     <td class="film__rating">RATING</td>
                                     <td class="film__genre">GENRE</td>
@@ -87,7 +87,7 @@ if(isset($_POST["search"])) {
                                 <?php $i = 1 ?>
                                 <?php foreach($film as $row): ?>
                                 <tr>
-                                    <td class="film__id"><?php echo $row["id_film"]; ?></td>
+                                    <td class="film__id"><?php echo $i; ?></td>
                                     <td class="film__title"><a class="catalog__title" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
                                     <td class="film__rating"><i class="fa-regular fa-star"></i>&ensp;<?php echo $row["rating"]; ?></td>
                                     <td class="film__genre"><?php echo $row["genre"]; ?></td>

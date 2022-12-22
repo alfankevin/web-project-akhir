@@ -1,7 +1,7 @@
 <?php
 require "./main/functions.php";
 
-$film = query("SELECT * FROM film LIMIT 18");
+$film = query("SELECT * FROM film ORDER BY id_film DESC LIMIT 18");
 $newest = query("SELECT * FROM film ORDER BY year DESC LIMIT 18");
 $popular = query("SELECT * FROM film ORDER BY rating DESC LIMIT 18");
 

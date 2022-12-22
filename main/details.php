@@ -292,7 +292,7 @@ if(isset($_POST["search"])) {
                     <button class="subs__button subs__button-right"><i class="fa-solid fa-arrow-right"></i></button>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=1">
+                            <a class="card__cover" href="./details.php?id_film=30">
                                 <img src="../assets/images/card/1.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -303,7 +303,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.3
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=1">The Good Lord Bird</a>
+                                <a href="./details.php?id_film=30">The Good Lord Bird</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -314,7 +314,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=2">
+                            <a class="card__cover" href="./details.php?id_film=29">
                                 <img src="../assets/images/card/2.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -325,7 +325,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>9.6
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=2">Peaky Blinders</a>
+                                <a href="./details.php?id_film=29">Peaky Blinders</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -336,7 +336,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=3">
+                            <a class="card__cover" href="./details.php?id_film=28">
                                 <img src="../assets/images/card/3.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -347,7 +347,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.1
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=3">The Dictator</a>
+                                <a href="./details.php?id_film=28">The Dictator</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -358,7 +358,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=4">
+                            <a class="card__cover" href="./details.php?id_film=27">
                                 <img src="../assets/images/card/4.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -369,7 +369,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.8
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=4">Get On Up</a>
+                                <a href="./details.php?id_film=27">Get On Up</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -380,7 +380,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=5">
+                            <a class="card__cover" href="./details.php?id_film=26">
                                 <img src="../assets/images/card/5.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -391,7 +391,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>7.9
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=5">Interview With the Vampire</a>
+                                <a href="./details.php?id_film=26">Interview With the Vampire</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -402,7 +402,7 @@ if(isset($_POST["search"])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=6">
+                            <a class="card__cover" href="./details.php?id_film=25">
                                 <img src="../assets/images/card/6.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -413,7 +413,7 @@ if(isset($_POST["search"])) {
                                 <i class="fa-regular fa-star"></i>8.6
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=6">Pawn Sacrifice</a>
+                                <a href="./details.php?id_film=25">Pawn Sacrifice</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
