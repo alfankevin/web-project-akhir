@@ -107,4 +107,72 @@ function deleteUser($id_user) {
     mysqli_query($conn, "DELETE FROM user WHERE id_user = $id_user");
     return mysqli_affected_rows($conn);
 }
+
+function register($data) {
+    global $conn;
+
+    $email = strtolower(stripcslashes($data['email']));
+    $username = htmlspecialchars($data['username']);
+    $password = mysqli_real_escape_string($conn,$data['password']);
+    $password2 = mysqli_real_escape_string($conn,$data['password2']);
+
+    $result = mysqli_query($conn, "SELECT email FROM user WHERE email = '$email'");
+
+    if(mysqli_fetch_assoc($result)) {   
+        echo "
+        <script>
+            alert('Email already registered');
+        </script>";
+        return false;
+    }
+    if($password != $password2) {
+        echo "
+        <script>
+            alert('Passwords do not match');
+        </script>";
+        return false;
+    }
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    mysqli_query($conn, "INSERT INTO user VALUES(null, '$email', '$password', '$username', now())");
+    mysqli_query($conn, "INSERT INTO user_subs VALUES(null, LAST_INSERT_ID(), 1, now())");
+
+    return mysqli_affected_rows($conn);
+}
+
+function regular($data) {
+    global $conn;
+    $id_user = $data["id_user"];
+    
+    $query = "UPDATE user_subs SET
+              id_subs = 2
+              WHERE id_user = $id_user";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function premium($data) {
+    global $conn;
+    $id_user = $data["id_user"];
+    
+    $query = "UPDATE user_subs SET
+              id_subs = 3
+              WHERE id_user = $id_user";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function cinematic($data) {
+    global $conn;
+    $id_user = $data["id_user"];
+    
+    $query = "UPDATE user_subs SET
+              id_subs = 4
+              WHERE id_user = $id_user";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
 ?>

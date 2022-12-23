@@ -5,6 +5,32 @@ $film = query("SELECT * FROM film ORDER BY id_film DESC LIMIT 18");
 $newest = query("SELECT * FROM film ORDER BY year DESC LIMIT 18");
 $popular = query("SELECT * FROM film ORDER BY rating DESC LIMIT 18");
 
+if(isset($_POST['register'])) {
+    if(register($_POST) > 0) {
+        echo "
+        <script>
+            alert('Registration success');
+            document.location.href = '../index.php';
+        </script>";
+    } else {
+        echo mysqli_error($conn);
+    }
+}
+
+if(isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
+    if(mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
+        if(password_verify($password, $row['password'])) {
+            header("Location:../index.php");
+            exit;
+        }
+    }
+    $error = true;
+}
+
 if(isset($_POST["search"])) {
     $film = search($_POST["keyword"]);
 } else if(isset($_POST["featured"])) {
@@ -86,18 +112,24 @@ if(isset($_POST["search"])) {
                 <div class="sign__content">
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
-                        <a class="sign__logo" href="./watchlist.php">Fil<span>ms</span></a>
+                        <a class="sign__logo" href="../index.php">Fil<span>ms</span></a>
+                        <?php if(isset($error)):?>
+                            <p style="color: red; font-size: 14px;">Wrong email or password</p>
+                            <script>
+                                document.getElementById("signin").style.display = 'unset';
+                            </script>
+                        <?php endif?>
                         <div class="sign__group">
-                            <input type="email" name="email" placeholder="Email" class="sign__input">
+                            <input type="email" name="email" placeholder="Email" class="sign__input" required>
                         </div>
                         <div class="sign__group">
-                            <input type="password" name="password" placeholder="Password" class="sign__input">
+                            <input type="password" name="password" placeholder="Password" class="sign__input" required>
                         </div>
                         <div class="sign__group">
-                            <input type="checkbox" name="remember" checked="checked" id="remember">
+                            <input type="checkbox" name="remember" checked="checked" id="remember" required>
                             <label for="remember">Remember me</label>
                         </div>
-                        <button type="submit" class="sign__button">Sign in</button>
+                        <button type="submit" name="login" class="sign__button">Sign in</button>
                         <span class="sign__delimiter">or</span>
                         <div class="sign__social">
                             <a href="#" class="fb"><i class="fa-brands fa-facebook-f"></i></a>
@@ -116,21 +148,24 @@ if(isset($_POST["search"])) {
                 <div class="sign__content">
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
-                        <a class="sign__logo" href="./watchlist.php">Fil<span>ms</span></a>
+                        <a class="sign__logo" href="../index.php">Fil<span>ms</span></a>
                         <div class="sign__group">
-                            <input type="text" name="name" placeholder="Name" class="sign__input">
+                            <input type="text" name="username" placeholder="Name" class="sign__input" required>
                         </div>
                         <div class="sign__group">
-                            <input type="email" name="email" placeholder="Email" class="sign__input">
+                            <input type="email" name="email" placeholder="Email" class="sign__input" required>
                         </div>
                         <div class="sign__group">
-                            <input type="password" name="password" placeholder="Password" class="sign__input">
+                            <input type="password" name="password" placeholder="Password" class="sign__input" required>
                         </div>
                         <div class="sign__group">
-                            <input type="checkbox" name="remember" checked="checked" id="remember">
+                            <input type="password" name="password2" placeholder="Confirm password" class="sign__input" required>
+                        </div>
+                        <div class="sign__group">
+                            <input type="checkbox" name="remember" checked="checked" id="remember" required>
                             <label for="agree">I agree to the <a href="#" class="sign__privacy">Privacy Policy</a></label>
                         </div>
-                        <button type="submit" class="sign__button">Sign up</button>
+                        <button type="submit" name="register" class="sign__button">Sign up</button>
                         <span class="sign__delimiter">or</span>
                         <div class="sign__social">
                             <a href="#" class="fb"><i class="fa-brands fa-facebook-f"></i></a>

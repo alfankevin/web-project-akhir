@@ -5,6 +5,55 @@ $film = query("SELECT * FROM film ORDER BY id_film DESC LIMIT 18");
 $newest = query("SELECT * FROM film ORDER BY year DESC LIMIT 18");
 $popular = query("SELECT * FROM film ORDER BY rating DESC LIMIT 18");
 
+if(isset($_POST['register'])) {
+    if(register($_POST) > 0) {
+        echo "
+        <script>
+            alert('Registration success');
+            document.location.href = 'index.php';
+        </script>";
+    } else {
+        echo mysqli_error($conn);
+    }
+}
+
+if(isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
+    if(mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
+        if(password_verify($password, $row['password'])) {
+            header("Location:index.php");
+            exit;
+        }
+    }
+    $error = true;
+}
+
+if(isset($_POST['regular'])) {
+    if(regular($_POST) > 0) {
+        echo "
+        <script>
+            alert('Subscribe success');
+        </script>";
+    }
+} else if(isset($_POST['premium'])) {
+    if(premium($_POST) > 0) {
+        echo "
+        <script>
+            alert('Subscribe success');
+        </script>";
+    }
+} else if(isset($_POST['cinematic'])) {
+    if(cinematic($_POST) > 0) {
+        echo "
+        <script>
+            alert('Subscribe success');
+        </script>";
+    }
+}
+
 if(isset($_POST["search"])) {
     $film = search($_POST["keyword"]);
 } else if(isset($_POST["featured"])) {
@@ -87,17 +136,23 @@ if(isset($_POST["search"])) {
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
                         <a class="sign__logo" href="./index.php">Fil<span>ms</span></a>
+                        <?php if(isset($error)):?>
+                            <p style="color: red; font-size: 14px;">Wrong email or password</p>
+                            <script>
+                                document.getElementById("signin").style.display = 'unset';
+                            </script>
+                        <?php endif?>
                         <div class="sign__group">
-                            <input type="email" name="email" placeholder="Email" class="sign__input">
+                            <input type="email" name="email" placeholder="Email" class="sign__input" required>
                         </div>
                         <div class="sign__group">
-                            <input type="password" name="password" placeholder="Password" class="sign__input">
+                            <input type="password" name="password" placeholder="Password" class="sign__input" required>
                         </div>
                         <div class="sign__group">
-                            <input type="checkbox" name="remember" checked="checked" id="remember">
+                            <input type="checkbox" name="remember" checked="checked" id="remember" required>
                             <label for="remember">Remember me</label>
                         </div>
-                        <button type="submit" class="sign__button">Sign in</button>
+                        <button type="submit" name="login" class="sign__button">Sign in</button>
                         <span class="sign__delimiter">or</span>
                         <div class="sign__social">
                             <a href="#" class="fb"><i class="fa-brands fa-facebook-f"></i></a>
@@ -118,19 +173,22 @@ if(isset($_POST["search"])) {
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
                         <a class="sign__logo" href="./index.php">Fil<span>ms</span></a>
                         <div class="sign__group">
-                            <input type="text" name="name" placeholder="Name" class="sign__input">
+                            <input type="text" name="username" placeholder="Name" class="sign__input" required>
                         </div>
                         <div class="sign__group">
-                            <input type="email" name="email" placeholder="Email" class="sign__input">
+                            <input type="email" name="email" placeholder="Email" class="sign__input" required>
                         </div>
                         <div class="sign__group">
-                            <input type="password" name="password" placeholder="Password" class="sign__input">
+                            <input type="password" name="password" placeholder="Password" class="sign__input" required>
                         </div>
                         <div class="sign__group">
-                            <input type="checkbox" name="remember" checked="checked" id="remember">
+                            <input type="password" name="password2" placeholder="Confirm password" class="sign__input" required>
+                        </div>
+                        <div class="sign__group">
+                            <input type="checkbox" name="remember" checked="checked" id="remember" required>
                             <label for="agree">I agree to the <a href="#" class="sign__privacy">Privacy Policy</a></label>
                         </div>
-                        <button type="submit" class="sign__button">Sign up</button>
+                        <button type="submit" name="register" class="sign__button">Sign up</button>
                         <span class="sign__delimiter">or</span>
                         <div class="sign__social">
                             <a href="#" class="fb"><i class="fa-brands fa-facebook-f"></i></a>
@@ -529,7 +587,7 @@ if(isset($_POST["search"])) {
                 </div>
                 <div class="row row--grid">
                     <div class="col-12 col-md-6 col-xl-4 order-md-2 order-xl-1 col--grid">
-                        <div class="plan">
+                        <div class="plan" method="post">
                             <h3 class="plan__title">Regular</h3>
                             <ul class="plan__list">
                                 <li><i class="fa-solid fa-check"></i>Films Originals</li>
@@ -538,11 +596,11 @@ if(isset($_POST["search"])) {
                                 <li><i class="fa-solid fa-xmark"></i>TV channels</li>
                             </ul>
                             <span class="plan__price">$11.99<span>/month</span></span>
-                            <button class="plan__button" onclick="return confirm('Buy Regular plan?')">Select plan</button>
+                            <button class="plan__button" name="regular" onclick="return confirm('Buy Regular plan?')">Select plan</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-xl-4 order-md-1 order-xl-2 col--grid">
-                        <div class="plan plan--best">
+                        <div class="plan plan--best" method="post">
                             <h3 class="plan__title">Premium</h3>
                             <ul class="plan__list">
                                 <li><i class="fa-solid fa-check"></i>Films Originals</li>
@@ -551,11 +609,11 @@ if(isset($_POST["search"])) {
                                 <li><i class="fa-solid fa-xmark"></i>TV channels</li>
                             </ul>
                             <span class="plan__price">$34.99<span>/month</span></span>
-                            <button class="plan__button" onclick="return confirm('Buy Premium plan?')">Select plan</button>
+                            <button class="plan__button" name="premium" onclick="return confirm('Buy Premium plan?')">Select plan</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xl-4 order-md-3 order-xl-3 col--grid">
-                        <div class="plan">
+                        <div class="plan" method="post">
                             <h3 class="plan__title">Premium + TV channels</h3>
                             <ul class="plan__list">
                                 <li><i class="fa-solid fa-check"></i>Films Originals</li>
@@ -564,7 +622,7 @@ if(isset($_POST["search"])) {
                                 <li><i class="fa-solid fa-check"></i>TV channels</li>
                             </ul>
                             <span class="plan__price">$49.99<span>/month</span></span>
-                            <button class="plan__button" onclick="return confirm('Buy Cinematic plan?')">Select plan</button>
+                            <button class="plan__button" name="cinematic" onclick="return confirm('Buy Cinematic plan?')">Select plan</button>
                         </div>
                     </div>
                 </div>

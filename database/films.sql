@@ -4,7 +4,7 @@ use films;
 create table user (
     id_user int primary key auto_increment,
     email varchar(40),
-    password varchar(20),
+    password varchar(255),
     username varchar(30),
     create_date datetime
 );
