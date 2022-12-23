@@ -428,6 +428,12 @@ body {
     text-decoration: underline;
 }
 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
 /* hero section */
 .hero {
     overflow: hidden;
@@ -522,7 +528,6 @@ body {
     color: #fff;
     padding: 0 8px;
     font-size: 12px;
-    font-weight: unset;
     border-radius: 8px;
     align-items: center;
     background-color: rgba(21,31,48,0.75);

@@ -96,7 +96,13 @@ if(isset($_POST['submit'])) {
                                         </div>
                                         <div class="col-3">
                                             <div class="sign__group">
-                                                <input type="number" name="id_category" placeholder="Category" class="sign__input" required>
+                                                <select class="sign__input" name="id_category" selected required>
+                                                    <option selected>Category</option> 
+                                                    <option value=1>Movie</option>
+                                                    <option value=2>Series</option>
+                                                    <option value=3>TV Show</option>
+                                                    <option value=4>Cartoon</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-3">

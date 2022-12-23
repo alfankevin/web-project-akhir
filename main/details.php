@@ -15,6 +15,7 @@ if(isset($_POST['register'])) {
     } else {
         echo mysqli_error($conn);
     }
+    $error = true;
 }
 
 if(isset($_POST['login'])) {
@@ -105,6 +106,7 @@ if(isset($_POST['login'])) {
                             <p style="color: red; font-size: 14px;">Wrong email or password</p>
                             <script>
                                 document.getElementById("signin").style.display = 'unset';
+                                alert('Email not registered, please make a new account');
                             </script>
                         <?php endif?>
                         <div class="sign__group">
@@ -132,6 +134,11 @@ if(isset($_POST['login'])) {
         </section>
 
         <section class="signup" id="signup">
+            <?php if(isset($error)):?>
+                <script>
+                    document.getElementById("signup").style.display = 'unset';
+                </script>
+            <?php endif?>
             <div class="container">
                 <div class="sign__content">
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
