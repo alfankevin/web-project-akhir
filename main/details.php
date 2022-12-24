@@ -44,11 +44,11 @@ if(!empty($_SESSION['id_user'])) {
 
 if(!empty($_SESSION['id_user'])) {
     $id_user = $_SESSION['id_user'];
-    $query_user = mysqli_query($conn, "SELECT * FROM user INNER JOIN user_subs ON user_subs.id_user = user.id_user WHERE user.id_user = $id_user");
-    $query_film = mysqli_query($conn, "SELECT * FROM film WHERE id_film = $id_film");
-    $users = mysqli_fetch_assoc($query_user);
-    $films = mysqli_fetch_assoc($query_film);
-    if(mysqli_num_rows($query_film) > 0) {
+    $sqlUser = mysqli_query($conn, "SELECT * FROM user INNER JOIN user_subs ON user_subs.id_user = user.id_user WHERE user.id_user = $id_user");
+    $sqlFilm = mysqli_query($conn, "SELECT * FROM film WHERE id_film = $id_film");
+    $users = mysqli_fetch_assoc($sqlUser);
+    $films = mysqli_fetch_assoc($sqlFilm);
+    if(mysqli_num_rows($sqlFilm) > 0) {
         if($films['label'] == "Subs" && $users['id_subs'] == 1) {
             echo "
             <script>
