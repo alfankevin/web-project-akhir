@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $conn = mysqli_connect("localhost", "root", "", "films");
 
 if(!$conn) {
@@ -108,6 +110,18 @@ function deleteUser($id_user) {
     return mysqli_affected_rows($conn);
 }
 
+function deleteComment($id_view) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM user_film WHERE id_view = $id_view");
+    return mysqli_affected_rows($conn);
+}
+
+function deleteReview($id_view) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM user_film WHERE id_view = $id_view");
+    return mysqli_affected_rows($conn);
+}
+
 function register($data) {
     global $conn;
 
@@ -132,7 +146,6 @@ function register($data) {
         </script>";
         return false;
     }
-    $password = password_hash($password, PASSWORD_DEFAULT);
 
     mysqli_query($conn, "INSERT INTO user VALUES(null, '$email', '$password', '$username', now())");
     mysqli_query($conn, "INSERT INTO user_subs VALUES(null, LAST_INSERT_ID(), 1, now())");
@@ -171,6 +184,32 @@ function cinematic($data) {
     $query = "UPDATE user_subs SET
               id_subs = 4
               WHERE id_user = $id_user";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function comment($data) {
+    global $conn;
+    $id_user = htmlspecialchars($data["id_user"]);
+    $id_film = htmlspecialchars($data["id_film"]);
+    $comment = htmlspecialchars($data["text"]);
+
+    $query = "INSERT INTO user_film (id_view,id_user,id_film,comment,text_date) VALUES (null, $id_user, $id_film, '$comment', now())";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function review($data) {
+    global $conn;
+    $id_user = htmlspecialchars($data["id_user"]);
+    $id_film = htmlspecialchars($data["id_film"]);
+    $title = htmlspecialchars($data["title"]);
+    $review = htmlspecialchars($data["text"]);
+    $rating = htmlspecialchars($data["rating"]);
+
+    $query = "INSERT INTO user_film (id_view,id_user,id_film,review_title,review,rate,text_date) VALUES (null, $id_user, $id_film, '$title', '$review', '$rating', now())";
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);

@@ -1,7 +1,7 @@
 <?php
 require "../main/functions.php";
 
-$id_film = $_GET["id_film"];
+$id_film = $_GET["id"];
 $film = query("SELECT * FROM film WHERE id_film = $id_film")[0];
 
 if(isset($_POST['submit'])) {
@@ -90,7 +90,7 @@ if(isset($_POST['submit'])) {
                                         </div>
                                         <div class="col-12">
                                             <div class="sign__group">
-                                                <input type="text" name="film_desc" class="sign__textarea" placeholder="Description" required value="<?php echo $film["film_desc"]; ?>"></input>
+                                                <input type="text" name="film_desc" class="sign__textarea" placeholder="Description" required value="<?php echo $film["film_desc"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-3">

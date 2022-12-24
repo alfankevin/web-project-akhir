@@ -15,21 +15,28 @@ if(isset($_POST['register'])) {
     } else {
         echo mysqli_error($conn);
     }
-    $error = true;
 }
 
 if(isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
-    if(mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_assoc($result);
-        if(password_verify($password, $row['password'])) {
-            header("Location:../index.php");
+    $row = mysqli_fetch_assoc($result);
+    if(mysqli_num_rows($result) > 0) {
+        if($password == $row['password']) {
+            $_SESSION['login'] = true;
+            $_SESSION['id_user'] = $row['id_user'];
+            header('Location:../index.php');
             exit;
         }
     }
     $error = true;
+}
+
+if(!empty($_SESSION['id_user'])) {
+    $id_user = $_SESSION['id_user'];
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = $id_user");
+    $user = mysqli_fetch_assoc($result);
 }
 
 if(isset($_POST["search"])) {
@@ -101,7 +108,10 @@ if(isset($_POST["search"])) {
                             <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                         <div class="nav__login">
-                            <span class="nav-link" onclick="login()">Sign in &ensp;<span class="nav__action-btn"><i class="fa-solid fa-arrow-right-to-bracket"></i></span></span>
+                            <?php if(!isset($_SESSION['id_user']))
+                            echo "<span class=\"nav-link\" onclick=\"document.getElementById('signin').style.display = 'unset';\">Sign in &ensp;<span class=\"nav__action-btn\"><i class=\"fa-solid fa-arrow-right-to-bracket\"></i></span></span>"; ?> 
+                            <?php if(isset($_SESSION['id_user']))
+                            echo "<a href=\"./logout.php\" class=\"nav-link\">Sign out &ensp;<span class=\"nav__action-btn\"><i class=\"fa-solid fa-arrow-right-from-bracket\" style=\"margin-right: -12.5px\"></i></span></a>"; ?> 
                         </div>
                     </div>
                 </div>
@@ -118,7 +128,6 @@ if(isset($_POST["search"])) {
                             <p style="color: red; font-size: 14px;">Wrong email or password</p>
                             <script>
                                 document.getElementById("signin").style.display = 'unset';
-                                alert('Email not registered, please make a new account');
                             </script>
                         <?php endif?>
                         <div class="sign__group">
@@ -146,11 +155,6 @@ if(isset($_POST["search"])) {
         </section>
 
         <section class="signup" id="signup">
-            <?php if(isset($error)):?>
-                <script>
-                    document.getElementById("signup").style.display = 'unset';
-                </script>
-            <?php endif?>
             <div class="container">
                 <div class="sign__content">
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">

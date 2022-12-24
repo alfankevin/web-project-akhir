@@ -1,4 +1,13 @@
-<?php include("config.php");?>
+<?php
+require "../main/functions.php";
+
+$review = query("SELECT * FROM user INNER JOIN user_film ON user.id_user = user_film.id_user INNER JOIN film ON film.id_film = user_film.id_film WHERE review IS NOT NULL");
+$count = query("SELECT COUNT(id_view) AS count FROM user INNER JOIN user_film ON user.id_user = user_film.id_user INNER JOIN film ON film.id_film = user_film.id_film WHERE review IS NOT NULL");
+
+if(isset($_POST["search"])) {
+    $film = search($_POST["keyword"]);
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +55,9 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="main__header">
-                            <h2 class="main__header-title">Reviews&ensp;<span>1000 total</span></h2>
+                            <?php $i = 1 ?> <?php foreach($count as $row): ?>
+                            <h2 class="main__header-title">Reviews&ensp;<span><?php echo $row["count"]; ?> total</span></h2>
+                            <?php $i++ ?> <?php endforeach; ?>
                             <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__admin">
                                 <input type="input" name="keyword" placeholder="Key word.." class="nav__search search__admin">
                                 <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -57,7 +68,7 @@
                         <table class="main__table">
                             <thead>
                                 <tr>
-                                    <td class="reviews__id">ID</td>
+                                    <td class="reviews__id">NO</td>
                                     <td class="reviews__item">ITEM</td>
                                     <td class="reviews__author">AUTHOR</td>
                                     <td class="reviews__text">TEXT</td>
@@ -68,18 +79,22 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $i = 1 ?>
+                                <?php foreach($review as $row): ?>
                                 <tr>
-                                    <td class="reviews__id"><?php echo $row["id_view"]; ?>1</td>
-                                    <td class="reviews__item"><a class="catalog__title" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?>Peaky Blinders</a></td>
-                                    <td class="reviews__author"><?php echo $row["username"]; ?>Leon Hamilton</td>
+                                    <td class="reviews__id"><?php echo $i; ?></td>
+                                    <td class="reviews__item"><a class="catalog__title" href="../main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
+                                    <td class="reviews__author"><?php echo $row["username"]; ?></td>
                                     <td class="reviews__text">
-                                        <div class="views__text"><p><?php echo $row["reviews"]; ?>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p></div>
+                                        <div class="views__text"><p><?php echo $row["review"]; ?></p></div>
                                     </td>
-                                    <td class="reviews__rating"><i class="fa-regular fa-star"></i>&ensp;<?php echo $row["rating"]; ?>9.6</td>
+                                    <td class="reviews__rating"><i class="fa-regular fa-star"></i>&ensp;<?php echo $row["rate"]; ?></td>
                                     <td class="reviews__like">0 / 0</td>
-                                    <td class="reviews__date"><?php echo $row["text_date"]; ?>20 Dec 2022</td>
-                                    <td class="actions__button"><a href="" onclick="return confirm('Hide review?')"><i class="fa-solid fa-eye"></i></a><a href="" onclick="return confirm('Delete review?')"><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="reviews__date"><?php echo $row["text_date"]; ?></td>
+                                    <td class="actions__button"><a href="" onclick="return confirm('Hide review?')"><i class="fa-solid fa-eye"></i></a><a href="./deleteReview.php?id=<?php echo $row["id_view"]; ?>" onclick="return confirm('Delete review?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
+                                <?php $i++ ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

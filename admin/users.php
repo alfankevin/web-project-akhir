@@ -99,7 +99,7 @@ if(isset($_POST["search"])) {
                                     <td class="user__reviews"><?php echo $row[""]; ?>0</td>
                                     <td class="user__status" style="color: #29b474">Approved</td>
                                     <td class="user__date"><?php echo $row["create_date"]; ?></td>
-                                    <td class="actions__button"><a href="#" onclick="return confirm('Ban user?')"><i class="fa-solid fa-lock"></i></a><a href="./deleteUser.php?id_user=<?php echo $row["id_user"]; ?>" onclick="return confirm('Delete user?')"><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="actions__button"><a href="#" onclick="return confirm('Ban user?')"><i class="fa-solid fa-lock"></i></a><a href="./deleteUser.php?id=<?php echo $row["id_user"]; ?>" onclick="return confirm('Delete user?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>

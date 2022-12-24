@@ -1,9 +1,12 @@
 <?php
 require "functions.php";
 
-$id_film = $_GET["id_film"];
+$id_film = $_GET["id"];
 $film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category WHERE id_film = $id_film");
-$view = query("SELECT * FROM user INNER JOIN user_film ON user.id_user = user_film.id_user INNER JOIN film ON film.id_film = user_film.id_film");
+$review = query("SELECT * FROM user INNER JOIN user_film ON user.id_user = user_film.id_user INNER JOIN film ON film.id_film = user_film.id_film WHERE film.id_film = $id_film && review IS NOT NULL");
+$comment = query("SELECT * FROM user INNER JOIN user_film ON user.id_user = user_film.id_user INNER JOIN film ON film.id_film = user_film.id_film WHERE film.id_film = $id_film && comment IS NOT NULL");
+$count_review = query("SELECT COUNT(id_view) AS count FROM user INNER JOIN user_film ON user.id_user = user_film.id_user INNER JOIN film ON film.id_film = user_film.id_film WHERE film.id_film = $id_film && review IS NOT NULL");
+$count_comment = query("SELECT COUNT(id_view) AS count FROM user INNER JOIN user_film ON user.id_user = user_film.id_user INNER JOIN film ON film.id_film = user_film.id_film WHERE film.id_film = $id_film && comment IS NOT NULL");
 
 if(isset($_POST['register'])) {
     if(register($_POST) > 0) {
@@ -11,25 +14,79 @@ if(isset($_POST['register'])) {
         <script>
             alert('Registration success');
             document.location.href = '../index.php';
-        </script>";
-    } else {
+            </script>";
+        } else {
         echo mysqli_error($conn);
     }
-    $error = true;
 }
 
 if(isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
-    if(mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_assoc($result);
-        if(password_verify($password, $row['password'])) {
-            header("Location:../index.php");
+    $row = mysqli_fetch_assoc($result);
+    if(mysqli_num_rows($result) > 0) {
+        if($password == $row['password']) {
+            $_SESSION['login'] = true;
+            $_SESSION['id_user'] = $row['id_user'];
+            header('Location:../index.php');
             exit;
         }
     }
     $error = true;
+}
+
+if(!empty($_SESSION['id_user'])) {
+    $id_user = $_SESSION['id_user'];
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = $id_user");
+    $user = mysqli_fetch_assoc($result);
+}
+
+if(!empty($_SESSION['id_user'])) {
+    $id_user = $_SESSION['id_user'];
+    $query_user = mysqli_query($conn, "SELECT * FROM user INNER JOIN user_subs ON user_subs.id_user = user.id_user WHERE user.id_user = $id_user");
+    $query_film = mysqli_query($conn, "SELECT * FROM film WHERE id_film = $id_film");
+    $users = mysqli_fetch_assoc($query_user);
+    $films = mysqli_fetch_assoc($query_film);
+    if(mysqli_num_rows($query_film) > 0) {
+        if($films['label'] == "Subs" && $users['id_subs'] == 1) {
+            echo "
+            <script>
+                document.location.href = './detailsPlan.php?id=$id_film';
+            </script>";
+        }
+    }
+} else if(empty($_SESSION['id_user'])) {
+    $result = mysqli_query($conn, "SELECT * FROM film WHERE id_film = $id_film");
+    $row = mysqli_fetch_assoc($result);
+    if(mysqli_num_rows($result) > 0) {
+        if($row['label'] == "Subs") {
+            echo "
+            <script>
+                document.location.href = './detailsPlan.php?id=$id_film';
+            </script>";
+        }
+    }
+}
+
+if(!empty($_SESSION['id_user'])) {
+    if(isset($_POST['comment'])) {
+        if(comment($_POST) > 0) {
+            echo "
+            <script>
+                alert('Comment uploaded');
+            </script>
+            <meta http-equiv='refresh' content='0'>";
+        }
+    } else if(isset($_POST['review'])) {
+        if(review($_POST) > 0) {
+            echo "
+            <script>
+                alert('Review uploaded');
+            </script>
+            <meta http-equiv='refresh' content='0'>";
+        }
+    }
 }
 ?>
 
@@ -89,7 +146,10 @@ if(isset($_POST['login'])) {
                             <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                         <div class="nav__login">
-                            <span class="nav-link" onclick="login()">Sign in &ensp;<span class="nav__action-btn"><i class="fa-solid fa-arrow-right-to-bracket"></i></span></span>
+                            <?php if(!isset($_SESSION['id_user']))
+                            echo "<span class=\"nav-link\" onclick=\"document.getElementById('signin').style.display = 'unset';\">Sign in &ensp;<span class=\"nav__action-btn\"><i class=\"fa-solid fa-arrow-right-to-bracket\"></i></span></span>"; ?> 
+                            <?php if(isset($_SESSION['id_user']))
+                            echo "<a href=\"./logout.php\" class=\"nav-link\">Sign out &ensp;<span class=\"nav__action-btn\"><i class=\"fa-solid fa-arrow-right-from-bracket\" style=\"margin-right: -12.5px\"></i></span></a>"; ?> 
                         </div>
                     </div>
                 </div>
@@ -106,7 +166,6 @@ if(isset($_POST['login'])) {
                             <p style="color: red; font-size: 14px;">Wrong email or password</p>
                             <script>
                                 document.getElementById("signin").style.display = 'unset';
-                                alert('Email not registered, please make a new account');
                             </script>
                         <?php endif?>
                         <div class="sign__group">
@@ -134,11 +193,6 @@ if(isset($_POST['login'])) {
         </section>
 
         <section class="signup" id="signup">
-            <?php if(isset($error)):?>
-                <script>
-                    document.getElementById("signup").style.display = 'unset';
-                </script>
-            <?php endif?>
             <div class="container">
                 <div class="sign__content">
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
@@ -246,51 +300,60 @@ if(isset($_POST['login'])) {
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="comment__title">
-                            <button class="title__active" id="combtn" onclick="com()">Comments <span>10</span></button>
-                            <button id="revbtn" onclick="rev()">Reviews <span>10</span></button>
+                            <?php $i = 1 ?> <?php foreach($count_comment as $row): ?>
+                            <button id="combtn" class="title__active" onclick="com()">Comments <span><?php echo $row["count"]; ?></span></button>
+                            <?php $i++ ?> <?php endforeach; ?>
+                            <?php $i = 1 ?> <?php foreach($count_review as $row): ?>
+                            <button id="revbtn" onclick="rev()">Reviews <span><?php echo $row["count"]; ?></span></button>
+                            <?php $i++ ?> <?php endforeach; ?>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="comment__content" id="comment">
+                                    <?php $i = 1 ?>
+                                    <?php foreach($comment as $row): ?>
                                     <div class="comment__item">
                                         <div class="comment__author">
                                             <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
-                                            <span class="comment__name"><?php echo $row["username"]; ?>Alfan Farchi</span>
-                                            <span class="comment__date"><?php echo $row["text_date"]; ?>17-12-2022 12:37:11</span>
+                                            <span class="comment__name"><?php echo $row["username"]; ?></span>
+                                            <span class="comment__date"><?php echo $row["text_date"]; ?></span>
                                         </div>
-                                        <p class="comment__text"><?php echo $row["comment"]; ?>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
+                                        <p class="comment__text"><?php echo $row["comment"]; ?></p>
                                     </div>
+                                    <?php $i++ ?>
+                                    <?php endforeach; ?>
                                     <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
+                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                        <?php $i = 1 ?> <?php foreach($film as $row): ?>
+                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
+                                        <?php $i++ ?> <?php endforeach; ?>
                                         <div class="sign__group">
                                             <textarea type="text" name="text" class="sign__textarea" placeholder="Add comment"></textarea>
                                         </div>
-                                        <button type="submit" class="sign__button">Send</button>
+                                        <button type="submit" name="comment" class="sign__button">Send</button>
                                     </form>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="review__content" id="review">
+                                    <?php $i = 1 ?>
+                                    <?php foreach($review as $row): ?>
                                     <div class="comment__item">
                                         <div class="comment__author">
                                             <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
-                                            <span class="comment__name"><?php echo $row["review_title"]; ?>The best</span>
-                                            <span class="comment__date"><?php echo $row["text_date"]; ?>17-12-2022 12:37:11 by Alfan Farchi <?php echo $row["username"]; ?></span>
+                                            <span class="comment__name"><?php echo $row["review_title"]; ?></span>
+                                            <span class="comment__date"><?php echo $row["text_date"]; ?> by <?php echo $row["username"]; ?></span>
+                                            <span class="comment__rate"><i class="fa-regular fa-star" style="color: #2f80ed"></i> <?php echo $row["rate"]; ?></span>
                                         </div>
-                                        <div class="comment__text">
-                                            <p><?php echo $row["review"]; ?>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
-                                        </div>
+                                        <p class="comment__text"><?php echo $row["review"]; ?></p>
                                     </div>
-                                    <div class="comment__item">
-                                        <div class="comment__author">
-                                            <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
-                                            <span class="comment__name"><?php echo $row["review__title"]; ?>kinda</span>
-                                            <span class="comment__date"><?php echo $row["text_date"]; ?>17-12-2022 12:37:11 by Alfan Farchi<?php echo $row["username"]; ?></span>
-                                        </div>
-                                        <div class="comment__text">
-                                            <p><?php echo $row["review"]; ?>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, magnam!</p>
-                                        </div>
-                                    </div>
+                                    <?php $i++ ?>
+                                    <?php endforeach; ?>
                                     <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
+                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                        <?php $i = 1 ?> <?php foreach($film as $row): ?>
+                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
+                                        <?php $i++ ?> <?php endforeach; ?>
                                         <div class="row">
                                             <div class="col-9">
                                                 <div class="sign__group">
@@ -299,14 +362,14 @@ if(isset($_POST['login'])) {
                                             </div>
                                             <div class="col-3">
                                                 <div class="sign__group">
-                                                    <input type="text" name="rating" placeholder="Rating" class="sign__input">
+                                                    <input type="float" name="rating" placeholder="Rating" class="sign__input">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="sign__group">
                                                     <textarea type="text" name="text" class="sign__textarea" placeholder="Add review"></textarea>
                                                 </div>
-                                                <button type="submit" class="sign__button">Send</button>
+                                                <button type="submit" name="review" class="sign__button">Send</button>
                                             </div>
                                         </div>
                                     </form>
@@ -330,7 +393,7 @@ if(isset($_POST['login'])) {
                     <button class="subs__button subs__button-right"><i class="fa-solid fa-arrow-right"></i></button>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=30">
+                            <a class="card__cover" href="./details.php?id=30">
                                 <img src="../assets/images/card/1.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -341,7 +404,7 @@ if(isset($_POST['login'])) {
                                 <i class="fa-regular fa-star"></i>8.3
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=30">The Good Lord Bird</a>
+                                <a href="./details.php?id=30">The Good Lord Bird</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -352,7 +415,7 @@ if(isset($_POST['login'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=29">
+                            <a class="card__cover" href="./details.php?id=29">
                                 <img src="../assets/images/card/2.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -363,7 +426,7 @@ if(isset($_POST['login'])) {
                                 <i class="fa-regular fa-star"></i>9.6
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=29">Peaky Blinders</a>
+                                <a href="./details.php?id=29">Peaky Blinders</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -374,7 +437,7 @@ if(isset($_POST['login'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=28">
+                            <a class="card__cover" href="./details.php?id=28">
                                 <img src="../assets/images/card/3.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -385,7 +448,7 @@ if(isset($_POST['login'])) {
                                 <i class="fa-regular fa-star"></i>8.1
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=28">The Dictator</a>
+                                <a href="./details.php?id=28">The Dictator</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -396,7 +459,7 @@ if(isset($_POST['login'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=27">
+                            <a class="card__cover" href="./details.php?id=27">
                                 <img src="../assets/images/card/4.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -407,7 +470,7 @@ if(isset($_POST['login'])) {
                                 <i class="fa-regular fa-star"></i>8.8
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=27">Get On Up</a>
+                                <a href="./details.php?id=27">Get On Up</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -418,7 +481,7 @@ if(isset($_POST['login'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=26">
+                            <a class="card__cover" href="./details.php?id=26">
                                 <img src="../assets/images/card/5.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -429,7 +492,7 @@ if(isset($_POST['login'])) {
                                 <i class="fa-regular fa-star"></i>7.9
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=26">Interview With the Vampire</a>
+                                <a href="./details.php?id=26">Interview With the Vampire</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -440,7 +503,7 @@ if(isset($_POST['login'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=25">
+                            <a class="card__cover" href="./details.php?id=25">
                                 <img src="../assets/images/card/6.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -451,7 +514,7 @@ if(isset($_POST['login'])) {
                                 <i class="fa-regular fa-star"></i>8.6
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=25">Pawn Sacrifice</a>
+                                <a href="./details.php?id=25">Pawn Sacrifice</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>

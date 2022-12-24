@@ -1,19 +1,19 @@
 <?php
 require '../main/functions.php';
 
-$id_user = $_GET["id"];
+$id_view = $_GET["id"];
 
-if(deleteUser($id_user) > 0) {
+if(deleteReview($id_view) > 0) {
     echo "
     <script>
-        alert('User deleted');
-        document.location.href='users.php';
+        alert('Review deleted');
+        document.location.href='reviews.php';
     </script>";
 } else {
     echo "
     <script>
         alert('Delete failed');
-        document.location.href='users.php';
+        document.location.href='reviews.php';
     </script> ";
     echo mysqli_error($conn);
 }

@@ -1,7 +1,6 @@
 <?php
 require "../main/functions.php";
 
-$id_film = $_GET["id_film"];
 $film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category ORDER BY id_film DESC");
 $count = query("SELECT COUNT(id_film) AS count FROM film");
 
@@ -88,14 +87,14 @@ if(isset($_POST["search"])) {
                                 <?php foreach($film as $row): ?>
                                 <tr>
                                     <td class="film__id"><?php echo $i; ?></td>
-                                    <td class="film__title"><a class="catalog__title" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
+                                    <td class="film__title"><a class="catalog__title" href="../main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
                                     <td class="film__rating"><i class="fa-regular fa-star"></i>&ensp;<?php echo $row["rating"]; ?></td>
                                     <td class="film__genre"><?php echo $row["genre"]; ?></td>
                                     <td class="film__category"><?php echo $row["category"]; ?></td>
                                     <td class="film__label"><?php echo $row["label"]; ?></td>
                                     <td class="film__age"><?php echo $row["age"]; ?>+</td>
                                     <td class="film__date"><?php echo $row["film_date"]; ?></td>
-                                    <td class="actions__button"><a href="./update.php?id_film=<?php echo $row["id_film"]; ?>"><i class="fa-solid fa-pen"></i></a><a href="./delete.php?id_film=<?php echo $row["id_film"]; ?>" onclick="return confirm('Delete film?')"><i class="fa-solid fa-trash"></i></a></td>
+                                    <td class="actions__button"><a href="./update.php?id=<?php echo $row["id_film"]; ?>"><i class="fa-solid fa-pen"></i></a><a href="./delete.php?id=<?php echo $row["id_film"]; ?>" onclick="return confirm('Delete film?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>

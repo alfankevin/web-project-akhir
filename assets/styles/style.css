@@ -1257,6 +1257,35 @@ select {
     border-bottom: 1px solid rgba(47,128,237,0.1);
 }
 
+.details__button {
+    display: flex;
+}
+
+.details__button .plan__button {
+    margin: 0 30px 30px 0;
+    width: 200px;
+}
+
+.details__button .plan__button:first-child {
+    color: #fff;
+    background-color: #2f80ed;
+}
+
+.details__button .plan__button:last-child {
+    color: #131720;
+    background-color: #fff;
+}
+
+.details__button .plan__button:first-child:hover {
+    color: #131720;
+    background-color: #fff;
+}
+
+.details__button .plan__button:last-child:hover {
+    color: #fff;
+    background-color: #151f30;
+}
+
 .video__cover {
     height: 460px;
     width: 100%;
@@ -1352,6 +1381,7 @@ select {
 
 .comment__title button span {
     height: 20px;
+    min-width: 20px;
     padding: 0 5px;
     margin-left: 10px;
     border-radius: 6px;
@@ -1405,6 +1435,14 @@ select {
 .comment__date {
     color: #e0e0e0;
     font-size: 12px;
+}
+
+.comment__rate {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    font-size: 14px;
+    color: #fff;
 }
 
 .comment__text {
@@ -1835,15 +1873,15 @@ tr td i {
 .user__date {width: 185px;}
 
 .reviews__id {width: 65px;}
-.reviews__item {width: 250px;}
+.reviews__item {width: 225px;}
 .reviews__author {width: 150px;}
 .reviews__text {width: 300px;}
 .reviews__rating {width: 92.5px}
 .reviews__like {width: 135px;}
 .reviews__date {width: 142.5px;}
 
-.comments__id {width: 67.5px;}
-.comments__item {width: 267.5px;}
+.comments__id {width: 65px;}
+.comments__item {width: 225px;}
 .comments__author {width: 170px;}
 .comments__text {width: 325px;}
 .comments__like {width: 140px;}

@@ -15,43 +15,52 @@ if(isset($_POST['register'])) {
     } else {
         echo mysqli_error($conn);
     }
-    $error = true;
 }
 
 if(isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
-    if(mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_assoc($result);
-        if(password_verify($password, $row['password'])) {
-            header("Location:index.php");
+    $row = mysqli_fetch_assoc($result);
+    if(mysqli_num_rows($result) > 0) {
+        if($password == $row['password']) {
+            $_SESSION['login'] = true;
+            $_SESSION['id_user'] = $row['id_user'];
+            header('Location:index.php');
             exit;
         }
     }
     $error = true;
 }
 
-if(isset($_POST['regular'])) {
-    if(regular($_POST) > 0) {
-        echo "
-        <script>
-            alert('Subscribe success');
-        </script>";
-    }
-} else if(isset($_POST['premium'])) {
-    if(premium($_POST) > 0) {
-        echo "
-        <script>
-            alert('Subscribe success');
-        </script>";
-    }
-} else if(isset($_POST['cinematic'])) {
-    if(cinematic($_POST) > 0) {
-        echo "
-        <script>
-            alert('Subscribe success');
-        </script>";
+if(!empty($_SESSION['id_user'])) {
+    $id_user = $_SESSION['id_user'];
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = $id_user");
+    $user = mysqli_fetch_assoc($result);
+}
+
+if(!empty($_SESSION['id_user'])) {
+    if(isset($_POST['regular'])) {
+        if(regular($user) > 0) {
+            echo "
+            <script>
+                alert('Subscribe success');
+            </script>";
+        }
+    } else if(isset($_POST['premium'])) {
+        if(premium($user) > 0) {
+            echo "
+            <script>
+                alert('Subscribe success');
+            </script>";
+        }
+    } else if(isset($_POST['cinematic'])) {
+        if(cinematic($user) > 0) {
+            echo "
+            <script>
+                alert('Subscribe success');
+            </script>";
+        }
     }
 }
 
@@ -65,6 +74,7 @@ if(isset($_POST["search"])) {
     $film = newest();
 } else if(isset($_POST["more"])) {
     $film = more();
+    echo "<meta http-equiv='refresh' content='0'>";
 }
 ?>
 
@@ -124,7 +134,10 @@ if(isset($_POST["search"])) {
                             <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                         <div class="nav__login">
-                            <span class="nav-link" onclick="login()">Sign in &ensp;<span class="nav__action-btn"><i class="fa-solid fa-arrow-right-to-bracket"></i></span></span>
+                            <?php if(!isset($_SESSION['id_user']))
+                            echo "<span class=\"nav-link\" onclick=\"document.getElementById('signin').style.display = 'unset';\">Sign in &ensp;<span class=\"nav__action-btn\"><i class=\"fa-solid fa-arrow-right-to-bracket\"></i></span></span>"; ?> 
+                            <?php if(isset($_SESSION['id_user']))
+                            echo "<a href=\"./main/logout.php\" class=\"nav-link\">Sign out &ensp;<span class=\"nav__action-btn\"><i class=\"fa-solid fa-arrow-right-from-bracket\" style=\"margin-right: -12.5px\"></i></span></a>"; ?> 
                         </div>
                     </div>
                 </div>
@@ -141,7 +154,6 @@ if(isset($_POST["search"])) {
                             <p style="color: red; font-size: 14px;">Wrong email or password</p>
                             <script>
                                 document.getElementById("signin").style.display = 'unset';
-                                alert('Email not registered, please make a new account');
                             </script>
                         <?php endif?>
                         <div class="sign__group">
@@ -172,11 +184,6 @@ if(isset($_POST["search"])) {
             <div class="container">
                 <div class="sign__content">
                     <form class="sign__form" action="" method="post" spellcheck="false" autocomplete="off">
-                        <?php if(isset($error)):?>
-                            <script>
-                                document.getElementById("signup").style.display = 'unset';
-                            </script>
-                        <?php endif?>
                         <span class="sign__exit" onclick="exit()"><i class="fa-solid fa-xmark"></i></span>
                         <a class="sign__logo" href="./index.php">Fil<span>ms</span></a>
                         <div class="sign__group">
@@ -374,7 +381,7 @@ if(isset($_POST["search"])) {
                                 <?php foreach($film as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <form class="card" method="post">
-                                        <a class="card__cover" href="./main/details.php?id_film=<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="./main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
@@ -385,7 +392,7 @@ if(isset($_POST["search"])) {
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="./main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="./main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>
@@ -404,7 +411,7 @@ if(isset($_POST["search"])) {
                                 <?php foreach($popular as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <form class="card" method="post">
-                                        <a class="card__cover" href="./main/details.php?id_film=<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="./main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
@@ -415,7 +422,7 @@ if(isset($_POST["search"])) {
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="./main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="./main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>
@@ -434,7 +441,7 @@ if(isset($_POST["search"])) {
                                 <?php foreach($newest as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <form class="card" method="post">
-                                        <a class="card__cover" href="./main/details.php?id_film=<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="./main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
@@ -445,7 +452,7 @@ if(isset($_POST["search"])) {
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="./main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="./main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>

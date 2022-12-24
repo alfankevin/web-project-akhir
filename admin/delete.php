@@ -1,7 +1,7 @@
 <?php
 require '../main/functions.php';
 
-$id_film = $_GET["id_film"];
+$id_film = $_GET["id"];
 
 if(delete($id_film) > 0) {
     echo "
