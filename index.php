@@ -1,9 +1,9 @@
 <?php
 require "./main/functions.php";
 
-$film = query("SELECT * FROM film ORDER BY id_film DESC LIMIT 18");
-$newest = query("SELECT * FROM film ORDER BY year DESC LIMIT 18");
-$popular = query("SELECT * FROM film ORDER BY rating DESC LIMIT 18");
+$film = query("SELECT * FROM film WHERE id_film BETWEEN 1 AND 100 ORDER BY id_film DESC LIMIT 18");
+$newest = query("SELECT * FROM film WHERE id_film BETWEEN 1 AND 100 ORDER BY year DESC LIMIT 18");
+$popular = query("SELECT * FROM film WHERE id_film BETWEEN 1 AND 100 ORDER BY rating DESC LIMIT 18");
 
 if(isset($_POST['register'])) {
     if(register($_POST) > 0) {
@@ -45,21 +45,24 @@ if(!empty($_SESSION['id_user'])) {
             echo "
             <script>
                 alert('Subscribe success');
-            </script>";
+            </script>
+            <meta http-equiv='refresh' content='0'>";
         }
     } else if(isset($_POST['premium'])) {
         if(premium($user) > 0) {
             echo "
             <script>
                 alert('Subscribe success');
-            </script>";
+            </script>
+            <meta http-equiv='refresh' content='0'>";
         }
     } else if(isset($_POST['cinematic'])) {
         if(cinematic($user) > 0) {
             echo "
             <script>
                 alert('Subscribe success');
-            </script>";
+            </script>
+            <meta http-equiv='refresh' content='0'>";
         }
     }
 }
@@ -74,7 +77,6 @@ if(isset($_POST["search"])) {
     $film = newest();
 } else if(isset($_POST["more"])) {
     $film = more();
-    echo "<meta http-equiv='refresh' content='0'>";
 }
 ?>
 
@@ -258,7 +260,7 @@ if(isset($_POST["search"])) {
                             </div>
                         </div>
                     </a>
-                    <a href="#" class="hero__card">
+                    <a href="./main/details.php?id=101" class="hero__card">
                         <div class="hero__cover">
                             <img src="./assets/images/hero/2.jpg" alt="" class="hero__image">
                             <button class="hero__save">
@@ -277,7 +279,7 @@ if(isset($_POST["search"])) {
                             </div>
                         </div>
                     </a>
-                    <a href="#" class="hero__card">
+                    <a href="./main/details.php?id=102" class="hero__card">
                         <div class="hero__cover">
                             <img src="./assets/images/hero/3.jpg" alt="" class="hero__image">
                             <button class="hero__save">
@@ -296,7 +298,7 @@ if(isset($_POST["search"])) {
                             </div>
                         </div>
                     </a>
-                    <a href="#" class="hero__card">
+                    <a href="./main/details.php?id=103" class="hero__card">
                         <div class="hero__cover">
                             <img src="./assets/images/hero/4.jpg" alt="" class="hero__image">
                             <button class="hero__save">

@@ -21,7 +21,7 @@ function query($query) {
 }
 
 function more() {
-    $sql = "SELECT * FROM film ORDER BY id_film DESC LIMIT 36";
+    $sql = "SELECT * FROM film WHERE id_film BETWEEN 1 AND 100 ORDER BY id_film DESC LIMIT 36";
     return query($sql);
 }
 
