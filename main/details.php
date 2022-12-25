@@ -88,6 +88,31 @@ if(!empty($_SESSION['id_user'])) {
         }
     }
 }
+
+if(!empty($_SESSION['id_user'])) {
+    if(isset($_POST['save'])) {
+        $id_film = $_POST["id_film"];
+        $result = mysqli_query($conn, "SELECT * FROM user_film WHERE id_film = $id_film AND save = '1'");
+        $row = mysqli_fetch_assoc($result);
+        if(mysqli_num_rows($result) == 0 || mysqli_num_rows($result) > 0) {
+            if($id_film != $row['id_film']){
+                if(save($_POST) > 0) {
+                    echo "
+                    <script>
+                        alert('Added to watchlist');
+                    </script>
+                    <meta http-equiv='refresh' content='0'>";
+                }
+            } else {
+                echo "
+                <script>
+                    alert('Already added to watchlist');
+                </script>
+                <meta http-equiv='refresh' content='0'>";
+            }
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -283,8 +308,10 @@ if(!empty($_SESSION['id_user'])) {
                                     <a href="#">1080p</a>
                                     <a href="#">4k</a>
                                 </div>
+                                <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
                                 <div class="video__save">
-                                    <button onclick="return confirm('Add to watchlist?')"><i class="fa-regular fa-bookmark"></i>Add to watchlist</button>
+                                    <button type="submit" name="save" onclick="return confirm('Add to watchlist?')"><i class="fa-regular fa-bookmark"></i>Add to watchlist</button>
                                 </div>
                             </div>
                         </form>

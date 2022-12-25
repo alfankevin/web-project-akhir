@@ -1,9 +1,9 @@
 <?php
 require "./main/functions.php";
 
-$film = query("SELECT * FROM film WHERE id_film BETWEEN 1 AND 100 ORDER BY id_film DESC LIMIT 18");
-$newest = query("SELECT * FROM film WHERE id_film BETWEEN 1 AND 100 ORDER BY year DESC LIMIT 18");
-$popular = query("SELECT * FROM film WHERE id_film BETWEEN 1 AND 100 ORDER BY rating DESC LIMIT 18");
+$film = query("SELECT * FROM film WHERE id_film ORDER BY id_film DESC LIMIT 18");
+$newest = query("SELECT * FROM film WHERE id_film ORDER BY year DESC LIMIT 18");
+$popular = query("SELECT * FROM film WHERE id_film ORDER BY rating DESC LIMIT 18");
 
 if(isset($_POST['register'])) {
     if(register($_POST) > 0) {
@@ -66,7 +66,7 @@ if(!empty($_SESSION['id_user'])) {
         }
     } else if(isset($_POST['save'])) {
         $id_film = $_POST["id_film"];
-        $result = mysqli_query($conn, "SELECT * FROM user_film WHERE id_film = $id_film");
+        $result = mysqli_query($conn, "SELECT * FROM user_film WHERE id_film = $id_film AND save = '1'");
         $row = mysqli_fetch_assoc($result);
         if(mysqli_num_rows($result) == 0 || mysqli_num_rows($result) > 0) {
             if($id_film != $row['id_film']){

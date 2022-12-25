@@ -42,7 +42,7 @@ if(!empty($_SESSION['id_user'])) {
 if(!empty($_SESSION['id_user'])) {
     if(isset($_POST['save'])) {
         $id_film = $_POST["id_film"];
-        $result = mysqli_query($conn, "SELECT * FROM user_film WHERE id_film = $id_film");
+        $result = mysqli_query($conn, "SELECT * FROM user_film WHERE id_film = $id_film AND save = '1'");
         $row = mysqli_fetch_assoc($result);
         if(mysqli_num_rows($result) == 0 || mysqli_num_rows($result) > 0) {
             if($id_film != $row['id_film']){
