@@ -45,7 +45,7 @@ create table user_film (
     review varchar(500),
     rate float,
     save char(1),
-    text_date datetime,
+    view_date datetime,
     foreign key (id_user) references user (id_user),
     foreign key (id_film) references film (id_film)
 );

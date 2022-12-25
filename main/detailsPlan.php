@@ -268,7 +268,7 @@ if(!empty($_SESSION['id_user'])) {
                                         <div class="comment__author">
                                             <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
                                             <span class="comment__name"><?php echo $row["username"]; ?></span>
-                                            <span class="comment__date"><?php echo $row["text_date"]; ?></span>
+                                            <span class="comment__date"><?php echo $row["view_date"]; ?></span>
                                         </div>
                                         <p class="comment__text"><?php echo $row["comment"]; ?></p>
                                     </div>
@@ -284,7 +284,7 @@ if(!empty($_SESSION['id_user'])) {
                                         <div class="comment__author">
                                             <img class="comment__avatar" src="../assets/images/icon/user.jpeg" alt="">
                                             <span class="comment__name"><?php echo $row["review_title"]; ?></span>
-                                            <span class="comment__date"><?php echo $row["text_date"]; ?> by <?php echo $row["username"]; ?></span>
+                                            <span class="comment__date"><?php echo $row["view_date"]; ?> by <?php echo $row["username"]; ?></span>
                                             <span class="comment__rate"><i class="fa-regular fa-star" style="color: #2f80ed"></i> <?php echo $row["rate"]; ?></span>
                                         </div>
                                         <p class="comment__text"><?php echo $row["review"]; ?></p>

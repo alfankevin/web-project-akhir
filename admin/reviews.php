@@ -90,7 +90,7 @@ if(isset($_POST["search"])) {
                                     </td>
                                     <td class="reviews__rating"><i class="fa-regular fa-star"></i>&ensp;<?php echo $row["rate"]; ?></td>
                                     <td class="reviews__like">0 / 0</td>
-                                    <td class="reviews__date"><?php echo $row["text_date"]; ?></td>
+                                    <td class="reviews__date"><?php echo $row["view_date"]; ?></td>
                                     <td class="actions__button"><a href="" onclick="return confirm('Hide review?')"><i class="fa-solid fa-eye"></i></a><a href="./deleteReview.php?id=<?php echo $row["id_view"]; ?>" onclick="return confirm('Delete review?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <?php $i++ ?>

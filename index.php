@@ -64,6 +64,14 @@ if(!empty($_SESSION['id_user'])) {
             </script>
             <meta http-equiv='refresh' content='0'>";
         }
+    } else if(isset($_POST['save'])) {
+        if(save($_POST) > 0) {
+            echo "
+            <script>
+                alert('Added to watchlist');
+            </script>
+            <meta http-equiv='refresh' content='0'>";
+        }
     }
 }
 
@@ -383,11 +391,13 @@ if(isset($_POST["search"])) {
                                 <?php foreach($film as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <form class="card" method="post">
+                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
                                         <a class="card__cover" href="./main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save" onclick="return confirm('Add to watchlist?')">
+                                        <button type="submit" name="save" class="card__save" onclick="return confirm('Add to watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">
@@ -413,11 +423,13 @@ if(isset($_POST["search"])) {
                                 <?php foreach($popular as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <form class="card" method="post">
+                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
                                         <a class="card__cover" href="./main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save" onclick="return confirm('Add to watchlist?')">
+                                        <button type="submit" name="save" class="card__save" onclick="return confirm('Add to watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">
@@ -443,11 +455,13 @@ if(isset($_POST["search"])) {
                                 <?php foreach($newest as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <form class="card" method="post">
+                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
                                         <a class="card__cover" href="./main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save" onclick="return confirm('Add to watchlist?')">
+                                        <button type="submit" name="save" class="card__save" onclick="return confirm('Add to watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">

@@ -88,7 +88,7 @@ if(isset($_POST["search"])) {
                                         <div class="views__text"><p><?php echo $row["comment"]; ?></p></div>
                                     </td>
                                     <td class="comments__like">0 / 0</td>
-                                    <td class="comments__date"><?php echo $row["text_date"]; ?></td>
+                                    <td class="comments__date"><?php echo $row["view_date"]; ?></td>
                                     <td class="actions__button"><a href="" onclick="return confirm('Hide comment?')"><i class="fa-solid fa-eye"></i></a><a href="./deleteComment.php?id=<?php echo $row["id_view"]; ?>" onclick="return confirm('Delete comment?')"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <?php $i++ ?>

@@ -1,9 +1,9 @@
 <?php
 require "functions.php";
 
-$film = query("SELECT * FROM film ORDER BY id_film DESC LIMIT 18");
-$newest = query("SELECT * FROM film ORDER BY year DESC LIMIT 18");
-$popular = query("SELECT * FROM film ORDER BY rating DESC LIMIT 18");
+$film = query("SELECT * FROM film INNER JOIN user_film ON user_film.id_film = film.id_film WHERE save = '1' ORDER BY film.id_film DESC LIMIT 18");
+$newest = query("SELECT * FROM film INNER JOIN user_film ON user_film.id_film = film.id_film WHERE save = '1' ORDER BY year DESC LIMIT 18");
+$popular = query("SELECT * FROM film INNER JOIN user_film ON user_film.id_film = film.id_film WHERE save = '1' ORDER BY rating DESC LIMIT 18");
 
 if(isset($_POST['register'])) {
     if(register($_POST) > 0) {
@@ -270,18 +270,18 @@ if(isset($_POST["search"])) {
                                 <?php foreach($film as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <div class="card">
-                                        <a class="card__cover" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="../main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save card__watchlist" onclick="return confirm('Remove from watchlist?')">
+                                        <a href="../admin/deleteSave.php?id=<?php echo $row["id_view"]; ?>" class="card__save card__watchlist" onclick="return confirm('Remove from watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
-                                        </button>
+                                        </a>
                                         <span class="card__rate">
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="../main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>
@@ -300,18 +300,18 @@ if(isset($_POST["search"])) {
                                 <?php foreach($popular as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <div class="card">
-                                        <a class="card__cover" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="../main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save card__watchlist" onclick="return confirm('Remove from watchlist?')">
+                                        <a href="../admin/deleteSave.php?id=<?php echo $row["id_view"]; ?>" class="card__save card__watchlist" onclick="return confirm('Remove from watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
-                                        </button>
+                                        </a>
                                         <span class="card__rate">
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="../main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>
@@ -330,18 +330,18 @@ if(isset($_POST["search"])) {
                                 <?php foreach($newest as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                                     <div class="card">
-                                        <a class="card__cover" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="../main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save card__watchlist" onclick="return confirm('Remove from watchlist?')">
+                                        <a href="../admin/deleteSave.php?id=<?php echo $row["id_view"]; ?>" class="card__save card__watchlist" onclick="return confirm('Remove from watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
-                                        </button>
+                                        </a>
                                         <span class="card__rate">
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="../main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>

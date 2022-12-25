@@ -1,9 +1,9 @@
 <?php
 require "functions.php";
 
-$film = query("SELECT * FROM film ORDER BY id_film DESC LIMIT 18");
-$newest = query("SELECT * FROM film ORDER BY year DESC LIMIT 18");
-$popular = query("SELECT * FROM film ORDER BY rating DESC LIMIT 18");
+$film = query("SELECT * FROM film WHERE id_film BETWEEN 1 AND 100 ORDER BY id_film DESC LIMIT 18");
+$newest = query("SELECT * FROM film WHERE id_film BETWEEN 1 AND 100 ORDER BY year DESC LIMIT 18");
+$popular = query("SELECT * FROM film WHERE id_film BETWEEN 1 AND 100 ORDER BY rating DESC LIMIT 18");
 
 if(isset($_POST['register'])) {
     if(register($_POST) > 0) {
@@ -37,6 +37,18 @@ if(!empty($_SESSION['id_user'])) {
     $id_user = $_SESSION['id_user'];
     $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = $id_user");
     $user = mysqli_fetch_assoc($result);
+}
+
+if(!empty($_SESSION['id_user'])) {
+    if(isset($_POST['save'])) {
+        if(save($_POST) > 0) {
+            echo "
+            <script>
+                alert('Added to watchlist');
+            </script>
+            <meta http-equiv='refresh' content='0'>";
+        }
+    }
 }
 
 if(isset($_POST["search"])) {
@@ -269,26 +281,28 @@ if(isset($_POST["search"])) {
                                 <?php $i = 1 ?>
                                 <?php foreach($film as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
-                                    <div class="card">
-                                        <a class="card__cover" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>">
+                                    <form class="card" method="post">
+                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="../main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save" onclick="return confirm('Add to watchlist?')">
+                                        <button type="submit" name="save" class="card__save" onclick="return confirm('Add to watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="../main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>
                                             <li><?php echo $row["genre"]; ?></li>
                                             <li><?php echo $row["year"]; ?></li>
                                         </ul>
-                                    </div>
+                                    </form>
                                 </div>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>
@@ -299,26 +313,28 @@ if(isset($_POST["search"])) {
                                 <?php $i = 1 ?>
                                 <?php foreach($popular as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
-                                    <div class="card">
-                                        <a class="card__cover" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>">
+                                    <form class="card" method="post">
+                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="../main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save" onclick="return confirm('Add to watchlist?')">
+                                        <button type="submit" name="save" class="card__save" onclick="return confirm('Add to watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="../main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>
                                             <li><?php echo $row["genre"]; ?></li>
                                             <li><?php echo $row["year"]; ?></li>
                                         </ul>
-                                    </div>
+                                    </form>
                                 </div>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>
@@ -329,26 +345,28 @@ if(isset($_POST["search"])) {
                                 <?php $i = 1 ?>
                                 <?php foreach($newest as $row): ?>
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
-                                    <div class="card">
-                                        <a class="card__cover" href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>">
+                                    <form class="card" method="post">
+                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="../main/details.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <button class="card__save" onclick="return confirm('Add to watchlist?')">
+                                        <button type="submit" name="save" class="card__save" onclick="return confirm('Add to watchlist?')">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </button>
                                         <span class="card__rate">
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="../main/details.php?id_film=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="../main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>
                                             <li><?php echo $row["genre"]; ?></li>
                                             <li><?php echo $row["year"]; ?></li>
                                         </ul>
-                                    </div>
+                                    </form>
                                 </div>
                                 <?php $i++ ?>
                                 <?php endforeach; ?>

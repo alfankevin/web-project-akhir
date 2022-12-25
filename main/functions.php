@@ -110,6 +110,12 @@ function deleteUser($id_user) {
     return mysqli_affected_rows($conn);
 }
 
+function deleteSave($id_view) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM user_film WHERE id_view = $id_view");
+    return mysqli_affected_rows($conn);
+}
+
 function deleteComment($id_view) {
     global $conn;
     mysqli_query($conn, "DELETE FROM user_film WHERE id_view = $id_view");
@@ -153,6 +159,43 @@ function register($data) {
     return mysqli_affected_rows($conn);
 }
 
+function save($data) {
+    global $conn;
+    $id_user = htmlspecialchars($data["id_user"]);
+    $id_film = htmlspecialchars($data["id_film"]);
+
+    $query = "INSERT INTO user_film (id_view,id_user,id_film,save,view_date) VALUES (null, $id_user, $id_film, '1', now())";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function comment($data) {
+    global $conn;
+    $id_user = htmlspecialchars($data["id_user"]);
+    $id_film = htmlspecialchars($data["id_film"]);
+    $comment = htmlspecialchars($data["text"]);
+
+    $query = "INSERT INTO user_film (id_view,id_user,id_film,comment,view_date) VALUES (null, $id_user, $id_film, '$comment', now())";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function review($data) {
+    global $conn;
+    $id_user = htmlspecialchars($data["id_user"]);
+    $id_film = htmlspecialchars($data["id_film"]);
+    $title = htmlspecialchars($data["title"]);
+    $review = htmlspecialchars($data["text"]);
+    $rating = htmlspecialchars($data["rating"]);
+
+    $query = "INSERT INTO user_film (id_view,id_user,id_film,review_title,review,rate,view_date) VALUES (null, $id_user, $id_film, '$title', '$review', '$rating', now())";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
 function regular($data) {
     global $conn;
     $id_user = $data["id_user"];
@@ -184,32 +227,6 @@ function cinematic($data) {
     $query = "UPDATE user_subs SET
               id_subs = 4
               WHERE id_user = $id_user";
-    mysqli_query($conn, $query);
-
-    return mysqli_affected_rows($conn);
-}
-
-function comment($data) {
-    global $conn;
-    $id_user = htmlspecialchars($data["id_user"]);
-    $id_film = htmlspecialchars($data["id_film"]);
-    $comment = htmlspecialchars($data["text"]);
-
-    $query = "INSERT INTO user_film (id_view,id_user,id_film,comment,text_date) VALUES (null, $id_user, $id_film, '$comment', now())";
-    mysqli_query($conn, $query);
-
-    return mysqli_affected_rows($conn);
-}
-
-function review($data) {
-    global $conn;
-    $id_user = htmlspecialchars($data["id_user"]);
-    $id_film = htmlspecialchars($data["id_film"]);
-    $title = htmlspecialchars($data["title"]);
-    $review = htmlspecialchars($data["text"]);
-    $rating = htmlspecialchars($data["rating"]);
-
-    $query = "INSERT INTO user_film (id_view,id_user,id_film,review_title,review,rate,text_date) VALUES (null, $id_user, $id_film, '$title', '$review', '$rating', now())";
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
