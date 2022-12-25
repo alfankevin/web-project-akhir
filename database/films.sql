@@ -40,7 +40,7 @@ create table user_film (
     id_view int primary key auto_increment,
     id_user int,
     id_film int,
-    review_title varchar(20),
+    review_title varchar(100),
     comment varchar(500),
     review varchar(500),
     rate float,
@@ -120,3 +120,7 @@ insert into film values (30, "Beauty and the Beast", "Free", 8.4, "Romance", 201
 insert into film values (101, "Money Plane", "Free", 9.1, "Action", 2021, 16, "2.png", "https://www.youtube.com/embed/aETz_dRDEys", "With his family in danger, a professional thief is forced to rob a futuristic airborne casino filled with the world's most dangerous criminals.", now(), 1);
 insert into film values (102, "The Art of Political", "Free", 8.3, "Documentary", 2019, 15, "3.png", "https://www.youtube.com/embed/riMXEfdJn20", "An investigation into the truth behind the murder of Guatemalan Bishop Juan Gerardi, who was killed in 1998 just days after trying to hold the country's military accountable for the atrocities committed during its civil war.", now(), 3);
 insert into film values (103, "Antebellum", "Free", 7.9, "Horror", 2017, 14, "4.png", "https://www.youtube.com/embed/mXcZ7WDsVwk", "Successful author Veronica Henley is finishing a book tour before she returns home to her husband and daughter. But a shocking turn of events is about to upend Veronica's existence, plunging her into a horrifying reality that forces her to confront her past, present and future -- before it's too late.", now(), 1);
+insert into user_film values (1, 2, 30, "Meaningful movie", null, "Beauty is kind to the well-mannered Beast but pines for her family until the Beast allows her to visit them.", 9.2, null, now());
+insert into user_film values (2, 2, 30, null, "The moral of Beauty and the Beast is that we should value inward characteristics such as kindness over other superficial qualities, such as wit and appearance.", null, null, null, now());
+insert into user_film values (3, 1, 29, "Cillian Murphy as Thomas Shelby was treat to watch", null, "One of the very well made british drama I have seen in TV Series. Compelling story telling with some really great acting lead by Cillian Murphy and the series that excels in all the other department...acting, direction, story, screenplay and the cinematography.", 9.6, null, now());
+insert into user_film values (4, 1, 29, null, "Absolutely Amazing!! Peaky Blinders is not only one of the most underrated TV shows of all-time but it&#039;s also one of the greatest shows of all-time.", null, null, null, now());
