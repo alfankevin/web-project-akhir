@@ -65,12 +65,25 @@ if(!empty($_SESSION['id_user'])) {
             <meta http-equiv='refresh' content='0'>";
         }
     } else if(isset($_POST['save'])) {
-        if(save($_POST) > 0) {
-            echo "
-            <script>
-                alert('Added to watchlist');
-            </script>
-            <meta http-equiv='refresh' content='0'>";
+        $id_film = $_POST["id_film"];
+        $result = mysqli_query($conn, "SELECT * FROM user_film WHERE id_film = $id_film");
+        $row = mysqli_fetch_assoc($result);
+        if(mysqli_num_rows($result) == 0 || mysqli_num_rows($result) > 0) {
+            if($id_film != $row['id_film']){
+                if(save($_POST) > 0) {
+                    echo "
+                    <script>
+                        alert('Added to watchlist');
+                    </script>
+                    <meta http-equiv='refresh' content='0'>";
+                }
+            } else {
+                echo "
+                <script>
+                    alert('Already added to watchlist');
+                </script>
+                <meta http-equiv='refresh' content='0'>";
+            }
         }
     }
 }
