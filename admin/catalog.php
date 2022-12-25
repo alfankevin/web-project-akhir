@@ -1,7 +1,7 @@
 <?php
 require "../main/functions.php";
 
-$film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category ORDER BY id_film DESC");
+$film = query("SELECT * FROM film INNER JOIN category ON film.id_category = category.id_category WHERE id_film BETWEEN 1 AND 100 ORDER BY id_film DESC");
 $count = query("SELECT COUNT(id_film) AS count FROM film");
 
 if(isset($_POST["search"])) {
