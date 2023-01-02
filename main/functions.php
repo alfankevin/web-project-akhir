@@ -201,7 +201,8 @@ function regular($data) {
     $id_user = $data["id_user"];
     
     $query = "UPDATE user_subs SET
-              id_subs = 2
+              id_subs = 2,
+              buy_date = now()
               WHERE id_user = $id_user";
     mysqli_query($conn, $query);
 
@@ -213,7 +214,8 @@ function premium($data) {
     $id_user = $data["id_user"];
     
     $query = "UPDATE user_subs SET
-              id_subs = 3
+              id_subs = 3,
+              buy_date = now()
               WHERE id_user = $id_user";
     mysqli_query($conn, $query);
 
@@ -225,7 +227,8 @@ function cinematic($data) {
     $id_user = $data["id_user"];
     
     $query = "UPDATE user_subs SET
-              id_subs = 4
+              id_subs = 4,
+              buy_date = now()
               WHERE id_user = $id_user";
     mysqli_query($conn, $query);
 
