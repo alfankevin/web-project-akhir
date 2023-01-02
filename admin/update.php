@@ -77,31 +77,31 @@ if(isset($_POST['submit'])) {
                                 <div class="col-3">
                                     <div class="img__input">
                                         <label for="form__img-input" id="form__img-label" onclick="preview()" style="background: none">Update image (required)</label>
-                                        <input id="form__img-input" name="image" type="file" accept=".png, .jpg, .jpeg" onchange="document.getElementById('form__img').src = window.URL.createObjectURL(this.files[0])" value="<?php echo $film["image"]; ?>" style="display: none">
+                                        <input id="form__img-input" name="image" type="file" accept=".png, .jpg, .jpeg" value="../assets/images/card/<?php echo $film["image"]; ?>" onchange="document.getElementById('form__img').src = window.URL.createObjectURL(this.files[0])" value="<?php echo $film["image"]; ?>" style="display: none">
                                         <img id="form__img" src="../assets/images/card/<?php echo $film["image"]; ?>" alt="" height="100%" width="100%">
                                     </div>
                                 </div>
                                 <div class="col-9">
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="sign__group">
-                                                <input type="text" name="title" placeholder="Title" class="sign__input" required value="<?php echo $film["title"]; ?>">
+                                            <div class="form__group">
+                                                <input type="text" name="title" placeholder="Title" class="form__input" required value="<?php echo $film["title"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <div class="sign__group">
-                                                <input type="text" name="film_desc" class="sign__textarea" placeholder="Description" required value="<?php echo $film["film_desc"]; ?>">
+                                            <div class="form__group">
+                                                <input type="text" name="film_desc" class="form__textarea" placeholder="Description" required value="<?php echo $film["film_desc"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <div class="sign__group">
-                                                <input type="number" name="year" placeholder="Release year" class="sign__input" required value="<?php echo $film["year"]; ?>">
+                                            <div class="form__group">
+                                                <input type="number" name="year" placeholder="Release year" class="form__input" required value="<?php echo $film["year"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <div class="sign__group">
-                                                <select class="sign__input" name="id_category" selected required value="<?php echo $film['id_category']; ?>">
-                                                    <option selected>Category</option> 
+                                            <div class="form__group">
+                                                <select class="form__input" name="id_category" selected required value="<?php echo $film['id_category']; ?>">
+                                                    <option selected>Category *</option> 
                                                     <option value=1>Movie</option>
                                                     <option value=2>Series</option>
                                                     <option value=3>TV Show</option>
@@ -110,34 +110,34 @@ if(isset($_POST['submit'])) {
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <div class="sign__group">
-                                                <input type="text" name="genre" placeholder="Genre" class="sign__input" required value="<?php echo $film["genre"]; ?>">
+                                            <div class="form__group">
+                                                <input type="text" name="genre" placeholder="Genre" class="form__input" required value="<?php echo $film["genre"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <div class="sign__group">
-                                                <input type="float" name="rating" placeholder="Rating" class="sign__input" required value="<?php echo $film["rating"]; ?>">
+                                            <div class="form__group">
+                                                <input type="float" name="rating" placeholder="Rating" class="form__input" required value="<?php echo $film["rating"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="sign__group">
-                                                <input type="text" name="label" placeholder="Label" class="sign__input" required value="<?php echo $film["label"]; ?>">
+                                            <div class="form__group">
+                                                <input type="text" name="label" placeholder="Label" class="form__input" required value="<?php echo $film["label"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="sign__group">
-                                                <input type="number" name="age" placeholder="Age" class="sign__input" required value="<?php echo $film["age"]; ?>">
+                                            <div class="form__group">
+                                                <input type="number" name="age" placeholder="Age" class="form__input" required value="<?php echo $film["age"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <div class="sign__group">
-                                                <input type="text" name="video" placeholder="Add a link" class="sign__input" required value="<?php echo $film["video"]; ?>">
+                                            <div class="form__group">
+                                                <input type="text" name="video" placeholder="Add a link" class="form__input" required value="<?php echo $film["video"]; ?>">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" name="submit" class="sign__button">Publish</button>
+                                    <button type="submit" name="submit" class="form__button">Publish</button>
                                 </div>
                             </div>
                         </form>

@@ -286,14 +286,14 @@ body {
     color: #fff;
 }
 
-.sign__group {
+.sign__group, .form__group {
     width: 100%;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
 }
 
-.sign__input {
+.sign__input, .form__input {
     padding: 10px 20px;
     height: 45px;
     width: 100%;
@@ -311,7 +311,7 @@ body {
     opacity: 1;
 }
 
-.sign__input:focus {
+.sign__input:focus, .form__input:focus {
     border: 1px solid #2f80ed;
 }
 
@@ -329,7 +329,7 @@ body {
     cursor: pointer;
 }
 
-.sign__button {
+.sign__button, .form__button {
     margin: 15px 0 10px;
     display: flex;
     height: 50px;
@@ -345,7 +345,7 @@ body {
     transition: all, 0.5s;
 }
 
-.sign__button:hover {
+.sign__button:hover, .form__button:hover {
     color: #131720;
     background-color: #fff;
 }
@@ -429,8 +429,7 @@ body {
 }
 
 select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    appearance: none;
     cursor: pointer;
 }
 
@@ -1359,7 +1358,6 @@ select {
 
 .comment__title {
     display: flex;
-    margin-bottom: 20px;
 }
 
 .comment__title button {
@@ -1401,7 +1399,7 @@ select {
 }
 
 .comment__item, .review__item {
-    margin-bottom: 20px;
+    margin-top: 20px;
     padding: 20px;
     width: 100%;
     border-radius: 16px;
@@ -1460,7 +1458,7 @@ select {
     border: 1px solid rgba(47,128,237,0.1);
 }
 
-.sign__textarea {
+.form__textarea {
     padding: 15px 20px;
     height: 144px;
     width: 100%;
@@ -1475,11 +1473,11 @@ select {
     transition: all, 0.5s;
 }
 
-.sign__textarea:focus {
+.form__textarea:focus {
     border: 1px solid #2f80ed;
 }
 
-.comment__form .sign__button {
+.form__button {
     margin: 0;
     width: 180px;
 }

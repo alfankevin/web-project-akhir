@@ -351,13 +351,11 @@ if(!empty($_SESSION['id_user'])) {
                                     <?php endforeach; ?>
                                     <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
                                         <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
-                                        <?php $i = 1 ?> <?php foreach($film as $row): ?>
                                         <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
-                                        <?php $i++ ?> <?php endforeach; ?>
-                                        <div class="sign__group">
-                                            <textarea type="text" name="text" class="sign__textarea" placeholder="Add comment"></textarea>
+                                        <div class="form__group">
+                                            <textarea type="text" name="text" class="form__textarea" placeholder="Add comment"></textarea>
                                         </div>
-                                        <button type="submit" name="comment" class="sign__button">Send</button>
+                                        <button type="submit" name="comment" class="form__button">Send</button>
                                     </form>
                                 </div>
                             </div>
@@ -378,25 +376,23 @@ if(!empty($_SESSION['id_user'])) {
                                     <?php endforeach; ?>
                                     <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
                                         <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
-                                        <?php $i = 1 ?> <?php foreach($film as $row): ?>
                                         <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
-                                        <?php $i++ ?> <?php endforeach; ?>
                                         <div class="row">
                                             <div class="col-9">
-                                                <div class="sign__group">
-                                                    <input type="text" name="title" placeholder="Title" class="sign__input">
+                                                <div class="form__group">
+                                                    <input type="text" name="title" placeholder="Title" class="form__input">
                                                 </div>
                                             </div>
                                             <div class="col-3">
-                                                <div class="sign__group">
-                                                    <input type="float" name="rating" placeholder="Rating" class="sign__input">
+                                                <div class="form__group">
+                                                    <input type="float" name="rating" placeholder="Rating" class="form__input">
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <div class="sign__group">
-                                                    <textarea type="text" name="text" class="sign__textarea" placeholder="Add review"></textarea>
+                                                <div class="form__group">
+                                                    <textarea type="text" name="text" class="form__textarea" placeholder="Add review"></textarea>
                                                 </div>
-                                                <button type="submit" name="review" class="sign__button">Send</button>
+                                                <button type="submit" name="review" class="form__button">Send</button>
                                             </div>
                                         </div>
                                     </form>

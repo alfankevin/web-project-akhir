@@ -80,23 +80,23 @@ if(isset($_POST['submit'])) {
                                 <div class="col-9">
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="sign__group">
-                                                <input type="text" name="title" placeholder="Title" class="sign__input" required>
+                                            <div class="form__group">
+                                                <input type="text" name="title" placeholder="Title" class="form__input" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <div class="sign__group">
-                                                <textarea type="text" name="film_desc" class="sign__textarea" placeholder="Description" required></textarea>
+                                            <div class="form__group">
+                                                <textarea type="text" name="film_desc" class="form__textarea" placeholder="Description" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <div class="sign__group">
-                                                <input type="number" name="year" placeholder="Release year" class="sign__input" required>
+                                            <div class="form__group">
+                                                <input type="number" name="year" placeholder="Release year" class="form__input" required>
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <div class="sign__group">
-                                                <select class="sign__input" name="id_category" selected required>
+                                            <div class="form__group">
+                                                <select class="form__input" name="id_category" selected required>
                                                     <option selected>Category</option> 
                                                     <option value=1>Movie</option>
                                                     <option value=2>Series</option>
@@ -106,34 +106,34 @@ if(isset($_POST['submit'])) {
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <div class="sign__group">
-                                                <input type="text" name="genre" placeholder="Genre" class="sign__input" required>
+                                            <div class="form__group">
+                                                <input type="text" name="genre" placeholder="Genre" class="form__input" required>
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <div class="sign__group">
-                                                <input type="float" name="rating" placeholder="Rating" class="sign__input" required>
+                                            <div class="form__group">
+                                                <input type="float" name="rating" placeholder="Rating" class="form__input" required>
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="sign__group">
-                                                <input type="text" name="label" placeholder="Label" class="sign__input" required>
+                                            <div class="form__group">
+                                                <input type="text" name="label" placeholder="Label" class="form__input" required>
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="sign__group">
-                                                <input type="number" name="age" placeholder="Age" class="sign__input" required>
+                                            <div class="form__group">
+                                                <input type="number" name="age" placeholder="Age" class="form__input" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <div class="sign__group">
-                                                <input type="text" name="video" placeholder="Add a link" class="sign__input" required>
+                                            <div class="form__group">
+                                                <input type="text" name="video" placeholder="Add a link" class="form__input" required>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" name="submit" class="sign__button">Publish</button>
+                                    <button type="submit" name="submit" class="form__button">Publish</button>
                                 </div>
                             </div>
                         </form>

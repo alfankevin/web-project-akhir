@@ -43,11 +43,23 @@ if(!empty($_SESSION['id_user'])) {
 }
 
 if(!empty($_SESSION['id_user'])) {
+    $id_user = $_SESSION['id_user'];
+    $sqlUser = mysqli_query($conn, "SELECT * FROM user INNER JOIN user_subs ON user_subs.id_user = user.id_user WHERE user.id_user = $id_user");
+    $users = mysqli_fetch_assoc($sqlUser);
+    if(mysqli_num_rows($sqlUser) > 0) {
+        if($users['id_subs'] > 1) {
+            echo "
+            <script>
+                document.location.href = './details.php?id=$id_film';
+            </script>";
+        }
+    }
     if(isset($_POST['regular'])) {
         if(regular($user) > 0) {
             echo "
             <script>
                 alert('Subscribe success');
+                document.location.href = './details.php?id=$id_film';
             </script>";
         }
     }
@@ -231,10 +243,11 @@ if(!empty($_SESSION['id_user'])) {
                                 <li><span class="dot" id="label"></span></li>
                                 <li><?php echo $row["age"]; ?>+</li>
                             </ul>
-                            <div class="details__button">
+                            <form class="details__button" method="post">
                                 <button class="plan__button" name="regular">Connect for $11</button>
+                                <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
                                 <button class="plan__button">Pricing plans</button>
-                            </div>
+                            </form>
                             <p class="details__desc"><?php echo $row["film_desc"]; ?></p>
                         </div>
                     </div>
