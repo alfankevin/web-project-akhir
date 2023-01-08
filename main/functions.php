@@ -99,6 +99,7 @@ function update($data) {
 
 function delete($id_film) {
     global $conn;
+    mysqli_query($conn, "DELETE FROM user_film WHERE id_film = $id_film");
     mysqli_query($conn, "DELETE FROM film WHERE id_film = $id_film");
     return mysqli_affected_rows($conn);
 }
