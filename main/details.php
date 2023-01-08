@@ -353,8 +353,8 @@ if(!empty($_SESSION['id_user'])) {
                                     <?php $i = 1 ?>
                                     <?php foreach($film as $row): ?>
                                     <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
-                                        <input type="text" name="id_user" value="<?php echo $user["id_user"]; ?>">
-                                        <input type="text" name="id_film" value="<?php echo $row["id_film"]; ?>">
+                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
                                         <div class="form__group">
                                             <textarea type="text" name="text" class="form__textarea" placeholder="Add comment"></textarea>
                                         </div>
@@ -383,8 +383,8 @@ if(!empty($_SESSION['id_user'])) {
                                     <?php $i = 1 ?>
                                     <?php foreach($film as $row): ?>
                                     <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
-                                        <input type="text" name="id_user" value="<?php echo $user["id_user"]; ?>">
-                                        <input type="text" name="id_film" value="<?php echo $row["id_film"]; ?>">
+                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
                                         <div class="row">
                                             <div class="col-9">
                                                 <div class="form__group">
