@@ -434,15 +434,15 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-bookmark"></i>
                             </button>
                             <span class="card__rate">
-                                <i class="fa-regular fa-star"></i>8.3
+                                <i class="fa-regular fa-star"></i>8.4
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id=30">The Good Lord Bird</a>
+                                <a href="./details.php?id=30">Beauty and The Beast</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
-                                <li>Action</li>
-                                <li>2019</li>
+                                <li>Romance</li>
+                                <li>2017</li>
                             </ul>
                         </div>
                     </div>
@@ -462,7 +462,7 @@ if(!empty($_SESSION['id_user'])) {
                                 <a href="./details.php?id=29">Peaky Blinders</a>
                             </h3>
                             <ul class="card__label">
-                                <li>Free</li>
+                                <li>Subs</li>
                                 <li>Drama</li>
                                 <li>2013</li>
                             </ul>
@@ -528,7 +528,7 @@ if(!empty($_SESSION['id_user'])) {
                                 <a href="./details.php?id=26">Interview With the Vampire</a>
                             </h3>
                             <ul class="card__label">
-                                <li>Free</li>
+                                <li>Subs</li>
                                 <li>Horror</li>
                                 <li>1994</li>
                             </ul>

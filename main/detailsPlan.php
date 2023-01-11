@@ -324,7 +324,7 @@ if(!empty($_SESSION['id_user'])) {
                     <button class="subs__button subs__button-right"><i class="fa-solid fa-arrow-right"></i></button>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=30">
+                            <a class="card__cover" href="./details.php?id=30">
                                 <img src="../assets/images/card/1.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -332,21 +332,21 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-bookmark"></i>
                             </button>
                             <span class="card__rate">
-                                <i class="fa-regular fa-star"></i>8.3
+                                <i class="fa-regular fa-star"></i>8.4
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=30">The Good Lord Bird</a>
+                                <a href="./details.php?id=30">Beauty and The Beast</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
-                                <li>Action</li>
-                                <li>2019</li>
+                                <li>Romance</li>
+                                <li>2017</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=29">
+                            <a class="card__cover" href="./details.php?id=29">
                                 <img src="../assets/images/card/2.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -357,10 +357,10 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-star"></i>9.6
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=29">Peaky Blinders</a>
+                                <a href="./details.php?id=29">Peaky Blinders</a>
                             </h3>
                             <ul class="card__label">
-                                <li>Free</li>
+                                <li>Subs</li>
                                 <li>Drama</li>
                                 <li>2013</li>
                             </ul>
@@ -368,7 +368,7 @@ if(!empty($_SESSION['id_user'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=28">
+                            <a class="card__cover" href="./details.php?id=28">
                                 <img src="../assets/images/card/3.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -379,7 +379,7 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-star"></i>8.1
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=28">The Dictator</a>
+                                <a href="./details.php?id=28">The Dictator</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -390,7 +390,7 @@ if(!empty($_SESSION['id_user'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=27">
+                            <a class="card__cover" href="./details.php?id=27">
                                 <img src="../assets/images/card/4.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -401,7 +401,7 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-star"></i>8.8
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=27">Get On Up</a>
+                                <a href="./details.php?id=27">Get On Up</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -412,7 +412,7 @@ if(!empty($_SESSION['id_user'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=26">
+                            <a class="card__cover" href="./details.php?id=26">
                                 <img src="../assets/images/card/5.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -423,10 +423,10 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-star"></i>7.9
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=26">Interview With the Vampire</a>
+                                <a href="./details.php?id=26">Interview With the Vampire</a>
                             </h3>
                             <ul class="card__label">
-                                <li>Free</li>
+                                <li>Subs</li>
                                 <li>Horror</li>
                                 <li>1994</li>
                             </ul>
@@ -434,7 +434,7 @@ if(!empty($_SESSION['id_user'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id_film=25">
+                            <a class="card__cover" href="./details.php?id=25">
                                 <img src="../assets/images/card/6.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -445,7 +445,7 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-star"></i>8.6
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id_film=25">Pawn Sacrifice</a>
+                                <a href="./details.php?id=25">Pawn Sacrifice</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
