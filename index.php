@@ -281,7 +281,7 @@ if(isset($_POST["search"])) {
                             </div>
                         </div>
                     </a>
-                    <a href="./main/details.php?id=101" class="hero__card">
+                    <a href="./main/watch.php?id=101" class="hero__card">
                         <div class="hero__cover">
                             <img src="./assets/images/hero/2.jpg" alt="" class="hero__image">
                             <button class="hero__save">
@@ -300,7 +300,7 @@ if(isset($_POST["search"])) {
                             </div>
                         </div>
                     </a>
-                    <a href="./main/details.php?id=102" class="hero__card">
+                    <a href="./main/watch.php?id=102" class="hero__card">
                         <div class="hero__cover">
                             <img src="./assets/images/hero/3.jpg" alt="" class="hero__image">
                             <button class="hero__save">
@@ -319,7 +319,7 @@ if(isset($_POST["search"])) {
                             </div>
                         </div>
                     </a>
-                    <a href="./main/details.php?id=103" class="hero__card">
+                    <a href="./main/watch.php?id=103" class="hero__card">
                         <div class="hero__cover">
                             <img src="./assets/images/hero/4.jpg" alt="" class="hero__image">
                             <button class="hero__save">
@@ -406,7 +406,7 @@ if(isset($_POST["search"])) {
                                     <form class="card" method="post">
                                         <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
                                         <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
-                                        <a class="card__cover" href="./main/details.php?id=<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="./main/watch.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
@@ -417,7 +417,7 @@ if(isset($_POST["search"])) {
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="./main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="./main/watch.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>
@@ -438,7 +438,7 @@ if(isset($_POST["search"])) {
                                     <form class="card" method="post">
                                         <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
                                         <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
-                                        <a class="card__cover" href="./main/details.php?id=<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="./main/watch.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
@@ -449,7 +449,7 @@ if(isset($_POST["search"])) {
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="./main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="./main/watch.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>
@@ -470,7 +470,7 @@ if(isset($_POST["search"])) {
                                     <form class="card" method="post">
                                         <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
                                         <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
-                                        <a class="card__cover" href="./main/details.php?id=<?php echo $row["id_film"]; ?>">
+                                        <a class="card__cover" href="./main/watch.php?id=<?php echo $row["id_film"]; ?>">
                                             <img src="./assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="./assets/images/icon/play.png" class="card__button">
                                         </a>
@@ -481,7 +481,7 @@ if(isset($_POST["search"])) {
                                             <i class="fa-regular fa-star"></i><?php echo $row["rating"]; ?>
                                         </span>
                                         <h3 class="card__title">
-                                            <a href="./main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
+                                            <a href="./main/watch.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a>
                                         </h3>
                                         <ul class="card__label">
                                             <li><?php echo $row["label"]; ?></li>

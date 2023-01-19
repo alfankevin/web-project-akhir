@@ -45,71 +45,22 @@ if(!empty($_SESSION['id_user'])) {
 if(!empty($_SESSION['id_user'])) {
     $id_user = $_SESSION['id_user'];
     $sqlUser = mysqli_query($conn, "SELECT * FROM user INNER JOIN user_subs ON user_subs.id_user = user.id_user WHERE user.id_user = $id_user");
-    $sqlFilm = mysqli_query($conn, "SELECT * FROM film WHERE id_film = $id_film");
     $users = mysqli_fetch_assoc($sqlUser);
-    $films = mysqli_fetch_assoc($sqlFilm);
-    if(mysqli_num_rows($sqlFilm) > 0) {
-        if($films['label'] == "Subs" && $users['id_subs'] == 1) {
+    if(mysqli_num_rows($sqlUser) > 0) {
+        if($users['id_subs'] > 1) {
             echo "
             <script>
-                document.location.href = './detailsPlan.php?id=$id_film';
+                document.location.href = './watch.php?id=$id_film';
             </script>";
         }
     }
-} else if(empty($_SESSION['id_user'])) {
-    $result = mysqli_query($conn, "SELECT * FROM film WHERE id_film = $id_film");
-    $row = mysqli_fetch_assoc($result);
-    if(mysqli_num_rows($result) > 0) {
-        if($row['label'] == "Subs") {
+    if(isset($_POST['regular'])) {
+        if(regular($user) > 0) {
             echo "
             <script>
-                document.location.href = './detailsPlan.php?id=$id_film';
+                alert('Subscribe success');
+                document.location.href = './watch.php?id=$id_film';
             </script>";
-        }
-    }
-}
-
-if(!empty($_SESSION['id_user'])) {
-    if(isset($_POST['comment'])) {
-        if(comment($_POST) > 0) {
-            echo "
-            <script>
-                alert('Comment uploaded');
-            </script>
-            <meta http-equiv='refresh' content='0'>";
-        }
-    } else if(isset($_POST['review'])) {
-        if(review($_POST) > 0) {
-            echo "
-            <script>
-                alert('Review uploaded');
-            </script>
-            <meta http-equiv='refresh' content='0'>";
-        }
-    }
-}
-
-if(!empty($_SESSION['id_user'])) {
-    if(isset($_POST['save'])) {
-        $id_film = $_POST["id_film"];
-        $result = mysqli_query($conn, "SELECT * FROM user_film WHERE id_film = $id_film AND save = '1'");
-        $row = mysqli_fetch_assoc($result);
-        if(mysqli_num_rows($result) == 0 || mysqli_num_rows($result) > 0) {
-            if($id_film != $row['id_film']){
-                if(save($_POST) > 0) {
-                    echo "
-                    <script>
-                        alert('Added to watchlist');
-                    </script>
-                    <meta http-equiv='refresh' content='0'>";
-                }
-            } else {
-                echo "
-                <script>
-                    alert('Already added to watchlist');
-                </script>
-                <meta http-equiv='refresh' content='0'>";
-            }
         }
     }
 }
@@ -292,29 +243,16 @@ if(!empty($_SESSION['id_user'])) {
                                 <li><span class="dot" id="label"></span></li>
                                 <li><?php echo $row["age"]; ?>+</li>
                             </ul>
+                            <form class="details__button" method="post">
+                                <button class="plan__button" name="regular">Connect for $11</button>
+                                <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
+                                <button class="plan__button">Pricing plans</button>
+                            </form>
                             <p class="details__desc"><?php echo $row["film_desc"]; ?></p>
                         </div>
                     </div>
                     <div class="col-12 col-lg-8">
-                        <form class="details__video" method="post">
-                            <div class="video__cover">
-                                <iframe width="100%" height="100%" src="<?php echo $row["video"]; ?>" allowfullscreen></iframe>
-                            </div>
-                            <div class="video__action">
-                                <div class="video__download">
-                                    <i class="fa-solid fa-download"></i>Download:
-                                    <a href="#">480p</a>
-                                    <a href="#">720p</a>
-                                    <a href="#">1080p</a>
-                                    <a href="#">4k</a>
-                                </div>
-                                <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
-                                <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
-                                <div class="video__save">
-                                    <button type="submit" name="save" onclick="return confirm('Add to watchlist?')"><i class="fa-regular fa-bookmark"></i>Add to watchlist</button>
-                                </div>
-                            </div>
-                        </form>
+                        <form class="details__video" method="post" style="padding: 35px 0 25px"></form>
                     </div>
                     <?php $i++ ?>
                     <?php endforeach; ?>
@@ -322,7 +260,7 @@ if(!empty($_SESSION['id_user'])) {
             </div>
         </section>
 
-        <section class="comment">
+        <section class="comment" style="padding: 50px 0">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8">
@@ -349,19 +287,6 @@ if(!empty($_SESSION['id_user'])) {
                                     </div>
                                     <?php $i++ ?>
                                     <?php endforeach; ?>
-                                    
-                                    <?php $i = 1 ?>
-                                    <?php foreach($film as $row): ?>
-                                    <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
-                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
-                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
-                                        <div class="form__group">
-                                            <textarea type="text" name="text" class="form__textarea" placeholder="Add comment"></textarea>
-                                        </div>
-                                        <button type="submit" name="comment" class="form__button">Send</button>
-                                    </form>
-                                    <?php $i++ ?>
-                                    <?php endforeach; ?>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -377,33 +302,6 @@ if(!empty($_SESSION['id_user'])) {
                                         </div>
                                         <p class="comment__text"><?php echo $row["review"]; ?></p>
                                     </div>
-                                    <?php $i++ ?>
-                                    <?php endforeach; ?>
-                                    
-                                    <?php $i = 1 ?>
-                                    <?php foreach($film as $row): ?>
-                                    <form action="" class="comment__form" method="post" spellcheck="false" autocomplete="off">
-                                        <input type="hidden" name="id_user" value="<?php echo $user["id_user"]; ?>">
-                                        <input type="hidden" name="id_film" value="<?php echo $row["id_film"]; ?>">
-                                        <div class="row">
-                                            <div class="col-9">
-                                                <div class="form__group">
-                                                    <input type="text" name="title" placeholder="Title" class="form__input">
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="form__group">
-                                                    <input type="float" name="rating" placeholder="Rating" class="form__input">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form__group">
-                                                    <textarea type="text" name="text" class="form__textarea" placeholder="Add review"></textarea>
-                                                </div>
-                                                <button type="submit" name="review" class="form__button">Send</button>
-                                            </div>
-                                        </div>
-                                    </form>
                                     <?php $i++ ?>
                                     <?php endforeach; ?>
                                 </div>
@@ -426,7 +324,7 @@ if(!empty($_SESSION['id_user'])) {
                     <button class="subs__button subs__button-right"><i class="fa-solid fa-arrow-right"></i></button>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id=30">
+                            <a class="card__cover" href="./watch.php?id=30">
                                 <img src="../assets/images/card/1.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -437,7 +335,7 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-star"></i>8.4
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id=30">Beauty and The Beast</a>
+                                <a href="./watch.php?id=30">Beauty and The Beast</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -448,7 +346,7 @@ if(!empty($_SESSION['id_user'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id=29">
+                            <a class="card__cover" href="./watch.php?id=29">
                                 <img src="../assets/images/card/2.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -459,7 +357,7 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-star"></i>9.6
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id=29">Peaky Blinders</a>
+                                <a href="./watch.php?id=29">Peaky Blinders</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Subs</li>
@@ -470,7 +368,7 @@ if(!empty($_SESSION['id_user'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id=28">
+                            <a class="card__cover" href="./watch.php?id=28">
                                 <img src="../assets/images/card/3.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -481,7 +379,7 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-star"></i>8.1
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id=28">The Dictator</a>
+                                <a href="./watch.php?id=28">The Dictator</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -492,7 +390,7 @@ if(!empty($_SESSION['id_user'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id=27">
+                            <a class="card__cover" href="./watch.php?id=27">
                                 <img src="../assets/images/card/4.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -503,7 +401,7 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-star"></i>8.8
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id=27">Get On Up</a>
+                                <a href="./watch.php?id=27">Get On Up</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>
@@ -514,7 +412,7 @@ if(!empty($_SESSION['id_user'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id=26">
+                            <a class="card__cover" href="./watch.php?id=26">
                                 <img src="../assets/images/card/5.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -525,7 +423,7 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-star"></i>7.9
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id=26">Interview With the Vampire</a>
+                                <a href="./watch.php?id=26">Interview With the Vampire</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Subs</li>
@@ -536,7 +434,7 @@ if(!empty($_SESSION['id_user'])) {
                     </div>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 col--grid">
                         <div class="card">
-                            <a class="card__cover" href="./details.php?id=25">
+                            <a class="card__cover" href="./watch.php?id=25">
                                 <img src="../assets/images/card/6.png" class="card__image">
                                 <img src="../assets/images/icon/play.png" class="card__button">
                             </a>
@@ -547,7 +445,7 @@ if(!empty($_SESSION['id_user'])) {
                                 <i class="fa-regular fa-star"></i>8.6
                             </span>
                             <h3 class="card__title">
-                                <a href="./details.php?id=25">Pawn Sacrifice</a>
+                                <a href="./watch.php?id=25">Pawn Sacrifice</a>
                             </h3>
                             <ul class="card__label">
                                 <li>Free</li>

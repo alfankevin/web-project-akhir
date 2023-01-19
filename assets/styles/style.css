@@ -32,6 +32,10 @@ body {
     padding: 0 40px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .logo a {
     color: #fff;
     font-size: 26px;

@@ -83,7 +83,7 @@ if(isset($_POST["search"])) {
                                 <?php foreach($review as $row): ?>
                                 <tr>
                                     <td class="reviews__id"><?php echo $i; ?></td>
-                                    <td class="reviews__item"><a class="catalog__title" href="../main/details.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
+                                    <td class="reviews__item"><a class="catalog__title" href="../main/watch.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
                                     <td class="reviews__author"><?php echo $row["username"]; ?></td>
                                     <td class="reviews__text">
                                         <div class="views__text"><p><?php echo $row["review"]; ?></p></div>
