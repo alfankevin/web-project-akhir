@@ -32,10 +32,6 @@ body {
     padding: 0 40px;
 }
 
-a {
-    text-decoration: none;
-}
-
 .logo a {
     color: #fff;
     font-size: 26px;
@@ -1229,7 +1225,8 @@ select {
 }
 
 .details__label li {
-    margin: 0 7.5px;
+    float: left;
+    margin: 0 10px;
     font-size: 16px;
     display: inline;
     color: #e0e0e0;

@@ -274,7 +274,7 @@ if(isset($_POST["search"])) {
                                             <img src="../assets/images/card/<?php echo $row["image"]; ?>" class="card__image">
                                             <img src="../assets/images/icon/play.png" class="card__button">
                                         </a>
-                                        <a href="../admin/deleteSave.php?id=<?php echo $row["id_view"]; ?>" class="card__save card__watchlist" onclick="return confirm('Remove from watchlist?')">
+                                        <a href="../admin/deleteSave.php?id=<?php echo $row["id_view"]; ?>" class="card__save card__watchlist" onclick="return confirm('Remove from watchlist?')" style="text-decoration: none">
                                             <i class="fa-regular fa-bookmark"></i>
                                         </a>
                                         <span class="card__rate">
