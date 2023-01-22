@@ -1075,7 +1075,8 @@ select {
 }
 
 .footer__social a {
-    margin-right: 15px;
+    float: left;
+    margin-right: 20px;
 }
 
 .footer__social img {
