@@ -50,64 +50,63 @@ if(isset($_POST["search"])) {
             <p class="sidebar__footer">© Films, 2022,<br>Created by Alfarchi.</p>
         </section>
 
-        <main class="main">
+        <section class="main__title">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="main__header">
-                            <?php $i = 1 ?> <?php foreach($count as $row): ?>
-                            <h2 class="main__header-title">Users&ensp;<span><?php echo $row["count"]; ?> total</span></h2>
-                            <?php $i++ ?> <?php endforeach; ?>
-                            <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__admin">
-                                <input type="input" name="keyword" placeholder="Find user.." class="nav__search search__admin">
-                                <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <table class="main__table">
-                            <thead>
-                                <tr>
-                                    <td class="user__id">ID</td>
-                                    <td class="user__info">BASIC INFO</td>
-                                    <td class="user__username">USERNAME</td>
-                                    <td class="user__plan">PRICING PLAN</td>
-                                    <td class="user__comments">COMMENTS</td>
-                                    <td class="user__reviews">REVIEWS</td>
-                                    <td class="user__status">STATUS</td>
-                                    <td class="user__date">CREATED DATE</td>
-                                    <td class="user__actions">ACTIONS</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 1 ?>
-                                <?php foreach($user as $row): ?>
-                                <tr>
-                                    <td class="user__id"><?php echo $row["id_user"]; ?></td>
-                                    <td class="user__info">
-                                        <div class="main__info">
-                                            <img class="user__avatar" src="../assets/images/icon/user.jpeg" alt="" height="40px" width="40px">
-                                            <div>
-                                                <h5><?php echo $row["username"]; ?></h5>
-                                                <span><?php echo $row["email"]; ?></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="user__username"><?php echo $row[""]; ?>Username</td>
-                                    <td class="user__plan"><?php echo $row["plan"]; ?></td>
-                                    <td class="user__comments"><?php echo $row[""]; ?>0</td>
-                                    <td class="user__reviews"><?php echo $row[""]; ?>0</td>
-                                    <td class="user__status" style="color: #29b474">Approved</td>
-                                    <td class="user__date"><?php echo $row["create_date"]; ?></td>
-                                    <td class="actions__button"><a href="#" onclick="return confirm('Ban user?')"><i class="fa-solid fa-lock"></i></a><a href="./deleteUser.php?id=<?php echo $row["id_user"]; ?>" onclick="return confirm('Delete user?')"><i class="fa-solid fa-trash"></i></a></td>
-                                </tr>
-                                <?php $i++ ?>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="main__header">
+                    <?php $i = 1 ?> <?php foreach($count as $row): ?>
+                    <h2 class="main__header-title">Users&ensp;<span><?php echo $row["count"]; ?> total</span></h2>
+                    <?php $i++ ?> <?php endforeach; ?>
+                    <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__admin">
+                        <input type="input" name="keyword" placeholder="Find user.." class="nav__search search__admin">
+                        <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
                 </div>
             </div>
         </section>
+
+        <main class="main">
+            <div class="container-fluid">
+                <table class="main__table">
+                    <thead>
+                        <tr>
+                            <td class="user__id">ID</td>
+                            <td class="user__info">BASIC INFO</td>
+                            <td class="user__username">USERNAME</td>
+                            <td class="user__plan">PRICING PLAN</td>
+                            <td class="user__comments">COMMENTS</td>
+                            <td class="user__reviews">REVIEWS</td>
+                            <td class="user__status">STATUS</td>
+                            <td class="user__date">CREATED DATE</td>
+                            <td class="user__actions">ACTIONS</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1 ?>
+                        <?php foreach($user as $row): ?>
+                        <tr>
+                            <td class="user__id"><?php echo $row["id_user"]; ?></td>
+                            <td class="user__info">
+                                <div class="main__info">
+                                    <img class="user__avatar" src="../assets/images/icon/user.jpeg" alt="" height="40px" width="40px">
+                                    <div>
+                                        <h5><?php echo $row["username"]; ?></h5>
+                                        <span><?php echo $row["email"]; ?></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="user__username"><?php echo $row[""]; ?>Username</td>
+                            <td class="user__plan"><?php echo $row["plan"]; ?></td>
+                            <td class="user__comments"><?php echo $row[""]; ?>0</td>
+                            <td class="user__reviews"><?php echo $row[""]; ?>0</td>
+                            <td class="user__status" style="color: #29b474">Approved</td>
+                            <td class="user__date"><?php echo $row["create_date"]; ?></td>
+                            <td class="actions__button"><a href="#" onclick="return confirm('Ban user?')"><i class="fa-solid fa-lock"></i></a><a href="./deleteUser.php?id=<?php echo $row["id_user"]; ?>" onclick="return confirm('Delete user?')"><i class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                        <?php $i++ ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </main>
     </body>
 </html>

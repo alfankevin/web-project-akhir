@@ -50,54 +50,53 @@ if(isset($_POST["search"])) {
             <p class="sidebar__footer">© Films, 2022,<br>Created by Alfarchi.</p>
         </section>
 
-        <main class="main">
+        <section class="main__title">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="main__header">
-                            <?php $i = 1 ?> <?php foreach($count as $row): ?>
-                            <h2 class="main__header-title">Comments&ensp;<span><?php echo $row["count"]; ?> total</span></h2>
-                            <?php $i++ ?> <?php endforeach; ?>
-                            <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__admin">
-                                <input type="input" name="keyword" placeholder="Key word.." class="nav__search search__admin">
-                                <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <table class="main__table">
-                            <thead>
-                                <tr>
-                                    <td class="comments__id">NO</td>
-                                    <td class="comments__item">ITEM</td>
-                                    <td class="comments__author">AUTHOR</td>
-                                    <td class="comments__text">TEXT</td>
-                                    <td class="comments__like">LIKE / DISLIKE</td>
-                                    <td class="comments__date">CREATED DATE</td>
-                                    <td class="comments__actions">ACTIONS</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 1 ?>
-                                <?php foreach($comment as $row): ?>
-                                <tr>
-                                    <td class="comments__id"><?php echo $i; ?></td>
-                                    <td class="comments__item"><a class="catalog__title" href="../main/watch.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
-                                    <td class="comments__author"><?php echo $row["username"]; ?></td>
-                                    <td class="comments__text">
-                                        <div class="views__text"><p><?php echo $row["comment"]; ?></p></div>
-                                    </td>
-                                    <td class="comments__like">0 / 0</td>
-                                    <td class="comments__date"><?php echo $row["view_date"]; ?></td>
-                                    <td class="actions__button"><a href="" onclick="return confirm('Hide comment?')"><i class="fa-solid fa-eye"></i></a><a href="./deleteComment.php?id=<?php echo $row["id_view"]; ?>" onclick="return confirm('Delete comment?')"><i class="fa-solid fa-trash"></i></a></td>
-                                </tr>
-                                <?php $i++ ?>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="main__header">
+                    <?php $i = 1 ?> <?php foreach($count as $row): ?>
+                    <h2 class="main__header-title">Comments&ensp;<span><?php echo $row["count"]; ?> total</span></h2>
+                    <?php $i++ ?> <?php endforeach; ?>
+                    <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__admin">
+                        <input type="input" name="keyword" placeholder="Key word.." class="nav__search search__admin">
+                        <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
                 </div>
             </div>
         </section>
+
+        <main class="main">
+            <div class="container-fluid">
+                <table class="main__table">
+                    <thead>
+                        <tr>
+                            <td class="comments__id">NO</td>
+                            <td class="comments__item">ITEM</td>
+                            <td class="comments__author">AUTHOR</td>
+                            <td class="comments__text">TEXT</td>
+                            <td class="comments__like">LIKE / DISLIKE</td>
+                            <td class="comments__date">CREATED DATE</td>
+                            <td class="comments__actions">ACTIONS</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1 ?>
+                        <?php foreach($comment as $row): ?>
+                        <tr>
+                            <td class="comments__id"><?php echo $i; ?></td>
+                            <td class="comments__item"><a class="catalog__title" href="../main/watch.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
+                            <td class="comments__author"><?php echo $row["username"]; ?></td>
+                            <td class="comments__text">
+                                <div class="views__text"><p><?php echo $row["comment"]; ?></p></div>
+                            </td>
+                            <td class="comments__like">0 / 0</td>
+                            <td class="comments__date"><?php echo $row["view_date"]; ?></td>
+                            <td class="actions__button"><a href="" onclick="return confirm('Hide comment?')"><i class="fa-solid fa-eye"></i></a><a href="./deleteComment.php?id=<?php echo $row["id_view"]; ?>" onclick="return confirm('Delete comment?')"><i class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                        <?php $i++ ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </main>
     </body>
 </html>

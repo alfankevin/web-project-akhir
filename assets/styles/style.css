@@ -1654,16 +1654,23 @@ select {
 
 /* main */
 .main {
-    padding: 0 20px 20px 297.5px;
+    padding: 80px 20px 20px 297.5px;
     background-color: #131720;
 }
 
 .main--admin {
-    padding: 0 20px 30px 297.5px;
+    padding: 0 20px 20px 297.5px;
+}
+
+.main__title {
+    width: 100%;
+    position: fixed;
+    padding: 0 20px 0 297.5px;
+    background-color: #131720;
+    z-index: 99;
 }
 
 .main__header {
-    margin-bottom: 10px;
     height: 80px;
     display: flex;
     align-items: center;
@@ -1861,7 +1868,7 @@ tr td i {
 .film__category {width: 140px;}
 .film__label {width: 110px;}
 .film__age {width: 90px;}
-.film__date {width: 195px;}
+.film__date {width: 200px;}
 
 .user__id {width: 65px;}
 .user__info {width: 242.5px;}

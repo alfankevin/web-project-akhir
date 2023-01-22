@@ -50,59 +50,58 @@ if(isset($_POST["search"])) {
             <p class="sidebar__footer">© Films, 2022,<br>Created by Alfarchi.</p>
         </section>
 
-        <main class="main">
+        <section class="main__title">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="main__header">
-                            <?php $i = 1 ?> <?php foreach($count as $row): ?>
-                            <h2 class="main__header-title">Catalog&ensp;<span><?php echo $row["count"]; ?> total</span></h2>
-                            <?php $i++ ?> <?php endforeach; ?>
-                            <div class="main__action">
-                                <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__catalog">
-                                    <input type="input" name="keyword" placeholder="Find movie / tv series.." class="nav__search search__admin">
-                                    <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                </form>
-                                <a href="./upload.php" class="a"><button class="sign__button main__button">Add item</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <table class="main__table">
-                            <thead>
-                                <tr>
-                                    <td class="film__id">NO</td>
-                                    <td class="film__title">TITLE</td>
-                                    <td class="film__rating">RATING</td>
-                                    <td class="film__genre">GENRE</td>
-                                    <td class="film__category">CATEGORY</td>
-                                    <td class="film__label">LABEL</td>
-                                    <td class="film__age">AGE</td>
-                                    <td class="film__date">CREATED DATE</td>
-                                    <td class="film__actions">ACTIONS</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 1 ?>
-                                <?php foreach($film as $row): ?>
-                                <tr>
-                                    <td class="film__id"><?php echo $i; ?></td>
-                                    <td class="film__title"><a class="catalog__title" href="../main/watch.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
-                                    <td class="film__rating"><i class="fa-regular fa-star"></i>&ensp;<?php echo $row["rating"]; ?></td>
-                                    <td class="film__genre"><?php echo $row["genre"]; ?></td>
-                                    <td class="film__category"><?php echo $row["category"]; ?></td>
-                                    <td class="film__label"><?php echo $row["label"]; ?></td>
-                                    <td class="film__age"><?php echo $row["age"]; ?>+</td>
-                                    <td class="film__date"><?php echo $row["film_date"]; ?></td>
-                                    <td class="actions__button"><a href="./update.php?id=<?php echo $row["id_film"]; ?>"><i class="fa-solid fa-pen"></i></a><a href="./delete.php?id=<?php echo $row["id_film"]; ?>" onclick="return confirm('Delete film?')"><i class="fa-solid fa-trash"></i></a></td>
-                                </tr>
-                                <?php $i++ ?>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                <div class="main__header">
+                    <?php $i = 1 ?> <?php foreach($count as $row): ?>
+                    <h2 class="main__header-title">Catalog&ensp;<span><?php echo $row["count"]; ?> total</span></h2>
+                    <?php $i++ ?> <?php endforeach; ?>
+                    <div class="main__action">
+                        <form action="" method="post" spellcheck="false" autocomplete="off" class="nav__form nav__catalog">
+                            <input type="input" name="keyword" placeholder="Find movie / tv series.." class="nav__search search__admin">
+                            <button type="submit" name="search" class="nav__action-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                        <a href="./upload.php" class="a"><button class="sign__button main__button">Add item</button></a>
                     </div>
                 </div>
             </div>
         </section>
+
+        <main class="main">
+            <div class="container-fluid">
+                <table class="main__table">
+                    <thead>
+                        <tr>
+                            <td class="film__id">NO</td>
+                            <td class="film__title">TITLE</td>
+                            <td class="film__rating">RATING</td>
+                            <td class="film__genre">GENRE</td>
+                            <td class="film__category">CATEGORY</td>
+                            <td class="film__label">LABEL</td>
+                            <td class="film__age">AGE</td>
+                            <td class="film__date">CREATED DATE</td>
+                            <td class="film__actions">ACTIONS</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1 ?>
+                        <?php foreach($film as $row): ?>
+                        <tr>
+                            <td class="film__id"><?php echo $i; ?></td>
+                            <td class="film__title"><a class="catalog__title" href="../main/watch.php?id=<?php echo $row["id_film"]; ?>"><?php echo $row["title"]; ?></a></td>
+                            <td class="film__rating"><i class="fa-regular fa-star"></i>&ensp;<?php echo $row["rating"]; ?></td>
+                            <td class="film__genre"><?php echo $row["genre"]; ?></td>
+                            <td class="film__category"><?php echo $row["category"]; ?></td>
+                            <td class="film__label"><?php echo $row["label"]; ?></td>
+                            <td class="film__age"><?php echo $row["age"]; ?>+</td>
+                            <td class="film__date"><?php echo $row["film_date"]; ?></td>
+                            <td class="actions__button"><a href="./update.php?id=<?php echo $row["id_film"]; ?>"><i class="fa-solid fa-pen"></i></a><a href="./delete.php?id=<?php echo $row["id_film"]; ?>" onclick="return confirm('Delete film?')"><i class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                        <?php $i++ ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </main>
     </body>
 </html>
